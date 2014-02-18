@@ -1,0 +1,38 @@
+<%- include header %>
+<div>
+<!-- list all general courses -->
+<% if(courses[0]) { %>
+<% courses.forEach(function(course) { %>
+    <div>
+        <div>
+            <strong><%= course.courseName %></strong>
+        </div>
+        <div>
+            <ul>
+                <% document.forEach(function(doc) { %>
+                <% if(doc.course === course._id ) { %>
+                <li>
+                    <span><%= doc.fileType %></span>&nbsp;
+                    <a href="#<%= doc._id %>">
+                        <%= doc.title %>
+                    </a>
+                    <div style="display: none;">
+                        <div id="<%= doc._id %>">
+                            <!-- fancybox content -->
+                            <a href="/download/<%= doc.link %>">下载</a>
+                        </div>
+                    </div>
+                </li>
+                <% } %>
+                <% }) %>
+            </ul>
+        </div>
+    </div>
+<% }) %>
+<% } else { %>
+    <div>
+        <p>暂无文档</p>
+    </div>
+<% } %>
+</div>
+<%- include footer %>
