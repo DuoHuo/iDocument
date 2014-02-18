@@ -1,0 +1,12 @@
+<%- include header %>
+<div>
+    <form action="/reg" method="post">
+        <input type="text" name="username" required="required" placeholder="Username"/>
+        <input type="email" name="email" required="required" placeholder="E-mail"/>
+        <input type="password" name="password" required="required" placeholder="Password"/>
+        <input type="password" name="repeatPassword" required="required" placeholder="Repeat Password"/>
+        <input type="hidden" name="_csrf" value="<%= locals.token %>"/>
+        <button type="submit">注册</button>
+    </form>
+</div>
+<%- include footer %>

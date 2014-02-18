@@ -9,11 +9,12 @@ var config = require('../config.js');
 var crypto = require('crypto');
 // var async = require('async');
 // var hat = require('hat');
-var check = require('validator').check;
+var validator = require('validator');
 
 var Document = require('../models/document.js');
 var Course = require('../models/course.js');
 var College = require('../models/college.js');
+var User = require('../models/user.js');
 
 module.exports = function(app) {
     app.get('/', csrf, function(req, res) {
@@ -160,6 +161,9 @@ module.exports = function(app) {
         });
     });
 
+
+    // Admin controllers
+
     app.get('/admin', csrf, checkLogin, function(req, res) {
         Document.getAll(function(err, docs) {
             if (err) {
@@ -187,7 +191,7 @@ module.exports = function(app) {
         });
     });
 
-    app.post('/admin/addnew', csrf, function(req, res) {
+    app.post('/admin/addnewdoc', csrf, checkLogin, function(req, res) {
         var newdoc = {
             title: req.body.title,
             updateTime: Math.round((new Date()).getTime() / 1000),
@@ -197,7 +201,125 @@ module.exports = function(app) {
             type: req.body.type,
             link: req.body.link,
             downloads: 0
+        };
+
+        Document.addnew(newdoc, function(err, doc) {
+            if (err) {
+                console.log(err);
+                return res.send(500);
+            }
+            res.redirect('/admin');
+        });
+    });
+
+    app.post('/admin/addnewcourse', csrf, checkLogin, function(req, res) {
+        var newcourse = {
+            courseName: req.body.courseName,
+            courseType: req.body.courseType,
+            courseBelongs: req.body.courseBelongs
         }
+
+        Course.addnew(newcourse, function(err, doc) {
+            if (err) {
+                console.log(err);
+                return res.send(500);
+            }
+            res.redirect('/admin');
+        });
+    });
+
+    app.post('/admin/addnewcollege', csrf, checkLogin, function(req, res) {
+        var newcollege = {
+            collegeName: req.body.collegeName
+        }
+
+        College.addnew(newcollege, function(err, doc) {
+            if (err) {
+                console.log(err);
+                return res.send(500);
+            }
+            res.redirect('/admin');
+        });
+    });
+
+    app.get('/login', csrf, checkNotLogin, function(req, res) {
+        res.render('login', {
+            siteName: config.siteName
+        });
+    });
+
+    app.post('/login', csrf, checkNotLogin, function(req, res) {
+        if (!validator.isEmail(req.body.email) || !req.body.email) {
+            res.status(400);
+            return res.redirect('/login');
+        }
+        User.get(req.body.email, function(err, user) {
+            if (err) {
+                console.log(err);
+                return res.send(500);
+            }
+            var hash = crypto.createHash('sha256'),
+                password = hash.update(req.body.password).digest('hex');
+            if (user.password !== password) {
+                return res.send(401);
+            } else {
+                req.session.user = user;
+                res.redirect('/admin');
+            }
+        });
+    });
+
+    app.get('/reg', csrf, checkNotLogin, function(req, res) {
+        User.count(function(err, count) {
+            if (err) {
+                console.log(err);
+                return res.send(500);
+            }
+            if (count !== 0) {
+                return res.send(403);
+            } else {
+                res.render('reg', {
+                    siteName: config.siteName
+                });
+            }
+        });
+    });
+
+    app.post('/reg', csrf, checkNotLogin, function(req, res) {
+        User.count(function(err, count) {
+            if (err) {
+                console.log(err);
+                return res.send(500);
+            }
+            if (count !== 0) {
+                return res.send(403);
+            } else {
+                if (!validator.isAlphanumeric(req.body.username) ||
+                    !validator.isLength(req.body.password, 4, 32) ||
+                    !validator.equals(req.body.password, req.body.repeatPassword) ||
+                    !validator.isEmail(req.body.email)) {
+                    res.status(400);
+                    return res.redirect('/reg');
+                }
+
+                var hash = crypto.createHash('sha256'),
+                    password = hash.update(req.body.password).digest('hex');
+                var newuser = {
+                    username: req.body.username,
+                    email: req.body.email,
+                    password: password
+                }
+
+                User.addnew(newuser, function(err, user) {
+                    if (err) {
+                        console.log(err);
+                        return res.send(500);
+                    }
+                    req.session.user = newuser;
+                    res.redirect('/admin');
+                });
+            }
+        });
     });
 
 

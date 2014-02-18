@@ -1,0 +1,10 @@
+<%- include header %>
+<div>
+    <form action="/login" method="post">
+        <input type="email" name="email" required="required" placeholder="E-mail"/>
+        <input type="password" name="password" required="required" placeholder="Password"/>
+        <input type="hidden" name="_csrf" value="<%= locals.token %>"/>
+        <button type="submit">登录</button>
+    </form>
+</div>
+<%- include footer %>
