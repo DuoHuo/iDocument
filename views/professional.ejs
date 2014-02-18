@@ -1,0 +1,17 @@
+<%- include header %>
+<div>
+<!-- list all colleges -->
+<% if(colleges[0]) { %>
+        <% colleges.forEach(function(college) { %>
+        <div>
+            <!-- display college images and other text -->
+            <%= college.collegeName %>
+        </div>
+        <% }) %>
+<% } else { %>
+    <div>
+        暂无学院
+    </div>
+<% } %>
+</div>
+<%- include footer %>

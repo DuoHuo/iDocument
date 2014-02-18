@@ -74,12 +74,25 @@ MongoClient.connect(config.mongodb, { db: { native_parser: true, w : 1 } }, func
         collection.find({
             type: 'general'
         }).toArray(function(err, docs) {
-                console.log(docs);
+                // console.log(docs);
                 if (err) {
                     return callback(err, null);
                 }
                 callback(null, docs);
         });
+    }
+
+    exports.getProfessional = function(collegeid, callback) {
+        collection.find({
+            belongs: collegeid
+        })
+            .sort({ downloads: -1 })
+            .toArray(function(err, docs) {
+                if (err) {
+                    return callback(err, null);
+                }
+                callback(null, docs);
+            });
     }
 
     // update doc downloads count

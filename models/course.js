@@ -8,7 +8,7 @@
  *   _id: ObjectId(),
  *   courseName: 'Computer Science',
  *   courseType: 'general/professional',
- *   documents: ['documents _id'],
+ *   courseBelongs: 'college _id'
  *   courseDownloads: 100
  * }
  * */
@@ -40,13 +40,28 @@ MongoClient.connect(config.mongodb, { db: { native_parser: true, w : 1 } }, func
     exports.getGeneral = function(callback) {
         collection.find({
             courseType: 'general'
-        }).toArray(function(err, courses) {
+        })
+            .sort({ courseDownloads: -1 })
+            .toArray(function(err, courses) {
                 // console.log(courses);
                 if (err) {
                     return callback(err, null);
                 }
                 callback(null, courses);
-        });
+            });
+    }
+
+    exports.getProfessional = function(collegeid, callback) {
+        collection.find({
+            courseBelongs: collegeid
+        })
+            .sort({ courseDownloads: -1 })
+            .toArray(function(err, courses) {
+                if (err) {
+                    return callback(err, null);
+                }
+                callback(null, courses);
+            });
     }
 
 });

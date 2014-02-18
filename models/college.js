@@ -7,7 +7,6 @@
  * {
  *   _id: ObjectId(),
  *   collegeName: 'Computer Science',
- *   courses: ['courses _id']
  * }
  * */
 
@@ -23,7 +22,24 @@ MongoClient.connect(config.mongodb, { db: { native_parser: true, w : 1 } }, func
     var collection = db.collection('colleges');
 
     exports.getColleges = function(callback) {
-        
+        collection.find()
+            .toArray(function(err, colleges) {
+                if (err) {
+                    return callback(err, null);
+                }
+                callback(null, colleges);
+            });
+    }
+
+    exports.getCollege = function(collegeid, callback) {
+        collection.findOne({
+            _id: new ObjectID(collegeid)
+        }, function(err, college) {
+            if (err) {
+                return callback(err, null);
+            }
+            callback(null, college);
+        });
     }
 
 

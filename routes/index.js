@@ -85,7 +85,39 @@ module.exports = function(app) {
     });
 
     app.get('/professional', csrf, function(req, res) {
+        College.getColleges(function(err, colleges) {
+            if (err) {
+                console.log(err);
+                return res.send(500);
+            }
+            res.render('professional', {
+                siteName: config.siteName,
+                colleges: colleges
+            });
+        });
+    });
 
+    app.get('/professional/:collegeid', csrf, function(req, res) {
+        College.getCollege(req.params.collegeid, function(err, college) {
+            Course.getProfessional(req.params.collegeid, function(err, courses) {
+                if (err) {
+                    console.log(err);
+                    return res.send(500);
+                }
+                Document.getProfessional(req.params.collegeid, function(err, documents) {
+                    if (err) {
+                        console.log(err);
+                        return res.send(500);
+                    }
+                    res.render('pro-courses', {
+                        siteName: config.siteName,
+                        college: college,
+                        courses: courses,
+                        documents: documents
+                    });
+                });
+            });
+        });
     });
 
 

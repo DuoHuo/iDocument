@@ -31,6 +31,12 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
+// handle 404
+app.use(function(req, res) {
+    res.status(404);
+    res.render('404');
+});
+
 routes(app);
 
 http.createServer(app).listen(app.get('port'), config.bindAddress, function(){
