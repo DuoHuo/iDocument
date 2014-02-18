@@ -1,0 +1,82 @@
+<%- include header %>
+<div>
+    <div>
+        <!-- button group -->
+        <a href="#addnew">添加新文档</a>
+    </div>
+    <!-- docs table -->
+    <table>
+        <thead>
+        <tr>
+            <th>文档标题</th>
+            <th>文件类型</th>
+            <th>上传时间</th>
+            <th>下载次数</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% if(docs[0]) { %>
+        <% docs.forEach(function(doc) { %>
+        <tr>
+            <td><%= doc.title %></td>
+            <td><%= doc.fileType %></td>
+            <td><%= doc.updateTime %></td>
+            <td><%= doc.downloads %></td>
+            <td>
+                <form action="/admin/delete-doc" method="post">
+                    <input type="hidden" name="_csrf" value="<%= locals.token %>"/>
+                    <input type="hidden" name="docid" value="<%= doc._id %>"/>
+                    <button type="submit">删除</button>
+                </form>
+            </td>
+        </tr>
+        <% }) %>
+        <% } else { %>
+        <tr>
+            <td colspan="5">暂无文档</td>
+        </tr>
+        <% } %>
+        </tbody>
+    </table>
+</div>
+
+<div style="display: none;">
+    <!-- Add new doc form, maybe using modal -->
+    <form action="/admin/addnew" method="post">
+        <input type="hidden" name="_csrf" value="<%= locals.token %>"/>
+        <label for="title">文档标题</label>
+        <input type="text" id="title" name="title"/>
+        <label for="fileType">文件类型</label>
+        <input type="text" id="filetype" name="filetype"/>
+        <label for="courseName">课程名称</label>
+        <select id="courseName" name="courseName">
+            <% if(courses[0]) { %>
+            <% courses.forEach(function(course) { %>
+            <option value="<%= course._id %>"><%= course.courseName %></option>
+            <% }) %>
+            <% } else { %>
+            <option value="" disabled="disabled">没有有效课程，请先添加课程</option>
+            <% } %>
+        </select>
+        <label for="courseType">课程类型</label>
+        <select id="courseType" name="courseType">
+            <option value="general">通修课</option>
+            <option value="professional">专业课</option>
+        </select>
+        <label for="belongs">所属学院</label>
+        <select id="courseName" name="courseName">
+            <% if(colleges[0]) { %>
+            <% colleges.forEach(function(college) { %>
+            <option value="<%= college._id %>"><%= college.collegeName %></option>
+            <% }) %>
+            <% } else { %>
+            <option value="" disabled="disabled">没有有效学院，请先添加学院</option>
+            <% } %>
+        </select>
+        <label for="link">下载地址</label>
+        <input type="text" id="link" name="link"/>
+        <button type="submit">提交</button>
+    </form>
+</div>
+<%- include footer %>

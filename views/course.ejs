@@ -1,0 +1,20 @@
+<%- include header %>
+<div>
+    <div>
+        <strong><%= course.courseName %></strong>
+    </div>
+    <!-- list all professional courses -->
+    <% if(docs[0]) { %>
+    <% docs.forEach(function(doc) { %>
+    <div>
+        <%= doc.title %>
+        <a href="/download/<%= doc._id %>">下载</a>
+    </div>
+    <% }) %>
+    <% } else { %>
+    <div>
+        <p>暂无文档</p>
+    </div>
+    <% } %>
+</div>
+<%- include footer %>

@@ -1,0 +1,23 @@
+<%- include header %>
+<div>
+    <!-- list search result -->
+    <% if (docs[0]) { %>
+    <% docs.forEach(function(doc) { %>
+    <div>
+        <span><%= doc.fileType %></span>&nbsp;
+        <a href="#<%= doc._id %>">
+            <%= doc.title %>
+        </a>
+        <div style="display: none;">
+            <div id="<%= doc._id %>">
+                <!-- fancybox content -->
+                <a href="/download/<%= doc.link %>">下载</a>
+            </div>
+        </div>
+    </div>
+    <% }) %>
+    <% } else { %>
+    <p>未找到结果，请使用准确的关键词重试。</p>
+    <% } %>
+</div>
+<%- include footer %>

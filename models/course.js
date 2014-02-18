@@ -64,4 +64,34 @@ MongoClient.connect(config.mongodb, { db: { native_parser: true, w : 1 } }, func
             });
     }
 
+    exports.getCourse = function(courseid, callback) {
+        collection.findOne({
+            _id: new ObjectID(courseid)
+        }, function(err, course) {
+            if (err) {
+                return callback(err, null);
+            }
+            callback(null, course);
+        });
+    }
+
+    exports.addnew = function(newcourse, callback) {
+        collection.insert(newcourse, {safe: true}, function(err, doc) {
+            if (err) {
+                return callback(err, null);
+            }
+            callback(null, doc);
+        });
+    }
+
+    exports.getAll = function(callback) {
+        collection.find()
+            .toArray(function(err, courses) {
+                if (err) {
+                    return callback(err, null);
+                }
+                callback(null, courses);
+            });
+    }
+
 });

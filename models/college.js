@@ -42,5 +42,24 @@ MongoClient.connect(config.mongodb, { db: { native_parser: true, w : 1 } }, func
         });
     }
 
+    exports.addnew = function(newcollege, callback) {
+        collection.insert(newcollege, {safe: true}, function(err, doc) {
+            if (err) {
+                return callback(err, null);
+            }
+            callback(null, doc);
+        });
+    }
+
+    exports.getAll = function(callback) {
+        collection.find()
+            .toArray(function(err, colleges) {
+                if (err) {
+                    return callback(err, null);
+                }
+                callback(null, colleges);
+            });
+    }
+
 
 });

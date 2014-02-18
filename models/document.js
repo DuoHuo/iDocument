@@ -8,7 +8,6 @@
 *   _id: ObjectId(),
 *   title: doc.title,
 *   updateTime: timestamp,
-*   comment: 'document comments here.'
 *   belongs: 'college _id',
 *   course: 'course _id',
 *   downloads: 90,
@@ -95,6 +94,19 @@ MongoClient.connect(config.mongodb, { db: { native_parser: true, w : 1 } }, func
             });
     }
 
+    exports.getCourse = function(courseid, callback) {
+        collection.find({
+            course: courseid
+        })
+            .sort({ updateTime: -1 })
+            .toArray(function(err, docs) {
+                if (err) {
+                    return callback(err, null);
+                }
+                callback(null, docs);
+            });
+    }
+
     // update doc downloads count
     exports.updateDownloadCount = function(docid, callback) {
         collection.update({
@@ -106,6 +118,39 @@ MongoClient.connect(config.mongodb, { db: { native_parser: true, w : 1 } }, func
                 return callback(err);
             }
             callback();
+        });
+    }
+
+    exports.searchdoc = function(pattern, callback) {
+        collection.find({
+            title: new RegExp(pattern, 'i')
+        })
+            .sort({ downloads: -1 })
+            .toArray(function(err, docs) {
+                if (err) {
+                    return callback(err, null);
+                }
+                callback(null, docs);
+            });
+    }
+
+    exports.getAll = function(callback) {
+        collection.find()
+            .sort({ updateTime: -1 })
+            .toArray(function(err, docs) {
+                if (err) {
+                    return callback(err, null);
+                }
+                callback(null, docs);
+            });
+    }
+
+    exports.addnew = function(newdoc, callback) {
+        collection.insert(newdoc, {safe: true}, function(err, doc) {
+            if (err) {
+                return callback(err, null);
+            }
+            callback(null, doc);
         });
     }
 
