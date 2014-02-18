@@ -1,0 +1,84 @@
+<%- include header %>
+<div>
+    <!-- slider -->
+</div>
+<div>
+    <!-- docs -->
+    <div>
+        <div>
+            <strong>热门文档</strong>
+        </div>
+        <div>
+            <table>
+                <thead>
+                <tr>
+                    <th>文档名称</th>
+                    <th>上传时间</th>
+                    <th>下载次数</th>
+                </tr>
+                </thead>
+                <tbody>
+                <% if (docsdata[0][0]) { %>
+                <% docsdata[0].forEach(function(hotdoc) { %>
+                <tr>
+                    <td><a href="#<%= hotdoc._id %>"><%= hotdoc.title %></a></td>
+                    <td><%= hotdoc.updateTime %></td>
+                    <td><%= hotdoc.downloads %></td>
+                    <div style="display: none;">
+                        <div id="<%= hotdoc._id %>">
+                            <!-- fancybox content -->
+                            <a href="/download/<%= hotdoc.link %>">下载</a>
+                        </div>
+                    </div>
+                </tr>
+                <% }) %>
+                <% } else { %>
+                <tr>
+                    <td colspan="3">
+                        暂无文档
+                    </td>
+                </tr>
+                <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div>
+        <div>
+            <strong>最新上传</strong>
+        </div>
+        <div>
+            <table>
+                <thead>
+                <tr>
+                    <th>文档名称</th>
+                    <th>上传时间</th>
+                </tr>
+                </thead>
+                <tbody>
+                <% if (docsdata[1][0]) { %>
+                <% docsdata[1].forEach(function(newdoc) { %>
+                <tr>
+                    <td><a href="#<%= newdoc._id %>"><%= newdoc.title %></a></td>
+                    <td><%= newdoc.updateTime %></td>
+                    <div style="display: none;">
+                        <div id="<%= newdoc._id %>">
+                            <!-- fancybox content -->
+                            <a href="/download/<%= newdoc.link %>">下载</a>
+                        </div>
+                    </div>
+                </tr>
+                <% }) %>
+                <% } else { %>
+                <tr>
+                    <td colspan="3">
+                        暂无文档
+                    </td>
+                </tr>
+                <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<%- include footer %>

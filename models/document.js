@@ -1,0 +1,85 @@
+/*
+* Document functions model
+* */
+
+/*
+* Document object
+* {
+*   _id: ObjectId(),
+*   title: doc.title,
+*   updateTime: timestamp,
+*   belongs: 'college _id',
+*   course: 'course _id',
+*   downloads: 90,
+*   link: 'http://pan.baidu.com/xxxxx'
+* }
+* */
+
+var MongoClient = require('mongodb').MongoClient;
+var config = require('../config.js');
+var ObjectID = require('mongodb').ObjectID;
+
+MongoClient.connect(config.mongodb, { db: { native_parser: true, w : 1 } }, function(err, db) {
+    if(err) {
+        throw err;
+    }
+
+    var collection = db.collection('documents');
+    // Get hottest 6 docs
+    exports.hotdocs = function(callback) {
+        collection.find()
+            .limit(6)
+            .sort({
+                downloads: -1
+            })
+            .toArray(function(err, docs) {
+                if (err) {
+                    return callback(err, null);
+                }
+                callback(null, docs);
+            });
+    }
+
+    // Get newest 6 docs
+    exports.newdocs = function(callback) {
+        collection.find()
+            .limit(6)
+            .sort({
+                updateTime: 1
+            })
+            .toArray(function(err, docs) {
+                if (err) {
+                    return callback(err, null);
+                }
+                callback(null, docs);
+            });
+    }
+
+    // Get one doc
+    exports.getdoc = function(docid, callback) {
+        collection.findOne({
+            _id: new ObjectID(docid)
+        }, function(err, doc) {
+            if (err) {
+                return callback(err, null);
+            }
+            callback(null, doc);
+        })
+    }
+
+    // update doc downloads count
+    exports.updateDownloadCount = function(docid, callback) {
+        collection.update({
+            _id: new ObjectID(docid)
+        }, {
+            $inc: { downloads: 1 }
+        }, function(err) {
+            if (err) {
+                return callback(err);
+            }
+            callback();
+        });
+    }
+
+
+});
