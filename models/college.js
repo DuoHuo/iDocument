@@ -22,5 +22,9 @@ MongoClient.connect(config.mongodb, { db: { native_parser: true, w : 1 } }, func
 
     var collection = db.collection('colleges');
 
+    exports.getColleges = function(callback) {
+        
+    }
+
 
 });

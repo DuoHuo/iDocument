@@ -37,4 +37,16 @@ MongoClient.connect(config.mongodb, { db: { native_parser: true, w : 1 } }, func
         });
     }
 
+    exports.getGeneral = function(callback) {
+        collection.find({
+            courseType: 'general'
+        }).toArray(function(err, courses) {
+                // console.log(courses);
+                if (err) {
+                    return callback(err, null);
+                }
+                callback(null, courses);
+        });
+    }
+
 });

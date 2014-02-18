@@ -11,7 +11,7 @@ var async = require('async');
 // var hat = require('hat');
 var check = require('validator').check;
 var sanitize = require('validator').sanitize;
-var BSON = require('mongodb').BSONPure;
+var ObjectID = require('mongodb').ObjectID;
 
 var Document = require('../models/document.js');
 var Course = require('../models/course.js');
@@ -65,6 +65,26 @@ module.exports = function(app) {
     });
 
     app.get('/general', csrf, function(req, res) {
+        Course.getGeneral(function(err, courses) {
+            if (err) {
+                console.log(err);
+                return res.send(500);
+            }
+            Document.getGeneral(function(err, documents) {
+                if (err) {
+                    console.log(err);
+                    return res.send(500);
+                }
+                res.render('general', {
+                    siteName: config.siteName,
+                    courses: courses,
+                    documents: documents
+                });
+            });
+        });
+    });
+
+    app.get('/professional', csrf, function(req, res) {
 
     });
 
@@ -88,7 +108,7 @@ module.exports = function(app) {
 
     // CSRF Protect
     function csrf(req, res, next) {
-        res.locals.token = req.session._csrf;
+        res.locals.token = req.csrfToken();
         next();
     }
 

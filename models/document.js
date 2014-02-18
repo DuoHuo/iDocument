@@ -8,9 +8,11 @@
 *   _id: ObjectId(),
 *   title: doc.title,
 *   updateTime: timestamp,
+*   comment: 'document comments here.'
 *   belongs: 'college _id',
 *   course: 'course _id',
 *   downloads: 90,
+*   fileType: 'doc',
 *   link: 'http://pan.baidu.com/xxxxx'
 * }
 * */
@@ -64,7 +66,20 @@ MongoClient.connect(config.mongodb, { db: { native_parser: true, w : 1 } }, func
                 return callback(err, null);
             }
             callback(null, doc);
-        })
+        });
+    }
+
+    // Get docs in an array
+    exports.getGeneral = function(callback) {
+        collection.find({
+            type: 'general'
+        }).toArray(function(err, docs) {
+                console.log(docs);
+                if (err) {
+                    return callback(err, null);
+                }
+                callback(null, docs);
+        });
     }
 
     // update doc downloads count
