@@ -192,7 +192,11 @@ module.exports = function(app) {
             title: req.body.title,
             updateTime: Math.round((new Date()).getTime() / 1000),
             fileType: req.body.fileType,
-            belongs: req.body.belongs
+            belongs: req.body.belongs,
+            course: req.body.courseId,
+            type: req.body.type,
+            link: req.body.link,
+            downloads: 0
         }
     });
 

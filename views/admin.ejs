@@ -49,8 +49,8 @@
         <input type="text" id="title" name="title"/>
         <label for="fileType">文件类型</label>
         <input type="text" id="filetype" name="filetype"/>
-        <label for="courseName">课程名称</label>
-        <select id="courseName" name="courseName">
+        <label for="courseId">课程名称</label>
+        <select id="courseId" name="courseId">
             <% if(courses[0]) { %>
             <% courses.forEach(function(course) { %>
             <option value="<%= course._id %>"><%= course.courseName %></option>
@@ -59,13 +59,13 @@
             <option value="" disabled="disabled">没有有效课程，请先添加课程</option>
             <% } %>
         </select>
-        <label for="courseType">课程类型</label>
-        <select id="courseType" name="courseType">
+        <label for="type">课程类型</label>
+        <select id="type" name="type">
             <option value="general">通修课</option>
             <option value="professional">专业课</option>
         </select>
         <label for="belongs">所属学院</label>
-        <select id="courseName" name="courseName">
+        <select id="belongs" name="belongs">
             <% if(colleges[0]) { %>
             <% colleges.forEach(function(college) { %>
             <option value="<%= college._id %>"><%= college.collegeName %></option>

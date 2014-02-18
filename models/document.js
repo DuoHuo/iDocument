@@ -10,6 +10,7 @@
 *   updateTime: timestamp,
 *   belongs: 'college _id',
 *   course: 'course _id',
+*   type: 'general',
 *   downloads: 90,
 *   fileType: 'doc',
 *   link: 'http://pan.baidu.com/xxxxx'
