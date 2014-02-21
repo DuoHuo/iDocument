@@ -230,7 +230,8 @@ module.exports = function(app) {
 
     app.post('/admin/addnewcollege', csrf, checkLogin, function(req, res) {
         var newcollege = {
-            collegeName: req.body.collegeName
+            collegeName: req.body.collegeName,
+            updateTime: Math.round((new Date()).getTime() / 1000)
         }
 
         College.addnew(newcollege, function(err, doc) {
