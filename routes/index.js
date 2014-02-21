@@ -100,7 +100,7 @@ module.exports = function(app) {
     });
 
     app.get('/professional/:collegeid', csrf, function(req, res) {
-        if (req.params.documentid.length !== 24) {
+        if (req.params.collegeid.length !== 24) {
             return res.send(400);
         }
         College.getCollege(req.params.collegeid, function(err, college) {
@@ -126,7 +126,7 @@ module.exports = function(app) {
     });
 
     app.get('/course/:courseid', csrf, function(req, res) {
-        if (req.params.documentid.length !== 24) {
+        if (req.params.courseid.length !== 24) {
             return res.send(400);
         }
         Course.getCourse(req.params.courseid, function(err, course) {
