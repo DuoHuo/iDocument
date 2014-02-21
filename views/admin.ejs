@@ -41,7 +41,7 @@
     </table>
 </div>
 
-<div id="addnewdoc" style="display: none;">
+<div id="addnewdoc" style="">
     <!-- Add new doc form, maybe using modal -->
     <form action="/admin/addnewdoc" method="post">
         <input type="hidden" name="_csrf" value="<%= locals.token %>"/>
@@ -79,7 +79,7 @@
         <button type="submit">提交</button>
     </form>
 </div>
-<div id="addnewcourse" style="display: none;">
+<div id="addnewcourse" style="">
     <form action="/admin/addnewcourse" method="post">
         <input type="hidden" name="_csrf" value="<%= locals.token %>"/>
         <label for="courseName">课程名称</label>
@@ -102,7 +102,7 @@
         <button type="submit">提交</button>
     </form>
 </div>
-<div id="addnewcollege" style="display: none;">
+<div id="addnewcollege" style="">
     <form action="/admin/addnewcollege" method="post">
         <input type="hidden" name="_csrf" value="<%= locals.token %>"/>
         <label for="collegeName">学院名称</label>

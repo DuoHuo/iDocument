@@ -1,0 +1,126 @@
+body{
+	background:url(../img/background.jpg) no-repeat;
+	margin:0 auto;
+	font-family: "Adobe Heiti Std";
+}
+
+a{
+	text-decoration: none !important;
+}
+
+.header{
+	height:200px;
+	overflow: hidden;
+}
+
+#logo{
+	background:url(../img/logo.png) no-repeat;
+	height:121px;
+	width:230px; 
+	position: relative;
+	top:0px;
+	left:100px;
+}
+
+.navigation{
+	position: relative;
+	left:300px;
+	top:-100px;
+}
+
+.navigation li{
+	float:left;
+	list-style-type:none
+}
+
+.navigation li a{
+  	font-size: 24px;
+  	color: rgb( 125, 121, 121 );
+  	padding:0 80px;
+}
+
+.navigation li a:hover{
+	color: rgb( 255, 255, 255 );
+	background:url(../img/hoverbg.png) no-repeat;
+	background-position: center;
+}
+
+.search{
+	position: relative;
+	top:-10px;
+	left:200px;
+}
+
+#search_content{
+  font-size: 15px;
+  color: rgb( 166, 161, 161 );
+  background-color: rgba( 205, 227, 243 ,0.431);
+  height:60px;
+  border:0;
+  padding:0 20px;
+}
+
+#search_button{
+	background:url(../img/search.png);
+	height:60px;
+	width:79px;
+	border:0;
+	padding:0;
+	position: relative;
+	left:-10px;
+}
+
+.main{
+	float:left;
+	clear:both;
+	width:100%;
+}
+
+.main_title{
+	font-size: 24px;
+	font-weight: bold;
+	color: rgb( 37, 37, 37 );
+}
+
+.main_left th{
+  	font-size: 16px;
+  	color: rgb( 16, 16, 16 );
+  	padding:10px 30px;
+}
+
+.main_left th:first-child{
+	padding:10px 150px 10px 20px;
+}
+
+
+.main_right th{
+	font-size: 16px;
+	color: rgb( 16, 16, 16 );
+	padding:10px 30px;
+}
+
+.main_right th:first-child{
+	padding:10px 150px 10px 20px;
+}
+
+.footer{
+	position:absolute;
+	bottom: 0;
+	height:50px;
+	width:100%;
+  	background-color: rgb( 48, 139, 194 );
+}
+
+#dhlogo{
+	position:relative;
+	left:80px;
+	top:10px
+}
+
+.footer a{
+	color:#fff;
+	padding:0 60px;
+	position:relative;
+	left:50%;
+	top:8px;
+}
