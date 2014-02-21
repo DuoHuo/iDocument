@@ -23,6 +23,7 @@ MongoClient.connect(config.mongodb, { db: { native_parser: true, w : 1 } }, func
 
     exports.getColleges = function(callback) {
         collection.find()
+            .sort({ updateTime: 1 })
             .toArray(function(err, colleges) {
                 if (err) {
                     return callback(err, null);
