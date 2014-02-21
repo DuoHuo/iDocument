@@ -242,6 +242,16 @@ module.exports = function(app) {
         });
     });
 
+    app.post('/admin/delete-doc', csrf, checkLogin, function(req, res) {
+        Document.remove(req.body.docid, function(err) {
+            if (err) {
+                console.log(err);
+                return res.send(500);
+            }
+            res.redirect('/admin');
+        });
+    });
+
     app.get('/login', csrf, checkNotLogin, function(req, res) {
         res.render('login', {
             siteName: config.siteName
