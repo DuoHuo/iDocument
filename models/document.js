@@ -155,5 +155,16 @@ MongoClient.connect(config.mongodb, { db: { native_parser: true, w : 1 } }, func
         });
     }
 
+    exports.remove = function(docid, callback) {
+        collection.remove({
+            _id: new ObjectID(docid)
+        }, function(err) {
+            if (err) {
+                return callback(err);
+            }
+            callback();
+        });
+    }
+
 
 });
