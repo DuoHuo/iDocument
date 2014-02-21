@@ -13,7 +13,7 @@
         </div>
         <div>
             <ul>
-                <% documents.forEach(function(doc) { %>
+                <% document.forEach(function(doc) { %>
                 <% if(doc.course === course._id ) { %>
                 <li>
                     <span><%= doc.fileType %></span>&nbsp;
@@ -27,7 +27,6 @@
                         </div>
                     </div>
                 </li>
-                <% if(i === 2) break;%>
                 <% } %>
                 <% }) %>
             </ul>
