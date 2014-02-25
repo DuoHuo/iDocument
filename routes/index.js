@@ -266,7 +266,7 @@ module.exports = function(app) {
     });
 
     app.post('/admin/delete-college', csrf, checkLogin, function(req, res) {
-        Course.remove(req.body.collegeid, function(err) {
+        College.remove(req.body.collegeid, function(err) {
             if (err) {
                 console.log(err);
                 return res.send(500);
