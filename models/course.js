@@ -8,7 +8,8 @@
  *   _id: ObjectId(),
  *   courseName: 'Computer Science',
  *   courseType: 'general/professional',
- *   courseBelongs: 'college _id'
+ *   courseBelongs: 'college _id',
+ *   coursepic: '/path/to/pic'
  *   courseDownloads: 100
  * }
  * */
@@ -93,5 +94,17 @@ MongoClient.connect(config.mongodb, { db: { native_parser: true, w : 1 } }, func
                 callback(null, courses);
             });
     }
+
+    exports.remove = function(courseid, callback) {
+        collection.remove({
+            _id: new ObjectID(courseid)
+        }, function(err, doc) {
+            if (err) {
+                return callback(err, null);
+            }
+            callback(null, doc);
+        });
+    }
+
 
 });

@@ -216,7 +216,8 @@ module.exports = function(app) {
         var newcourse = {
             courseName: req.body.courseName,
             courseType: req.body.courseType,
-            courseBelongs: req.body.courseBelongs
+            courseBelongs: req.body.courseBelongs,
+            coursepic: req.body.coursepic
         }
 
         Course.addnew(newcourse, function(err, doc) {
@@ -231,6 +232,7 @@ module.exports = function(app) {
     app.post('/admin/addnewcollege', csrf, checkLogin, function(req, res) {
         var newcollege = {
             collegeName: req.body.collegeName,
+            collegepic: req.body.collegepic,
             updateTime: Math.round((new Date()).getTime() / 1000)
         }
 
@@ -245,6 +247,26 @@ module.exports = function(app) {
 
     app.post('/admin/delete-doc', csrf, checkLogin, function(req, res) {
         Document.remove(req.body.docid, function(err) {
+            if (err) {
+                console.log(err);
+                return res.send(500);
+            }
+            res.redirect('/admin');
+        });
+    });
+
+    app.post('/admin/delete-course', csrf, checkLogin, function(req, res) {
+        Course.remove(req.body.courseid, function(err) {
+            if (err) {
+                console.log(err);
+                return res.send(500);
+            }
+            res.redirect('/admin');
+        });
+    });
+
+    app.post('/admin/delete-college', csrf, checkLogin, function(req, res) {
+        Course.remove(req.body.collegeid, function(err) {
             if (err) {
                 console.log(err);
                 return res.send(500);

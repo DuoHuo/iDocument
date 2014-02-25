@@ -7,6 +7,7 @@
  * {
  *   _id: ObjectId(),
  *   collegeName: 'Computer Science',
+ *   collegepic: '/path/to/pic'
  * }
  * */
 
@@ -60,6 +61,17 @@ MongoClient.connect(config.mongodb, { db: { native_parser: true, w : 1 } }, func
                 }
                 callback(null, colleges);
             });
+    }
+
+    exports.remove = function(collegeid, callback) {
+        collection.remove({
+            _id: new ObjectID(collegeid)
+        }, function(err, doc) {
+            if (err) {
+                return callback(err, null);
+            }
+            callback(null, doc);
+        });
     }
 
 

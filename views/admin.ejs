@@ -99,6 +99,8 @@
             <option value="" disabled="disabled">没有有效学院，请先添加学院</option>
             <% } %>
         </select>
+        <label for="coursepic">课程图像</label>
+        <input type="text" id="coursepic" name="coursepic" required="required"/>
         <button type="submit">提交</button>
     </form>
 </div>
@@ -107,7 +109,81 @@
         <input type="hidden" name="_csrf" value="<%= locals.token %>"/>
         <label for="collegeName">学院名称</label>
         <input type="text" id="collegeName" name="collegeName" required="required"/>
+        <label for="collegepic">学院图像</label>
+        <input type="text" id="collegepic" name="collegepic" required="required"/>
         <button type="submit">提交</button>
     </form>
 </div>
+
+<!-- list all courses & colleges -->
+<div>
+    <table>
+        <thead>
+        <tr>
+            <th>课程名称</th>
+            <th>课程类型</th>
+            <th>所属学院</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% if(courses[0]) { %>
+        <% courses.forEach(function(course) { %>
+        <tr>
+            <td><%= course.courseName %></td>
+            <td><%= course.courseType %></td>
+            <td><%= course.courseBelongs %></td>
+            <td>
+                <form action="/admin/delete-course" method="post">
+                    <input type="hidden" name="_csrf" value="<%= locals.token %>"/>
+                    <input type="hidden" name="courseid" value="<%= course._id %>"/>
+                    <button type="submit">
+                        删除
+                    </button>
+                </form>
+            </td>
+        </tr>
+        <% }) %>
+        <% } else { %>
+        <tr>
+            <td colspan="3">暂无课程</td>
+        </tr>
+        <% } %>
+        </tbody>
+    </table>
+</div>
+
+<div>
+    <table>
+        <thead>
+        <tr>
+            <th>学院名称</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% if(colleges[0]) { %>
+        <% colleges.forEach(function(college) { %>
+        <tr>
+            <td><%= college.collegeName %></td>
+            <td>
+                <form action="/admin/delete-college" method="post">
+                    <input type="hidden" name="_csrf" value="<%= locals.token %>"/>
+                    <input type="hidden" name="collegeid" value="<%= college._id %>"/>
+                    <button type="submit">
+                        删除
+                    </button>
+                </form>
+            </td>
+        </tr>
+        <% }) %>
+        <% } else { %>
+        <tr>
+            <td colspan="3">暂无学院</td>
+        </tr>
+        <% } %>
+        </tbody>
+    </table>
+</div>
+
 <%- include footer %>
