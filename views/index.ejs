@@ -52,7 +52,7 @@
                 <% if (docsdata[0][0]) { %>
                 <% docsdata[0].forEach(function(hotdoc) { %>
                 <tr>
-                    <td><a class="fancybox" href="#<%= hotdoc._id %>"><%= hotdoc.title %></a></td>
+                    <td><a class="fancybox" href="#hot<%= hotdoc._id %>"><%= hotdoc.title %></a></td>
                     <td>
                     <% 
                     var date = new Date(hotdoc.updateTime * 1000);
@@ -65,9 +65,10 @@
                     </td>
                     <td><%= hotdoc.downloads %></td>
                     <div style="">
-                        <div id="<%= hotdoc._id %>">
+                        <div id="hot<%= hotdoc._id %>" style="display:none;">
                             <!-- fancybox content -->
-                            <a id = "download" href="/download/<%= hotdoc.link %>"></a>
+                            <%= hotdoc.fileType %>
+                            <a class = "download" href="/download/<%= hotdoc.link %>"></a>
                         </div>
                     </div>
                 </tr>
@@ -100,7 +101,7 @@
                 <% if (docsdata[1][0]) { %>
                 <% docsdata[1].forEach(function(newdoc) { %>
                 <tr>
-                    <td><a href="#<%= newdoc._id %>"><%= newdoc.title %></a></td>
+                    <td><a class="fancybox" href="#<%= newdoc._id %>"><%= newdoc.title %></a></td>
                     <td>
                     <% 
                     var date = new Date(newdoc.updateTime * 1000);
@@ -110,10 +111,10 @@
                     s = date.getDate();
                      %>
                     <%= y + '-' + m + '-' + s %></td>
-                    <div style="display: none;">
+                    <div id="hot<%= newdoc._id %>" style="display:none;">
                         <div id="<%= newdoc._id %>">
                             <!-- fancybox content -->
-                            <a href="/download/<%= newdoc.link %>">下载</a>
+                            <a class = "download" href="/download/<%= newdoc.link %>"></a>
                         </div>
                     </div>
                 </tr>

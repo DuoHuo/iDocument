@@ -23,7 +23,7 @@ a{
 	text-decoration: none !important;
 }
 
-#download{
+.download{
 	background: url("../img/download.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
     display: block;
     height: 46px;    
@@ -208,6 +208,7 @@ a{
 }
 .course{
 	float:left;
+	padding:0 !important;
 }
 
 .courseName{
@@ -276,6 +277,14 @@ a{
 	font-size: 21px;
 	text-align: center;
 	overflow: hidden;
+}
+
+.professional a{
+	color:#fff;
+}
+
+.professional a:hover{
+	color:#fff;
 }
 /*大气科学*/
 #college530c85d5eadf87260532a5b0 {
