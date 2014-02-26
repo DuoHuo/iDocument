@@ -1,30 +1,53 @@
+@font-face {
+    font-family: 'Hiragino Sans GB W3';
+    src: url('../font/Hiragino Sans GB W3.otf');
+}
+
+html{
+	height:100%;
+}
 body{
-	background:url(../img/background.jpg) no-repeat;
+	margin:0 auto !important;
+	font-family: "Hiragino Sans GB W3","Hiragino Sans GB","Adobe Heiti Std" !important; 
+}
+
+.container{
+	background:-webkit-linear-gradient(bottom,#cbdde8,white);
+	background:-moz-linear-gradient(bottom,#cbdde8,white);
+	width:100% !important;
 	margin:0 auto;
-	font-family: "Adobe Heiti Std";
+	position: relative;
 }
 
 a{
 	text-decoration: none !important;
 }
 
+#download{
+	background: url("../img/download.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    display: block;
+    height: 46px;    
+    width: 172px;
+}
+
 .header{
-	height:200px;
+	width:1079px;
+	min-width: 1079px;
+	height:180px;
+	margin:0 auto;
 	overflow: hidden;
 }
 
 #logo{
 	background:url(../img/logo.png) no-repeat;
+	background-position: -15px 0;
 	height:121px;
 	width:230px; 
-	position: relative;
-	top:0px;
-	left:100px;
 }
 
 .navigation{
 	position: relative;
-	left:300px;
+	left:200px;
 	top:-100px;
 }
 
@@ -45,35 +68,48 @@ a{
 	background-position: center;
 }
 
+.current{
+	color: rgb( 255, 255, 255 ) !important;
+	background:url(../img/hoverbg.png) no-repeat;
+	background-position: center;
+}
+
 .search{
-	position: relative;
-	top:-10px;
-	left:200px;
 }
 
 #search_content{
-  font-size: 15px;
-  color: rgb( 166, 161, 161 );
-  background-color: rgba( 205, 227, 243 ,0.431);
-  height:60px;
-  border:0;
-  padding:0 20px;
+	font-size: 15px;
+	color: rgb( 166, 161, 161 );
+	background-color: rgba( 205, 227, 243 ,0.431);
+	height:60px;
+	border:0;
+	padding:0 20px;
+	position:relative;
+	top: -25px;
 }
 
 #search_button{
-	background:url(../img/search.png);
-	height:60px;
-	width:79px;
-	border:0;
-	padding:0;
+	background: url(../img/search.png);
+	height: 60px;
+	width: 79px;
+	border: 0;
+	padding: 0;
 	position: relative;
-	left:-10px;
+	left: 280px;
+	top: -85px;
 }
+/*slider*/
+.banner { position: relative; overflow: auto; }
+.banner li { list-style: none; }
+.banner ul li { float: left; }
 
+/*slider*/
 .main{
-	float:left;
-	clear:both;
-	width:100%;
+	overflow: hidden;
+	width:1079px;
+	min-width: 1079px;
+	margin:0 auto;
+	padding: 0 0 100px 0;
 }
 
 .main_title{
@@ -82,33 +118,70 @@ a{
 	color: rgb( 37, 37, 37 );
 }
 
-.main_left th{
+.main_left_content th{
   	font-size: 16px;
   	color: rgb( 16, 16, 16 );
   	padding:10px 30px;
 }
 
-.main_left th:first-child{
+.main_left_content th:first-child{
 	padding:10px 150px 10px 20px;
 }
 
+.main_left_content tbody tr td{
+	line-height: 30px;
+	text-align: center;
+}
 
-.main_right th{
+.main_left_content tbody td:first-child{
+	background: url(../img/listicon.png) no-repeat;
+	background-position: 4px 13px;
+	text-align: left;
+	padding-left: 20px;
+}
+
+.main_left_content tbody td a{
+	color:#000;
+}
+
+.main_right_content th{
 	font-size: 16px;
 	color: rgb( 16, 16, 16 );
 	padding:10px 30px;
 }
 
-.main_right th:first-child{
+.main_right_content th:first-child{
 	padding:10px 150px 10px 20px;
 }
 
+.main_right_content tbody tr{
+	line-height: 30px;
+}
+
+.main_right_content tbody td{
+	text-align: center;
+	color:#000;
+}
+
+.main_right_content tbody td:first-child{
+	background: url(../img/listicon.png) no-repeat;
+	background-position: 4px 13px;
+	text-align: left;
+	padding-left: 20px;
+}
+
+
+.main_right_content tbody td a{
+	color:#000;
+}
+
 .footer{
-	position:absolute;
-	bottom: 0;
 	height:50px;
 	width:100%;
   	background-color: rgb( 48, 139, 194 );
+	position: absolute;
+	bottom: 0;	
+	left:0;
 }
 
 #dhlogo{
@@ -124,3 +197,381 @@ a{
 	left:50%;
 	top:8px;
 }
+
+/*general*/
+.main_course{
+	overflow: hidden;
+	height:500px;
+	width:1079px;
+	min-width: 1079px;
+	margin:0 auto;
+}
+.course{
+	float:left;
+}
+
+.courseName{
+	font-size: 36px;
+	float:left;
+}
+
+.course a{
+	font-size:13.297px;
+	float:right;
+	color:rgba( 0, 0, 0, 0.8 );
+	margin-top:12px;
+}
+
+#courseImg{
+	float:left;
+	clear:left;
+	margin-top:13px;
+}
+/*general*/
+
+/*course*/
+.course_detail {
+	overflow:hidden;
+	width:1079px;
+	min-width: 1079px;
+	margin:0 auto;
+}
+
+.course_title{
+	font-size: 40px;
+	margin-left:5px;
+	margin-bottom: 60px;
+	color:#1e9be5;
+}
+
+.course_content{
+	font-size: 25px;
+	text-align: center;
+	margin-bottom:80px;
+	padding:0 !important;
+}
+
+.course_content a{
+	display: block;
+	background: url(../img/download.png) no-repeat;
+	width:172px;
+	height:46px;
+	margin-left:170px;
+	margin-top:40px;
+}
+
+#document{
+	background: url(../img/document.png) no-repeat;
+	width:121px;
+	height:158px;
+	float:left;
+}
+/*course*/
+
+/*professional*/
+.professional{
+	color:#fff;
+	width:1079px;
+	margin:0 auto;
+	font-size: 21px;
+	text-align: center;
+	overflow: hidden;
+}
+/*大气科学*/
+#college530c85d5eadf87260532a5b0 {
+	background: url(../img/professional/dqkx.png) no-repeat;
+	width: 349px;
+	height:437px;
+	float:left;
+	margin-right:3px;
+	font-size: 36px;
+}
+
+#college530c85d5eadf87260532a5b0 .boxcaption {
+ 	height:65px;
+ 	padding:10px 10px 10px 10px;
+ 	background: rgba(92,47,28,0.7);
+}
+
+/*水文气象*/
+#college530c8648eadf87260532a5b1 {
+	background: url(../img/professional/swqx.png) no-repeat;
+	width: 175px;
+	height:212px;
+	float:left;	
+	margin:0 3px;
+}
+
+#college530c8648eadf87260532a5b1 .boxcaption {
+ 	top: 175px;
+ 	left: 0;
+ 	background: rgba(12,154,244,0.7);
+ }
+ /*遥感*/
+#college530c865ceadf87260532a5b2 {
+	background: url(../img/professional/ygxy.png) no-repeat;
+	width: 175px;
+	height:212px;	
+	float:left;
+	margin:0 3px;
+}
+
+#college530c865ceadf87260532a5b2 .boxcaption {
+ 	top: 175px;
+ 	left: 5px;
+ 	background: rgba(0,0,0,0.7);
+ }
+ /*经济管理*/
+#college530c866deadf87260532a5b3 {
+	background: url(../img/professional/jjgl.png) no-repeat;
+	width: 175px;
+	height:212px;	
+	float:left;	
+	margin:0 3px;
+}
+#college530c866deadf87260532a5b3 .boxcaption {
+ 	top: 175px;
+ 	left: 0;
+ 	background: rgba(184,94,41,0.7);
+ }
+/*大气物理*/
+#college530c867beadf87260532a5b4 {
+	background: url(../img/professional/dqwl.png) no-repeat;
+	width: 175px;
+	height:212px;		
+	float:left;
+	margin:0 3px;
+}
+
+#college530c867beadf87260532a5b4 .boxcaption {
+ 	top: 175px;
+ 	left: 0;
+ 	background: rgba(102,102,102,0.7);
+}
+
+/*信息与控制*/
+#college530c86d9eadf87260532a5b5{
+	background: url(../img/professional/xxykz.png) no-repeat;
+	width: 175px;
+	height:212px;		
+	float:left;
+	margin:6px 3px;
+}
+
+#college530c86d9eadf87260532a5b5 .boxcaption {
+ 	top: 175px;
+ 	left: 0;
+ 	background: rgba(128,171,218,0.7);
+}
+/*电子信息工程*/
+#college530c86eceadf87260532a5b6{
+	background: url(../img/professional/dzxxgc.png) no-repeat;
+	width: 175px;
+	height:212px;		
+	float:left;
+	margin:6px 3px;
+}
+
+#college530c86eceadf87260532a5b6 .boxcaption {
+ 	top: 175px;
+ 	left: 0;
+ 	background: rgba(166,62,79,0.7);
+}
+/*应用气象*/
+#college530c86faeadf87260532a5b7{
+	background: url(../img/professional/yyqx.png) no-repeat;
+	width: 175px;
+	height:212px;		
+	float:left;
+	margin:6px 3px;
+}
+
+#college530c86faeadf87260532a5b7 .boxcaption {
+ 	top: 175px;
+ 	left: 0;
+ 	background: rgba(86,129,55,0.7);
+}
+/*马克思主义*/
+#college530c8705eadf87260532a5b8{
+	background: url(../img/professional/mkszy.png) no-repeat;
+	width: 175px;
+	height:212px;		
+	float:left;
+	margin:6px 3px;
+}
+
+#college530c8705eadf87260532a5b8 .boxcaption {
+ 	top: 175px;
+ 	left: 0;
+ 	background: rgba(215,110,8,0.7);
+}
+/*数学与统计*/
+#college530c8717eadf87260532a5b9{
+	background: url(../img/professional/sxytj.png) no-repeat;
+	width: 348px;
+	height:214px;		
+	float:left;
+	clear:both;
+	margin-top:6px;
+	margin-right:3px;
+}
+
+#college530c8717eadf87260532a5b9 .boxcaption {
+ 	left:290px;
+ 	width:60px;
+ 	height:214px;
+ 	padding:5px 10px 10px 10px;
+ 	background: rgba(144,192,152,0.7);
+}
+/*公共管理*/
+#college530c8755eadf87260532a5ba{
+	background: url(../img/professional/gggl.png) no-repeat;
+	width: 357px;
+	height:214px;		
+	float:left;
+	margin:6px 3px;
+}
+
+#college530c8755eadf87260532a5ba .boxcaption {
+ 	left:300px;
+ 	width:60px;
+ 	height:214px;
+ 	padding:15px 10px 10px 10px;
+ 	background: rgba(183,181,182,0.7);
+}
+/*物理与光电学院*/
+#college530c8770eadf87260532a5bb{
+	background: url(../img/professional/wlygd.png) no-repeat;
+	width: 357px;
+	height:214px;		
+	float:left;
+	margin:6px 3px;	
+}
+
+#college530c8770eadf87260532a5bb .boxcaption {
+ 	left:300px;
+ 	width:60px;
+ 	height:214px;
+ 	padding:5px 10px 10px 10px;
+ 	background: rgba(133,23,27,0.7);
+}
+/*语言文化*/
+#college530c8792eadf87260532a5bc{
+	background: url(../img/professional/yyywh.png) no-repeat;
+	width: 348px;
+	height:254px;		
+	float:left;
+	margin:6px 3px 6px 0;
+	clear:both;
+}
+
+#college530c8792eadf87260532a5bc .boxcaption {
+ 	height:45px;
+ 	top: 215px;
+ 	left: 0;
+ 	background: rgba(43,45,38,0.7);
+}
+/*计算机与软件*/
+
+#college530c87c4eadf87260532a5bd{
+	background: url(../img/professional/jsjyrj.png) no-repeat;
+	width: 357px;
+	height:254px;		
+	float:left;
+	margin:6px 3px;
+}
+
+#college530c87c4eadf87260532a5bd .boxcaption {
+	font-size: 30px;
+ 	height:45px;
+ 	padding:0px 10px 10px 10px;
+ 	background: rgba(20,96,97,0.7);
+}
+
+/*环境与科学学院*/
+#college530c87fdeadf87260532a5be{
+	background: url(../img/professional/hjykx.png) no-repeat;
+	width: 354px;
+	height:497px;		
+	float:left;
+	margin:6px 3px;	
+}
+
+#college530c87fdeadf87260532a5be .boxcaption {
+  	font-size: 36px;
+ 	top: 405px;
+ 	height:100px;
+ 	background: rgba(39,110,11,0.7);
+ 	padding:20px 0;
+}
+
+
+/*传媒与艺术*/
+#college530c8820eadf87260532a5bf{
+	background: url(../img/professional/cmyys.png) no-repeat;
+	width: 348px;
+	height:235px;		
+	float:left;
+	margin-top:6px;
+	margin-right:3px;
+	clear:both;
+	top:-247px;
+}
+
+#college530c8820eadf87260532a5bf .boxcaption {
+ 	left:300px;
+ 	width:50px;
+ 	height:235px;
+ 	padding:12px 5px 0px 5px;
+ 	background: rgba(38,99,150,0.7);
+}
+/*海洋科学*/
+#college530c8851eadf87260532a5c0{
+	background: url(../img/professional/hykx.png) no-repeat;
+	width: 355px;
+	height:235px;		
+	float:left;
+	margin:6px 6px;	
+	top:-247px;
+}
+
+#college530c8851eadf87260532a5c0 .boxcaption {
+ 	left:305px;
+ 	width:50px;
+ 	height:235px;
+ 	padding:30px 5px 0 5px;
+ 	background: rgba(22,50,128,0.7);
+}
+
+.boxgrid{ 
+	float:left; 
+	overflow: hidden; 
+	position: relative; 
+}
+
+.boxgrid p{ 
+	padding: 0 10px; 
+	color:#afafaf; 
+	font-weight:bold; 
+	font:10pt "Lucida Grande", Arial, sans-serif; 
+}
+				
+.boxcaption{ 
+	float: left; 
+	position: absolute; 
+	height: 40px; 
+	padding:5px 0;
+	width: 100%; 
+	opacity: .8; 
+	/* For IE 5-7 */
+	filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+	/* For IE 8 */
+	-MS-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+ }
+
+ .captionfull .boxcaption {
+	top: 260;
+	left: 0;
+ 	}
+
+/*professional*/

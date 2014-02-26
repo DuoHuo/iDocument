@@ -1,14 +1,15 @@
 <%- include header %>
-<div>
-    <div>
+<div class = "course_detail">
+    <div class = "course_title">
         <strong><%= course.courseName %></strong>
     </div>
     <!-- list all professional courses -->
     <% if(docs[0]) { %>
     <% docs.forEach(function(doc) { %>
-    <div>
+    <div class = "course_content col-xs-6">
+        <div id = "document"></div>
         <%= doc.title %>
-        <a href="/download/<%= doc._id %>">下载</a>
+        <a href="/download/<%= doc._id %>"></a>
     </div>
     <% }) %>
     <% } else { %>

@@ -1,11 +1,11 @@
 <%- include header %>
-<div>
+<div style ="width:1079px;min-width:1079px;margin:0 auto 100px auto;">
     <div>
         <!-- button group -->
         <a href="#addnewdoc">添加新文档</a>
     </div>
     <!-- docs table -->
-    <table>
+    <table class= "table table -bordered table-hover">
         <thead>
         <tr>
             <th>文档标题</th>
@@ -21,13 +21,22 @@
         <tr>
             <td><%= doc.title %></td>
             <td><%= doc.fileType %></td>
-            <td><%= doc.updateTime %></td>
+            <td>
+                <% 
+                var date = new Date(doc.updateTime * 1000);
+                var 
+                y = date.getFullYear(),
+                m = date.getMonth() + 1,
+                s = date.getDate();
+                %>
+                <%= y + '-' + m + '-' + s %>
+            </td>
             <td><%= doc.downloads %></td>
             <td>
                 <form action="/admin/delete-doc" method="post">
                     <input type="hidden" name="_csrf" value="<%= locals.token %>"/>
                     <input type="hidden" name="docid" value="<%= doc._id %>"/>
-                    <button type="submit">删除</button>
+                    <button type="submit" class="btn btn-danger">删除</button>
                 </form>
             </td>
         </tr>
@@ -41,14 +50,19 @@
     </table>
 </div>
 
-<div id="addnewdoc" style="">
+<div id="addnewdoc" style ="width:1079px;min-width:1079px;margin:0 auto 100px auto;">
     <!-- Add new doc form, maybe using modal -->
-    <form action="/admin/addnewdoc" method="post">
+    <form action="/admin/addnewdoc" method="post" class="form">
         <input type="hidden" name="_csrf" value="<%= locals.token %>"/>
+    <div class="form-group">
         <label for="title">文档标题</label>
-        <input type="text" id="title" name="title" required="required"/>
+        <input type="text" id="title" class="form-control" name="title" required="required" />
+    </div>
+    <div class="form-group">
         <label for="fileType">文件类型</label>
-        <input type="text" id="fileType" name="fileType" required="required"/>
+        <input type="text" id="fileType" class="form-control" name="fileType" required="required"/>
+    </div>
+    <div class="form-group">
         <label for="courseId">课程名称</label>
         <select id="courseId" name="courseId" required="required">
             <% if(courses[0]) { %>
@@ -59,6 +73,8 @@
             <option value="" disabled="disabled">没有有效课程，请先添加课程</option>
             <% } %>
         </select>
+    </div>
+    <div class="form-group">
         <label for="type">课程类型</label>
         <select id="type" name="type" required="required">
             <option value="general">通修课</option>
@@ -76,10 +92,10 @@
         </select>
         <label for="link">下载地址</label>
         <input type="text" id="link" name="link" required="required"/>
-        <button type="submit">提交</button>
+        <button type="submit" class="btn btn-default">提交</button>
     </form>
 </div>
-<div id="addnewcourse" style="">
+<div id="addnewcourse" style ="width:1079px;min-width:1079px;margin:0 auto 100px auto;">
     <form action="/admin/addnewcourse" method="post">
         <input type="hidden" name="_csrf" value="<%= locals.token %>"/>
         <label for="courseName">课程名称</label>
@@ -101,23 +117,23 @@
         </select>
         <label for="coursepic">课程图像</label>
         <input type="text" id="coursepic" name="coursepic" required="required"/>
-        <button type="submit">提交</button>
+        <button type="submit" class="btn btn-default">提交</button>
     </form>
 </div>
-<div id="addnewcollege" style="">
+<div id="addnewcollege" style ="width:1079px;min-width:1079px;margin:0 auto 100px auto;">
     <form action="/admin/addnewcollege" method="post">
         <input type="hidden" name="_csrf" value="<%= locals.token %>"/>
         <label for="collegeName">学院名称</label>
         <input type="text" id="collegeName" name="collegeName" required="required"/>
         <label for="collegepic">学院图像</label>
         <input type="text" id="collegepic" name="collegepic" required="required"/>
-        <button type="submit">提交</button>
+        <button type="submit" class="btn btn-default">提交</button>
     </form>
 </div>
 
 <!-- list all courses & colleges -->
-<div>
-    <table>
+<div style ="width:1079px;min-width:1079px;margin:0 auto 100px auto;">
+    <table class= "table table -bordered table-hover">
         <thead>
         <tr>
             <th>课程名称</th>
@@ -137,7 +153,7 @@
                 <form action="/admin/delete-course" method="post">
                     <input type="hidden" name="_csrf" value="<%= locals.token %>"/>
                     <input type="hidden" name="courseid" value="<%= course._id %>"/>
-                    <button type="submit">
+                    <button type="submit" class="btn btn btn-danger">
                         删除
                     </button>
                 </form>
@@ -153,8 +169,8 @@
     </table>
 </div>
 
-<div>
-    <table>
+<div style ="width:1079px;min-width:1079px;margin:0 auto 100px auto;">
+    <table class ="table table -bordered table-hover">
         <thead>
         <tr>
             <th>学院名称</th>
@@ -170,7 +186,7 @@
                 <form action="/admin/delete-college" method="post">
                     <input type="hidden" name="_csrf" value="<%= locals.token %>"/>
                     <input type="hidden" name="collegeid" value="<%= college._id %>"/>
-                    <button type="submit">
+                    <button type="submit" class = "btn btn-danger">
                         删除
                     </button>
                 </form>
