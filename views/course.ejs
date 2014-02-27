@@ -1,5 +1,9 @@
 <%- include header %>
-<div class = "course_detail">
+<%-include searchform %>
+</div>
+    <input type='hidden' id='current_page' />
+    <input type='hidden' id='show_per_page' />
+<div class = "course_detail" id = "content">
     <div class = "course_title">
         <strong><%= course.courseName %></strong>
     </div>
@@ -18,4 +22,8 @@
     </div>
     <% } %>
 </div>
+
+
+<div id='page_navigation' class = "col-xs-6"></div>
+
 <%- include footer %>

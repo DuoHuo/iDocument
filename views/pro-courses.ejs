@@ -1,8 +1,13 @@
 <%- include header %>
+<%-include searchform %>
+    <input type='hidden' id='current_page' />
+    <input type='hidden' id='show_per_page' />
+
 <div class = "main_course">
-    <div style ="font-size: 36px;color:#1c94d7;margin-bottom:20px;">
+    <div style ="font-size: 36px;color:#1c94d7;margin-top:40px;margin-bottom:20px;">
         <strong><%= college.collegeName %></strong>
     </div>
+<div  id = "content">
     <!-- list all professional courses -->
     <% if(courses[0]) { %>
     <% courses.forEach(function(course) { %>
@@ -39,5 +44,9 @@
         <p>暂无文档</p>
     </div>
     <% } %>
+    </div>
 </div>
+
+
+<div id='page_navigation' class = "col-xs-6"></div>
 <%- include footer %>

@@ -1,5 +1,10 @@
 <%- include header %>
-<div class = "main_course">
+<%-include searchform %>
+</div>
+    <input type='hidden' id='current_page' />
+    <input type='hidden' id='show_per_page' />
+
+<div class = "main_course" id = "content">
 <!-- list all general courses -->
 <% if(courses[0]) { %>
 <% courses.forEach(function(course) { %>
@@ -36,5 +41,9 @@
         <p>暂无文档</p>
     </div>
 <% } %>
+
 </div>
+
+<div id='page_navigation' class = "col-xs-6"></div>
+
 <%- include footer %>

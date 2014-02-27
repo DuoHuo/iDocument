@@ -28,6 +28,9 @@ a{
     display: block;
     height: 46px;    
     width: 172px;
+    position: absolute;
+    left:200px;
+    bottom: 100px;
 }
 
 .header{
@@ -75,28 +78,30 @@ a{
 }
 
 .search{
+	margin-top:20px;
 }
 
 #search_content{
 	font-size: 15px;
 	color: rgb( 166, 161, 161 );
 	background-color: rgba( 205, 227, 243 ,0.431);
-	height:60px;
+	height:46px;
 	border:0;
 	padding:0 20px;
 	position:relative;
 	top: -25px;
+	left:65px;
 }
 
 #search_button{
-	background: url(../img/search.png);
-	height: 60px;
-	width: 79px;
+	background: url(../img/search.png) no-repeat;
+	height: 46px;
+	width: 61px;
 	border: 0;
 	padding: 0;
 	position: relative;
-	left: 280px;
-	top: -85px;
+	/*left:60px;*/
+	top: -26px;
 }
 /*slider*/
 .banner { position: relative; overflow: auto; }
@@ -106,22 +111,33 @@ a{
 /*slider*/
 .main{
 	overflow: hidden;
-	width:1079px;
+	width:1180px;
 	min-width: 1079px;
 	margin:0 auto;
-	padding: 0 0 100px 0;
+	padding: 0 0 150px 0;
 }
 
 .main_title{
-	font-size: 24px;
+	font-size: 32px;
 	font-weight: bold;
 	color: rgb( 37, 37, 37 );
 }
-
+.main_title span{
+	position: relative;
+    top: 3px;
+}
+.main_left{
+	padding:0 !important;
+}
 .main_left_content th{
   	font-size: 16px;
   	color: rgb( 16, 16, 16 );
   	padding:10px 30px;
+}
+
+.main_left_content thead th{
+  	font-weight: 300;
+  	font-size: 18px;
 }
 
 .main_left_content th:first-child{
@@ -129,45 +145,53 @@ a{
 }
 
 .main_left_content tbody tr td{
-	line-height: 30px;
+	line-height: 50px;
 	text-align: center;
+	font-size: 16px;
 }
 
 .main_left_content tbody td:first-child{
 	background: url(../img/listicon.png) no-repeat;
-	background-position: 4px 13px;
+	background-position: 25px 24px;
 	text-align: left;
-	padding-left: 20px;
+	padding-left: 40px;
 }
 
 .main_left_content tbody td a{
 	color:#000;
 }
-
+.main_right{
+	padding-left:100px !important;
+	padding-right:0 !important;
+}
 .main_right_content th{
 	font-size: 16px;
 	color: rgb( 16, 16, 16 );
 	padding:10px 30px;
 }
-
+.main_right_content thead th{
+  	font-weight: 300;
+  	font-size: 18px;
+}
 .main_right_content th:first-child{
 	padding:10px 150px 10px 20px;
 }
 
 .main_right_content tbody tr{
-	line-height: 30px;
+	line-height: 50px;
 }
 
 .main_right_content tbody td{
 	text-align: center;
 	color:#000;
+	font-size: 15px;
 }
 
 .main_right_content tbody td:first-child{
 	background: url(../img/listicon.png) no-repeat;
-	background-position: 4px 13px;
+	background-position: 25px 24px;
 	text-align: left;
-	padding-left: 20px;
+	padding-left: 40px;
 }
 
 
@@ -197,17 +221,67 @@ a{
 	left:50%;
 	top:8px;
 }
+.fancybox-wrap{
+	height:667px !important;
+	width:595px !important;
+}
+.fancybox-skin{
+	height:667px !important;
+	width:595px !important;
+}
+.fancybox-inner{
+	height:667px !important;
+	width:595px !important;
+}
+#page_navigation{
+	width:100%;
+	text-align: center;
+	margin-bottom: 150px;
+}
+#page_navigation a{
+	padding:30px;
+	margin:2px;
+	height:55px;
+	width:54px;
+	text-decoration:none;
+}
+.previous_link{
+	background:url(../img/slider_left.png) no-repeat;
+	height:55px;
+	width:54px;
+}
+
+.page_link{
+	background:url(../img/dot.png) no-repeat;
+	background-position: 25px 25px;
+	height:10px;
+	width:10px;
+}
+
+.active_page{
+	background:url(../img/active_dot.png) no-repeat;
+	background-position: 25px 25px;
+	height:10px;
+	width:10px;
+}
+
+.next_link{
+	background:url(../img/slider_right.png) no-repeat;
+	height:55px;
+	width:54px;
+}
 
 /*general*/
 .main_course{
 	overflow: hidden;
-	height:500px;
+	height:1450px;
 	width:1079px;
 	min-width: 1079px;
 	margin:0 auto;
 }
 .course{
 	float:left;
+	margin-bottom: 50px;
 	padding:0 !important;
 }
 
@@ -236,6 +310,7 @@ a{
 	width:1079px;
 	min-width: 1079px;
 	margin:0 auto;
+	height:1450px;
 }
 
 .course_title{
