@@ -105,6 +105,85 @@ a{
 .banner li { list-style: none; }
 .banner ul li { float: left; }
 
+
+pre{
+	font-family: "Source Code Pro", monospace;
+	display: block;
+	padding: 9.5px;
+	margin: 0 0 10px;
+	font-size: 13px;
+	line-height: 20px;
+	word-break: break-all;
+	word-wrap: break-word;
+	white-space: pre;
+	white-space: pre-wrap;
+	background-color: whiteSmoke;
+	border: 1px solid #CCC;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+}
+
+h2{
+	font-size: 48px;
+}
+
+pre + h2{
+	margin-top: 80px;
+}
+
+#container{
+	max-width:1188px;
+	min-width:1079px;
+	margin:0 auto;
+	margin-top:100px;
+	padding-bottom:80px;
+}
+
+#banner-fade,
+#banner-slide{
+	margin-bottom: 60px;
+}
+
+.bjqs-prev a{
+	background:url(../img/slider_left.png) no-repeat;
+	height:55px;
+	width:55px; 
+	text-decoration: none;
+	margin-top:270px;
+	margin-left:480px;
+}
+
+.bjqs-next a{
+	background:url(../img/slider_right.png) no-repeat;
+	height:55px;
+	width:55px; 
+	text-decoration: none;
+	margin-top:270px;
+	margin-right:480px;
+}
+
+ol.bjqs-markers li a{
+	padding:5px 10px;
+	background:url(../img/dot.png) no-repeat;
+	height:10px;
+	width:10px;
+	color:#fff;
+	margin:5px;
+	text-decoration: none;
+}
+
+ol.bjqs-markers li.active-marker a,
+ol.bjqs-markers li a:hover{
+	background:url(../img/active_dot.png) no-repeat;
+	height:10px;
+	width:10px;
+}
+
+p.bjqs-caption{
+	background: rgba(255,255,255,0.5);
+}
+
 /*slider*/
 .main{
 	overflow: hidden;
