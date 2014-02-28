@@ -37,7 +37,7 @@ a{
 .header{
 	width:1079px;
 	min-width: 1079px;
-	height:180px;
+	height:200px;
 	margin:0 auto;
 	overflow: hidden;
 }
@@ -87,19 +87,18 @@ a{
 	color: rgb( 166, 161, 161 );
 	background-color: rgba( 205, 227, 243 ,0.431);
 	border:0;
-	padding:0 20px;
-	/* position:relative; 
-	top: -0.6em; */
-	left:65px;
+	padding-left:20px;
+	height:46px;
+	margin-left:90px;
 }
 
 #search_button{
 	background: url(../img/search.png) no-repeat;
 	width: 61px;
+	height:46px;
 	border: 0;
 	padding: 0;
-	 position: relative; 
-	top: 2px; 
+	margin-left:-5px;
 }
 /*slider*/
 .banner { position: relative; overflow: auto; }
@@ -127,10 +126,14 @@ a{
 .main_left{
 	padding:0 !important;
 }
+.main_left_content{
+	width:100%;
+}
 .main_left_content th{
   	font-size: 16px;
   	color: rgb( 16, 16, 16 );
-  	padding:10px 30px;
+  	padding:10px 40px;
+  	text-align: center;
 }
 
 .main_left_content thead th{
@@ -139,7 +142,7 @@ a{
 }
 
 .main_left_content th:first-child{
-	padding:10px 150px 10px 20px;
+	text-align: left;
 }
 
 .main_left_content tbody tr td{
@@ -166,13 +169,14 @@ a{
 	font-size: 16px;
 	color: rgb( 16, 16, 16 );
 	padding:10px 30px;
+  	text-align: center;
 }
 .main_right_content thead th{
   	font-weight: 300;
   	font-size: 18px;
 }
 .main_right_content th:first-child{
-	padding:10px 150px 10px 20px;
+	text-align: left;
 }
 
 .main_right_content tbody tr{
@@ -187,9 +191,9 @@ a{
 
 .main_right_content tbody td:first-child{
 	background: url(../img/listicon.png) no-repeat;
-	background-position: 25px 24px;
+	background-position: 22px 23px;
 	text-align: left;
-	padding-left: 40px;
+	padding-left: 35px;
 }
 
 
@@ -215,10 +219,10 @@ a{
 .footer a{
 	color:#fff;
 	padding:0 60px;
-	position:relative;
-	left:50%;
-	top:8px;
+	float:right;
+	margin-top:1em;
 }
+
 .fancybox-wrap{
 	height:667px !important;
 	width:595px !important;
