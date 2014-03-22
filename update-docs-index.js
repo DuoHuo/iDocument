@@ -29,7 +29,7 @@ MongoClient.connect(config.mongodb, { db: { native_parser: true, w : 1 } }, func
                     type: doc.type,
                     link: doc.link,
                     downloads: doc.downloads,
-                    searchIndex: splittext(doc.title)
+                    searchIndex: splittext(doc.title.toLowerCase())
                 }, function(err) {
                     if (err) throw err;
                     collection.ensureIndex({
