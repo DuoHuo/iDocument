@@ -25,7 +25,7 @@ MongoClient.connect(config.mongodb, { db: { native_parser: true, w : 1 } }, func
                     updateTime: doc.updateTime,
                     fileType: doc.fileType,
                     belongs: doc.belongs,
-                    course: doc.courseId,
+                    course: doc.course,
                     type: doc.type,
                     link: doc.link,
                     downloads: doc.downloads,
