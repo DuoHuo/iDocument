@@ -3,7 +3,7 @@
     <!-- list search result -->
     <% if (docs[0]) { %>
     <% docs.forEach(function(doc) { %>
-    <div style="min-height: 300px;">
+    <div>
         <span><%= doc.fileType %></span>&nbsp;
         <a href="#<%= doc._id %>">
             <%= doc.title %>

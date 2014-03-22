@@ -125,7 +125,7 @@ MongoClient.connect(config.mongodb, { db: { native_parser: true, w : 1 } }, func
 
     exports.searchdoc = function(querytext, callback) {
         collection.find({
-            searchIndex: querytext
+            searchIndex: {$all: querytext}
         })
             .sort({ downloads: -1 })
             .toArray(function(err, docs) {

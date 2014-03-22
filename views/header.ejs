@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/bjqs.css">
+    <link rel="stylesheet" href="/css/demo.css">
     <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
     <script src="/js/jquery-1.7.1.min.js"></script>
     <script src="/fancybox/jquery.fancybox.pack.js"></script>
@@ -108,36 +109,6 @@
             <li><a href="/general">公共课</a></li>
             <li><a href="/professional">专业课</a></li>
         </ul>
-        <!--
-        <form action="/search" method="post">
-            <input type="text" name="criteria" placeholder="输入你想搜索的内容" />
-            <input type="hidden" name="_csrf" value="<%= locals.token %>"/>
-            <button type="submit">搜索</button>
-        </form>
-        -->
-    <!-- 百度站内搜索 -->
-        <form class = "search" action="http://www.baidu.com/baidu" target="_blank">
-            <table bgcolor="#FFFFFF">
-                <tr>
-                    <td>
-                        <input name=tn type=hidden value=baidu>
-                        <!-- <a href="http://www.baidu.com/"><img src="http://img.baidu.com/img/logo-80px.gif" alt="Baidu" align="bottom" border="0"></a> -->
-                        <input id = "search_content" type="text" name="word" placeholder="输入你想搜索的内容"/>
-                    </td>
-                    <td>
-                        <input id = "search_button" type="submit"  value="">
-                    </td>
-                </tr>
-            </table>
-        </form>
-    </div>
-<<<<<<< HEAD
-=======
-    <ul class = "navigation" id = "nav">
-        <li><a href="/">首页</a></li>
-        <li><a href="/general">公共课</a></li>
-        <li><a href="/professional">专业课</a></li>
-    </ul>
     <!--
     <form action="/search" method="post">
         <input type="text" name="criteria" placeholder="输入你想搜索的内容" />
@@ -145,7 +116,7 @@
         <button type="submit">搜索</button>
     </form>
     -->
-<!-- 百度站内搜索 -->
+<!-- 文档搜索 -->
     <form class = "search" action="/search" method="post">
         <table bgcolor="#FFFFFF">
             <tr>
@@ -163,5 +134,4 @@
 
 
 </div>
->>>>>>> 972cde362ac003a60792b1851eb9b998e8c3d4f7
 
