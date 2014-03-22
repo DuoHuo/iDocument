@@ -149,7 +149,7 @@ module.exports = function(app) {
     });
 
     app.post('/search', csrf, function(req, res) {
-        Document.searchdoc(req.body.criteria.split(""), function(err, docs) {
+        Document.searchdoc(req.body.criteria.toLowerCase().split(""), function(err, docs) {
             if (err) {
                 console.log(err);
                 return res.send(500);
@@ -201,7 +201,7 @@ module.exports = function(app) {
             type: req.body.type,
             link: req.body.link,
             downloads: 0,
-            searchIndex: req.body.title.split("")
+            searchIndex: req.body.title.toLowerCase().split("")
         };
 
         Document.addnew(newdoc, function(err, doc) {
