@@ -47,7 +47,7 @@ MongoClient.connect(config.mongodb, { db: { native_parser: true, w : 1 } }, func
         collection.find()
             .limit(6)
             .sort({
-                updateTime: 1
+                updateTime: -1
             })
             .toArray(function(err, docs) {
                 if (err) {

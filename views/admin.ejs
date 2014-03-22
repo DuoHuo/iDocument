@@ -1,11 +1,117 @@
 <%- include header %>
-<div style ="width:1079px;min-width:1079px;margin:0 auto 100px auto;">
-    <div>
-        <!-- button group -->
-        <a href="#addnewdoc">添加新文档</a>
+
+
+<div id="addnewdoc" class="col-xs-6" style="border:1px solid #fff; padding:30px;height:500px;box-shadow: 2px 2px 5px #000;">
+    <h3>添加文档</h3>
+    <!-- Add new doc form, maybe using modal -->
+    <form action="/admin/addnewdoc" method="post" class="form-horizontal">
+        <input type="hidden" name="_csrf" value="<%= locals.token %>"/>
+    <div class="form-group">
+        <label for="title">文档标题</label>
+        <input type="text" id="title" class="form-control" name="title" required="required" />
     </div>
+    <div class="form-group">
+        <label for="fileType">文件类型</label>
+        <input type="text" id="fileType" class="form-control" name="fileType" required="required"/>
+    </div>
+    <div class="form-group">
+        <label for="courseId">课程名称</label>
+        <select id="courseId" class="form-control" name="courseId" required="required">
+            <% if(courses[0]) { %>
+            <% courses.forEach(function(course) { %>
+            <option value="<%= course._id %>"><%= course.courseName %></option>
+            <% }) %>
+            <% } else { %>
+            <option value="" disabled="disabled">没有有效课程，请先添加课程</option>
+            <% } %>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="type">课程类型</label>
+        <select id="type" class="form-control" name="type" required="required">
+            <option value="general">通修课</option>
+            <option value="professional">专业课</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="belongs">所属学院</label>
+        <select id="belongs" class="form-control" name="belongs" required="required">
+            <% if(colleges[0]) { %>
+            <% colleges.forEach(function(college) { %>
+            <option value="<%= college._id %>"><%= college.collegeName %></option>
+            <% }) %>
+            <% } else { %>
+            <option value="" disabled="disabled">没有有效学院，请先添加学院</option>
+            <% } %>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="link">下载地址</label>
+        <input type="text" id="link" name="link" required="required"/>
+        <button type="submit" class="btn btn-default">提交</button>
+    </div>
+    </form>
+</div>
+<div id="addnewcourse" class="col-xs-3" style="border:1px solid #fff; padding:30px;height:500px;box-shadow: 2px 2px 5px #000;">
+    <h3>添加课程</h3>
+    <form action="/admin/addnewcourse" method="post" class="form-horizontal">
+        <input type="hidden" name="_csrf" value="<%= locals.token %>"/>
+    <div class="form-group">
+        <label for="courseName">课程名称</label>
+        <input type="text" id="courseName" class="form-control" name="courseName" required="required"/>
+    </div>
+    <div class="form-group">
+        <label for="courseType">课程类型</label>
+        <select id="courseType" class="form-control" name="courseType" required="required">
+            <option value="general">通修课</option>
+            <option value="professional">专业课</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="courseBelongs">所属学院</label>
+        <select id="courseBelongs" class="form-control" name="courseBelongs" required="required">
+            <% if(colleges[0]) { %>
+            <% colleges.forEach(function(college) { %>
+            <option value="<%= college._id %>"><%= college.collegeName %></option>
+            <% }) %>
+            <% } else { %>
+            <option value="" disabled="disabled">没有有效学院，请先添加学院</option>
+            <% } %>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="coursepic">课程图像</label>
+        <input type="text" id="coursepic" class="form-control" name="coursepic" required="required"/>
+        <button type="submit" class="btn btn-default">提交</button>
+    </form>
+    </div>
+</div>
+
+<div id="addnewcollege" class="col-xs-3" style="border:1px solid #fff; padding:30px;height:500px;box-shadow: 2px 2px 5px #000;">
+    <h3>添加学院</h3>
+    <form action="/admin/addnewcollege" method="post" class="form-horizontal">
+        <input type="hidden" name="_csrf" value="<%= locals.token %>"/>
+    <div class="form-group">
+        <label for="collegeName">学院名称</label>
+        <input type="text" id="collegeName" class="form-control" name="collegeName" required="required"/>
+    </div>
+    <div class="form-group">
+        <label for="collegepic">学院图像</label>
+        <input type="text" id="collegepic" class="form-control" name="collegepic" required="required"/>
+        <button type="submit" class="btn btn-default">提交</button>
+    </div>
+    </form>
+</div>
+
+<!-- list all courses & colleges -->
+
+<div class="col-xs-12">
+    <!-- <div> -->
+        <!-- button group -->
+        <!-- <a href="#addnewdoc">添加新文档</a> -->
+    <!-- </div> -->
     <!-- docs table -->
-    <table class= "table table -bordered table-hover">
+    <table class= "table table-bordered table-hover">
         <thead>
         <tr>
             <th>文档标题</th>
@@ -50,90 +156,8 @@
     </table>
 </div>
 
-<div id="addnewdoc" style ="width:1079px;min-width:1079px;margin:0 auto 100px auto;">
-    <!-- Add new doc form, maybe using modal -->
-    <form action="/admin/addnewdoc" method="post" class="form">
-        <input type="hidden" name="_csrf" value="<%= locals.token %>"/>
-    <div class="form-group">
-        <label for="title">文档标题</label>
-        <input type="text" id="title" class="form-control" name="title" required="required" />
-    </div>
-    <div class="form-group">
-        <label for="fileType">文件类型</label>
-        <input type="text" id="fileType" class="form-control" name="fileType" required="required"/>
-    </div>
-    <div class="form-group">
-        <label for="courseId">课程名称</label>
-        <select id="courseId" name="courseId" required="required">
-            <% if(courses[0]) { %>
-            <% courses.forEach(function(course) { %>
-            <option value="<%= course._id %>"><%= course.courseName %></option>
-            <% }) %>
-            <% } else { %>
-            <option value="" disabled="disabled">没有有效课程，请先添加课程</option>
-            <% } %>
-        </select>
-    </div>
-    <div class="form-group">
-        <label for="type">课程类型</label>
-        <select id="type" name="type" required="required">
-            <option value="general">通修课</option>
-            <option value="professional">专业课</option>
-        </select>
-        <label for="belongs">所属学院</label>
-        <select id="belongs" name="belongs" required="required">
-            <% if(colleges[0]) { %>
-            <% colleges.forEach(function(college) { %>
-            <option value="<%= college._id %>"><%= college.collegeName %></option>
-            <% }) %>
-            <% } else { %>
-            <option value="" disabled="disabled">没有有效学院，请先添加学院</option>
-            <% } %>
-        </select>
-        <label for="link">下载地址</label>
-        <input type="text" id="link" name="link" required="required"/>
-        <button type="submit" class="btn btn-default">提交</button>
-    </form>
-</div>
-<div id="addnewcourse" style ="width:1079px;min-width:1079px;margin:0 auto 100px auto;">
-    <form action="/admin/addnewcourse" method="post">
-        <input type="hidden" name="_csrf" value="<%= locals.token %>"/>
-        <label for="courseName">课程名称</label>
-        <input type="text" id="courseName" name="courseName" required="required"/>
-        <label for="courseType">课程类型</label>
-        <select id="courseType" name="courseType" required="required">
-            <option value="general">通修课</option>
-            <option value="professional">专业课</option>
-        </select>
-        <label for="courseBelongs">所属学院</label>
-        <select id="courseBelongs" name="courseBelongs" required="required">
-            <% if(colleges[0]) { %>
-            <% colleges.forEach(function(college) { %>
-            <option value="<%= college._id %>"><%= college.collegeName %></option>
-            <% }) %>
-            <% } else { %>
-            <option value="" disabled="disabled">没有有效学院，请先添加学院</option>
-            <% } %>
-        </select>
-        <label for="coursepic">课程图像</label>
-        <input type="text" id="coursepic" name="coursepic" required="required"/>
-        <button type="submit" class="btn btn-default">提交</button>
-    </form>
-</div>
-<div id="addnewcollege" style ="width:1079px;min-width:1079px;margin:0 auto 100px auto;">
-    <form action="/admin/addnewcollege" method="post">
-        <input type="hidden" name="_csrf" value="<%= locals.token %>"/>
-        <label for="collegeName">学院名称</label>
-        <input type="text" id="collegeName" name="collegeName" required="required"/>
-        <label for="collegepic">学院图像</label>
-        <input type="text" id="collegepic" name="collegepic" required="required"/>
-        <button type="submit" class="btn btn-default">提交</button>
-    </form>
-</div>
-
-<!-- list all courses & colleges -->
-<div style ="width:1079px;min-width:1079px;margin:0 auto 100px auto;">
-    <table class= "table table -bordered table-hover">
+<div class="col-xs-6" style="clear:left;">
+    <table class= "table table-bordered table-hover">
         <thead>
         <tr>
             <th>课程名称</th>
@@ -169,8 +193,8 @@
     </table>
 </div>
 
-<div style ="width:1079px;min-width:1079px;margin:0 auto 100px auto;">
-    <table class ="table table -bordered table-hover">
+<div class="col-xs-6">
+    <table class ="table table-bordered table-hover">
         <thead>
         <tr>
             <th>学院名称</th>
@@ -202,4 +226,3 @@
     </table>
 </div>
 
-<%- include footer %>

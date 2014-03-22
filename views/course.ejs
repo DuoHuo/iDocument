@@ -10,8 +10,10 @@
     <% docs.forEach(function(doc) { %>
     <div class = "course_content col-xs-6">
         <div id = "document"></div>
+        <div class="documenttitle">
         <%= doc.title %>
-        <a href="/download/<%= doc._id %>"></a>
+        </div>
+        <a href="/download/<%= doc._id %>" target="_blank"></a>
     </div>
     <% }) %>
     <% } else { %>

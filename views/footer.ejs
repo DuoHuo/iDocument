@@ -1,202 +1,115 @@
-
-<footer class = "footer">
-    <img id = "dhlogo" src="/img/dhlogo.png" alt="多火logo">
-	<a href="http://www.bumei.org">不昧网</a>
-	<a href="http://www.nuister.org">信大多火社区</a>
-	<a href="http://www.duohuostudio.com">多火工作室</a>
-</footer>
+	<footer class = "footer">
+	    <img id = "dhlogo" src="/img/dhlogo.png" alt="多火logo">
+		<a href="http://www.bumei.org">不昧网</a>
+		<a href="http://www.nuister.org">信大多火社区</a>
+		<a href="http://www.duohuo.org">多火工作室</a>
+	</footer>
 </div>
-
-<!-- pagination -->
-<script type="text/javascript">
-$(document).ready(function(){
-    
-    //how much items per page to show
-    var show_per_page = 18; 
-    //getting the amount of elements inside content div
-    var number_of_items = $('#content').children().size();
-    //calculate the number of pages we are going to have
-    var number_of_pages = Math.ceil(number_of_items/show_per_page);
-    
-    //set the value of our hidden input fields
-    $('#current_page').val(0);
-    $('#show_per_page').val(show_per_page);
-    
-    //now when we got all we need for the navigation let's make it '
-    
-    /* 
-    what are we going to have in the navigation?
-        - link to previous page
-        - links to specific pages
-        - link to next page
-    */
-    var navigation_html = '<a class="previous_link" href="javascript:previous();"></a>';
-    var current_link = 0;
-    var a = '';
-    while(number_of_pages > current_link){
-        navigation_html += '<a class="page_link" href="javascript:go_to_page(' + current_link +')" longdesc="' + current_link +'">'+ (a) +'</a>';
-        current_link++;
-    }
-    navigation_html += '<a class="next_link" href="javascript:next();"></a>';
-    
-    $('#page_navigation').html(navigation_html);
-    
-    //add active_page class to the first page link
-    $('#page_navigation .page_link:first').addClass('active_page');
-    
-    //hide all the elements inside content div
-    $('#content').children().css('display', 'none');
-    
-    //and show the first n (show_per_page) elements
-    $('#content').children().slice(0, show_per_page).css('display', 'block');
-    
-});
-
-function previous(){
-    
-    new_page = parseInt($('#current_page').val()) - 1;
-    //if there is an item before the current active link run the function
-    if($('.active_page').prev('.page_link').length==true){
-        go_to_page(new_page);
-    }
-    
-}
-
-function next(){
-    new_page = parseInt($('#current_page').val()) + 1;
-    //if there is an item after the current active link run the function
-    if($('.active_page').next('.page_link').length==true){
-        go_to_page(new_page);
-    }
-    
-}
-function go_to_page(page_num){
-    //get the number of items shown per page
-    var show_per_page = parseInt($('#show_per_page').val());
-    
-    //get the element number where to start the slice from
-    start_from = page_num * show_per_page;
-    
-    //get the element number where to end the slice
-    end_on = start_from + show_per_page;
-    
-    //hide all children elements of content div, get specific items and show them
-    $('#content').children().css('display', 'none').slice(start_from, end_on).css('display', 'block');
-    
-    /*get the page link that has longdesc attribute of the current page and add active_page class to it
-    and remove that class from previously active page link*/
-    $('.page_link[longdesc=' + page_num +']').addClass('active_page').siblings('.active_page').removeClass('active_page');
-    
-    //update the current page input field
-    $('#current_page').val(page_num);
-}
-</script>
-<!-- pagination -->
 
 <!-- professional -->
 		<script type="text/javascript">
 			$(document).ready(function(){
 				//Full Caption Sliding (Hidden to Visible)
 				//大气科学
-				$('#college530c85d5eadf87260532a5b0').hover(function(){
+				$('#college530fdc631e13cbe450225d9b').hover(function(){
 					$(".cover", this).stop().animate({top:'0px'},{queue:false,duration:160});
 				}, function() {
 					$(".cover", this).stop().animate({top:'-300px'},{queue:false,duration:160});
 				});
 
 				//水文气象
-				$('#college530c8648eadf87260532a5b1').hover(function(){
+				$('#college530fdf6c20be5f5d51a7f650').hover(function(){
 					$(".cover", this).stop().animate({top:'175px'},{queue:false,duration:160});
 				}, function() {
 					$(".cover", this).stop().animate({top:'250px'},{queue:false,duration:160});
 				});
 
 				//遥感
-				$('#college530c865ceadf87260532a5b2').hover(function(){
+				$('#college530fdfb820be5f5d51a7f651').hover(function(){
 					$(".cover", this).stop().animate({top:'175px'},{queue:false,duration:160});
 				}, function() {
 					$(".cover", this).stop().animate({top:'250px'},{queue:false,duration:160});
 				});
 				//经济管理
-				$('#college530c866deadf87260532a5b3').hover(function(){
+				$('#college530fdffc20be5f5d51a7f652').hover(function(){
 					$(".cover", this).stop().animate({top:'175px'},{queue:false,duration:160});
 				}, function() {
 					$(".cover", this).stop().animate({top:'250px'},{queue:false,duration:160});
 				});
 				//大气物理
-				$('#college530c867beadf87260532a5b4').hover(function(){
+				$('#college530fe03d20be5f5d51a7f653').hover(function(){
 					$(".cover", this).stop().animate({top:'175px'},{queue:false,duration:160});
 				}, function() {
 					$(".cover", this).stop().animate({top:'250px'},{queue:false,duration:160});
 				});
 				//信息与控制
-				$('#college530c86d9eadf87260532a5b5').hover(function(){
+				$('#college530fe08a20be5f5d51a7f654').hover(function(){
 					$(".cover", this).stop().animate({top:'175px'},{queue:false,duration:160});
 				}, function() {
 					$(".cover", this).stop().animate({top:'250px'},{queue:false,duration:160});
 				});
 				//电子信息工程
-				$('#college530c86eceadf87260532a5b6').hover(function(){
+				$('#college530fe0d920be5f5d51a7f655').hover(function(){
 					$(".cover", this).stop().animate({top:'175px'},{queue:false,duration:160});
 				}, function() {
 					$(".cover", this).stop().animate({top:'250px'},{queue:false,duration:160});
 				});
 				//应用气象
-				$('#college530c86faeadf87260532a5b7').hover(function(){
+				$('#college530fe11b20be5f5d51a7f656').hover(function(){
 					$(".cover", this).stop().animate({top:'175px'},{queue:false,duration:160});
 				}, function() {
 					$(".cover", this).stop().animate({top:'250px'},{queue:false,duration:160});
 				});
 				//马克思主义
-				$('#college530c8705eadf87260532a5b8').hover(function(){
+				$('#college530fe15720be5f5d51a7f657').hover(function(){
 					$(".cover", this).stop().animate({top:'175px'},{queue:false,duration:160});
 				}, function() {
 					$(".cover", this).stop().animate({top:'250px'},{queue:false,duration:160});
 				});
 				//数学与统计
-				$('#college530c8717eadf87260532a5b9').hover(function(){
+				$('#college530fe1a120be5f5d51a7f658').hover(function(){
 					$(".cover", this).stop().animate({left:'290px'},{queue:false,duration:160});
 				}, function() {
 					$(".cover", this).stop().animate({left:'350px'},{queue:false,duration:160});
 				});
 				//公共管理
-				$('#college530c8755eadf87260532a5ba').hover(function(){
+				$('#college530fe1e920be5f5d51a7f659').hover(function(){
 					$(".cover", this).stop().animate({left:'300px'},{queue:false,duration:160});
 				}, function() {
 					$(".cover", this).stop().animate({left:'400px'},{queue:false,duration:160});
 				});
 				//物理与光电
-				$('#college530c8770eadf87260532a5bb').hover(function(){
+				$('#college530fe23320be5f5d51a7f65a').hover(function(){
 					$(".cover", this).stop().animate({left:'300px'},{queue:false,duration:160});
 				}, function() {
 					$(".cover", this).stop().animate({left:'400px'},{queue:false,duration:160});
 				});
 				//语言与文化
-				$('#college530c8792eadf87260532a5bc').hover(function(){
+				$('#college530fe2ac20be5f5d51a7f65b').hover(function(){
 					$(".cover", this).stop().animate({top:'215px'},{queue:false,duration:160});
 				}, function() {
 					$(".cover", this).stop().animate({top:'280px'},{queue:false,duration:160});
 				});
 				//计算机与软件
-				$('#college530c87c4eadf87260532a5bd').hover(function(){
+				$('#college530fe2e720be5f5d51a7f65c').hover(function(){
 					$(".cover", this).stop().animate({top:'0px'},{queue:false,duration:160});
 				}, function() {
 					$(".cover", this).stop().animate({top:'-100px'},{queue:false,duration:160});
 				});
 				//环境与科学
-				$('#college530c87fdeadf87260532a5be').hover(function(){
+				$('#college5316c19d46530c65151adf4f').hover(function(){
 					$(".cover", this).stop().animate({top:'405px'},{queue:false,duration:160});
 				}, function() {
 					$(".cover", this).stop().animate({top:'500px'},{queue:false,duration:160});
 				});
 				//传媒与艺术
-				$('#college530c8820eadf87260532a5bf').hover(function(){
+				$('#college5316c1a546530c65151adf50').hover(function(){
 					$(".cover", this).stop().animate({left:'300px'},{queue:false,duration:160});
 				}, function() {
 					$(".cover", this).stop().animate({left:'400px'},{queue:false,duration:160});
 				});
 				//海洋科学
-				$('#college530c8851eadf87260532a5c0').hover(function(){
+				$('#college5316c1b746530c65151adf51').hover(function(){
 					$(".cover", this).stop().animate({left:'305px'},{queue:false,duration:160});
 				}, function() {
 					$(".cover", this).stop().animate({left:'400px'},{queue:false,duration:160});
@@ -204,29 +117,29 @@ function go_to_page(page_num){
 			});
 		</script>
 
-<!-- nav -->
-<script type="text/javascript" language="javascript">
-	var nav = document.getElementById("nav");
-	var links = nav.getElementsByTagName("li");
-	var lilen = nav.getElementsByTagName("a");
-	var currenturl = document.location.href;
-	var last = 0;
-	for (var i=0;i<links.length;i++)
-	{
-	var linkurl = lilen[i].getAttribute("href");
-	if(currenturl.indexOf(linkurl)!=-1)
-	{
-	last = i;
-	}
-	}
-	lilen[last].className = "current";
-</script>
-
-<script type="text/javascript" language="javascript">
-	$(document).ready(function() {
-		$(".fancybox").fancybox();
-	});
-</script>
+	<!-- nav -->
+	<script type="text/javascript" language="javascript">
+		var nav = document.getElementById("nav");
+		var links = nav.getElementsByTagName("li");
+		var lilen = nav.getElementsByTagName("a");
+		var currenturl = document.location.href;
+		var last = 0;
+		for (var i=0;i<links.length;i++)
+		{
+		var linkurl = lilen[i].getAttribute("href");
+		if(currenturl.indexOf(linkurl)!=-1)
+		{
+		last = i;
+		}
+		}
+		lilen[last].className = "current";
+	</script>
+	<!-- fancybox -->
+	<script type="text/javascript" language="javascript">
+		$(document).ready(function() {
+			$(".fancybox").fancybox();
+		});
+	</script>
 
 </body>
 </html>
