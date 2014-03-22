@@ -149,7 +149,7 @@ module.exports = function(app) {
     });
 
     app.post('/search', csrf, function(req, res) {
-        Document.searchdoc(req.body.criteria, function(err, docs) {
+        Document.searchdoc(req.body.criteria.split(""), function(err, docs) {
             if (err) {
                 console.log(err);
                 return res.send(500);
@@ -200,7 +200,8 @@ module.exports = function(app) {
             course: req.body.courseId,
             type: req.body.type,
             link: req.body.link,
-            downloads: 0
+            downloads: 0,
+            searchIndex: req.body.title.split("")
         };
 
         Document.addnew(newdoc, function(err, doc) {
@@ -355,6 +356,13 @@ module.exports = function(app) {
         });
     });
 
+/*
+    // word split function
+    function splittext(text) {
+        console.log(typeof text);
+        return text.split("");
+    }
+*/
 
     // Session functions
     function checkLogin(req, res, next) {

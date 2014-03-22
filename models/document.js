@@ -13,7 +13,8 @@
 *   type: 'general',
 *   downloads: 90,
 *   fileType: 'doc',
-*   link: 'http://pan.baidu.com/xxxxx'
+*   link: 'http://pan.baidu.com/xxxxx',
+*   searchIndex: ['高', '等', '数', '学']
 * }
 * */
 
@@ -122,9 +123,9 @@ MongoClient.connect(config.mongodb, { db: { native_parser: true, w : 1 } }, func
         });
     }
 
-    exports.searchdoc = function(pattern, callback) {
+    exports.searchdoc = function(querytext, callback) {
         collection.find({
-            title: new RegExp(pattern, 'i')
+            searchIndex: querytext
         })
             .sort({ downloads: -1 })
             .toArray(function(err, docs) {
@@ -151,7 +152,14 @@ MongoClient.connect(config.mongodb, { db: { native_parser: true, w : 1 } }, func
             if (err) {
                 return callback(err, null);
             }
-            callback(null, doc);
+            collection.ensureIndex({
+                searchIndex: 1
+            }, function(err, doc) {
+                if (err) {
+                    return callback(err, null);
+                }
+                callback(null, doc);
+            });
         });
     }
 

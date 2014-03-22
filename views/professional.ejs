@@ -4,7 +4,7 @@
 <% if(colleges[0]) { %>
         <% colleges.forEach(function(college) { %>
         <a href="/professional/<%= college._id %>">
-        <div id="college<%= college._id %>" class = "boxgrid captionfull" style="background: url(<%= college.collegepic %>)">
+        <div id="college<%= college._id %>" class = "boxgrid captionfull">
             <!-- display college images and other text -->
             <div class="cover boxcaption">
             	<%= college.collegeName %>
