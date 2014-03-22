@@ -1,23 +1,25 @@
 <%- include header %>
-<div>
+    <input type='hidden' id='current_page' />
+    <input type='hidden' id='show_per_page' />
+<div class = "course_detail" id = "content">
     <!-- list search result -->
     <% if (docs[0]) { %>
     <% docs.forEach(function(doc) { %>
-    <div>
-        <span><%= doc.fileType %></span>&nbsp;
-        <a href="#<%= doc._id %>">
+    <div class = "course_content col-xs-6">
+        <div id = "document"></div>
+        <!-- <span><%= doc.fileType %></span>&nbsp; -->
+        <!-- <a href="#<%= doc._id %>"> -->
+            <div class="documenttitle">
             <%= doc.title %>
-        </a>
-        <div style="display: none;">
-            <div id="<%= doc._id %>">
-                <!-- fancybox content -->
-                <a href="/download/<%= doc.link %>">下载</a>
             </div>
-        </div>
-    </div>
+            <a href="/download/<%= doc.link %>"></a>
+        <!-- </a> -->
+</div>
     <% }) %>
     <% } else { %>
     <p>未找到结果，请使用准确的关键词重试。</p>
     <% } %>
-</div>
+
+
+<div id='page_navigation' class = "col-xs-6"></div>
 <%- include footer %>
