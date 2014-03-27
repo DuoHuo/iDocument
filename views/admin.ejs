@@ -141,6 +141,18 @@
             <td><%= doc.downloads %></td>
             <td><%= doc.link  %></td>
             <td>
+                <form action="/admin/edit-doc" method="post">
+                    <input type="hidden" name="_csrf" value="<%= locals.token %>"/>
+                    <input type="hidden" name="docid" value="<%= doc._id %>"/>
+                    <input type="hidden" name="doctitle" value="<%= doc.title %>"/>
+                    <input type="hidden" name="docupdateTime" value="<%= doc.updateTime %>"/>
+                    <input type="hidden" name="docfileType" value="<%= doc.fileType %>"/>
+                    <input type="hidden" name="doccourse" value="<%= doc.course %>"/>
+                    <input type="hidden" name="doctype" value="<%= doc.type %>"/>
+                    <input type="hidden" name="doclink" value="<%= doc.link %>"/>
+                    <input type="hidden" name="docdownloads" value="<%= doc.downloads %>"/>
+                    <button type="submit" class="btn btn-info">编辑</button>
+                </form>
                 <form action="/admin/delete-doc" method="post">
                     <input type="hidden" name="_csrf" value="<%= locals.token %>"/>
                     <input type="hidden" name="docid" value="<%= doc._id %>"/>

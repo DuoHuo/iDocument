@@ -246,6 +246,29 @@ module.exports = function(app) {
         });
     });
 
+    app.post('/admin/edit-doc', csrf, checkLogin, function(req, res) {
+        var docdata = {
+            _id: req.body.docid,
+            title: req.body.doctitle,
+            updateTime: req.body.docupdateTime,
+            fileType: req.body.docfileType,
+            belongs: req.body.docbelongs,
+            course: req.body.doccourse,
+            type: req.body.doctype,
+            link: req.body.doclink,
+            downloads: req.body.docdownloads,
+            searchIndex: req.body.doctitle.toLowerCase().split("")
+        }
+
+        Document.edit(docdata, function(err) {
+            if (err) {
+                return res.send(500);
+            }
+            res.redirect('/admin');
+        });
+
+    });
+
     app.post('/admin/delete-doc', csrf, checkLogin, function(req, res) {
         Document.remove(req.body.docid, function(err) {
             if (err) {
