@@ -118,6 +118,7 @@
             <th>文件类型</th>
             <th>上传时间</th>
             <th>下载次数</th>
+            <th>下载链接</th>
             <th>操作</th>
         </tr>
         </thead>
@@ -138,6 +139,7 @@
                 <%= y + '-' + m + '-' + s %>
             </td>
             <td><%= doc.downloads %></td>
+            <td><%= doc.link  %></td>
             <td>
                 <form action="/admin/delete-doc" method="post">
                     <input type="hidden" name="_csrf" value="<%= locals.token %>"/>
