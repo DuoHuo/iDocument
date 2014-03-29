@@ -232,7 +232,7 @@ a { text-decoration:none !important; }
 }
 /*general*/.main_course {
 	overflow:hidden;
-	height:1450px;
+	min-height:1450px;
 	width:1138px;
 	margin:0 auto;
 	padding-left:25px;
