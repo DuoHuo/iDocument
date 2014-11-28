@@ -12,7 +12,7 @@
             <a href="/course/<%= course._id %>">更多&nbsp;&raquo;</a>
             <div id = "courseImg"><img src="<%= course.coursepic %>" alt=""></div>
         </div>
-        <div>
+       <!--  <div>
             <ul>
                 <% documents.forEach(function(doc) { %>
                 <% if(doc.course === course._id ) { %>
@@ -23,7 +23,6 @@
                     </a>
                     <div style="display: none;">
                         <div id="<%= doc._id %>">
-                            <!-- fancybox content -->
                             <a href="/download/<%= doc.link %>">下载</a>
                         </div>
                     </div>
@@ -31,7 +30,7 @@
                 <% } %>
                 <% }) %>
             </ul>
-        </div>
+        </div> -->
     </div>
 <% }) %>
 <% } else { %>
@@ -42,6 +41,6 @@
 
 </div>
 
-<div id='page_navigation' class = "col-xs-6"></div>
+<div id='page_navigation' class = "col-xs-6" style="margin-top:-50px;"></div>
 
 <%- include footer %>

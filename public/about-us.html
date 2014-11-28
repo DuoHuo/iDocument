@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>iDocument</title>
+  <link rel="stylesheet" media="screen and (min-width:1025px)" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" media="screen and (max-width:1024px)" href="/css/iphone_styles.css">
+  <link rel="stylesheet" href="/css/bjqs.css">
+</head>
+<body>
+    <div class = "header">
+        <div id="logo">
+            <a href="/"></a>
+        </div>
+        <ul class = "navigation" id = "nav">
+            <li><a href="/">首页</a></li>
+            <li><a href="/general">公共课</a></li>
+            <li><a href="/professional">专业课</a></li>
+        </ul>
+<!-- 文档搜索 -->
+    <form class = "search" action="/search" method="post">
+        <table bgcolor="#FFFFFF">
+            <tr>
+                <td>
+                    <input type="hidden" name="_csrf" value="<%= locals.token %>"/>
+                    <input id = "search_content" type="text" name="criteria" placeholder="输入你想搜索的内容"/>
+                </td>
+                <td>
+                    <input id = "search_button" type="submit"  value="">
+                </td>
+            </tr>
+        </table>
+    </form>
+   </div>
+
+  <div class="about">
+           <img src="img/about-us.png" alt="about-us" class="about-us">
+           <div class="soujiziliao">
+              <p class="a-souji">搜集资料的筒子们</p>
+              <div class="a-column1">
+                <div class="ren-picture">
+                  <div class="front" style="background: url(img/about-us/image1.png);"></div>
+                  <div class="back">
+                    <p>是大家的汗水，也是共同的骄傲。</p>
+                  </div>
+                  <div class="member">于会欣</div>
+                </div>
+                <div class="ren-picture">
+                  <div class="front" style="background: url(img/about-us/image2.png);"></div>
+                  <div class="back">
+                    <p style="margin-top:52px;font-size:16px;">将纸质的学习资料整合后进行网络共享，这对于学习部也是第一次，我很感谢多火提供的技术支持，无论大家多苦多累，我相信只要能给同学们一点点帮助，一切都是值得的！</p>
+                  </div>
+                  <div class="member">印铭宇</div>
+                </div>
+                <div class="ren-picture">
+                  <div class="front" style="background: url(img/about-us/image3.png);"></div>
+                  <div class="back">
+                    <p>愿合作长久，珠联璧合，相得益彰。</p>
+                  </div>
+                  <div class="member">马晓璐</div>
+                </div>
+              </div>
+              <div class="a-column1">
+                <div class="ren-picture">
+                  <div class="front" style="background: url(img/about-us/image4.png);"></div>
+                  <div class="back">
+                    <p>有事情可做的生活才有意义。</p>
+                  </div>
+                  <div class="member">李冉冉</div>
+                </div>
+                <div class="ren-picture">
+                  <div class="front" style="background: url(img/about-us/image5.png);"></div>
+                  <div class="back">
+                    <p> 好好学习，天天向上，为了同学，熬到天亮。</p>
+                  </div>
+                  <div class="member">时昌隆</div>
+                </div>
+                <div class="ren-picture">
+                  <div class="front" style="background: url(img/about-us/image6.png);"></div>
+                  <div class="back">
+                    <p>爱收集，勤上传，不挂科。</p>
+                  </div>
+                  <div class="member">周畅</div>
+                </div>
+              </div>
+              <div class="a-column1">
+                <div class="ren-picture">
+                  <div class="front" style="background: url(img/about-us/image7.png);"></div>
+                  <div class="back">
+                    <p style="margin-top:110px;font-size:21px;">为人民服务</p>
+                  </div>
+                  <div class="member">许晓珂</div>
+                </div>
+                <div class="ren-picture">
+                  <div class="front" style="background: url(img/about-us/image8.png);"></div>
+                  <div class="back">
+                    <p>大家的方便，我们的骄傲。</p>
+                  </div>
+                  <div class="member">张成</div>
+                </div>
+                <div class="ren-picture">
+                  <div class="front" style="background: url(img/about-us/image9.png);"></div>
+                  <div class="back">
+                    <p style="margin-top:112px;font-size:21px;"> 不负期末不负卿。</p>
+                  </div>
+                  <div class="member">盛艺暄</div>
+                </div>
+              </div>
+              <div class="a-column1">
+                <div class="ren-picture">
+                  <div class="front" style="background: url(img/about-us/image10.png);"></div>
+                  <div class="back">
+                    <p>搜刮期末复习资料，考试完爆大神学霸。</p>
+                  </div>
+                  <div class="member">刘玲</div>
+                </div>
+                <div class="ren-picture">
+                  <div class="front" style="background: url(img/about-us/image11.png);"></div>
+                  <div class="back">
+                    <p>每一份资料都是大家的努力，为同学服务是我们的骄傲。</p>
+                  </div>
+                  <div class="member">张波</div>
+                </div>
+                <div class="ren-picture">
+                  <div class="front" style="background: url(img/about-us/image12.png);"></div>
+                  <div class="back">
+                    <p style="margin-top: 72px;">我们精挑细选，我们奔波劳累，我们为您服务，我们让您知道——总有一份资料属于你。</p>
+                  </div>
+                  <div class="member">秦楚菲</div>
+                </div>
+              </div>
+              <div class="a-column1">
+                <div class="ren-picture">
+                  <div class="front" style="background: url(img/about-us/image13.png);"></div>
+                  <div class="back">
+                    <p>零星的资料收集起来，弥补缺漏，也会起到不小的作用。</p>
+                  </div>
+                  <div class="member">董彩璇</div>
+                </div>
+                <div class="ren-picture">
+                  <div class="front" style="background: url(img/about-us/image14.png);"></div>
+                  <div class="back">
+                    <p style="margin-top:110px;font-size:21px;">全心全意为大家。</p>
+                  </div>
+                  <div class="member">李衡</div>
+                </div>
+                <div class="ren-picture">
+                  <div class="front" style="background: url(img/about-us/image15.png);"></div>
+                  <div class="back">
+                    <p style="margin-top:110px;font-size:20px;">方便大家，快乐自己。</p>
+                  </div>
+                  <div class="member">张楚葳</div>
+                </div>
+              </div>
+              <div class="a-column1">
+                <div class="ren-picture">
+                  <div class="front" style="background: url(img/about-us/image16.png);"></div>
+                  <div class="back">
+                    <p>知识在于一点一滴的积累，资源在于人力物力的奉献⊙_⊙。</p>
+                  </div>
+                  <div class="member">曹敏珍</div>
+                </div>
+                <div class="ren-picture">
+                  <div class="front" style="background: url(img/about-us/image17.png);"></div>
+                  <div class="back">
+                    <p>运用一分知识，需要十分积累。</p>
+                  </div>
+                  <div class="member">朱晓宇</div>
+                </div>
+                <div class="ren-picture">
+                  <div class="front" style="background: url(img/about-us/image18.png);"></div>
+                  <div class="back">
+                    <p style="margin-top:110px;font-size:21px;">为同学服务。</p>
+                  </div>
+                  <div class="member">戴婧</div>
+                </div>
+              </div>
+              <div class="a-column1">
+                <div class="ren-picture">
+                  <div class="front" style="background: url(img/about-us/image22.png);"></div>
+                  <div class="back">
+                    <p>收集不易，复习更不易，且学且珍惜。</p>
+                  </div>
+                  <div class="member">高凯</div>
+                </div>
+                <div class="ren-picture">
+                  <div class="front" style="background: url(img/about-us/image23.png);"></div>
+                  <div class="back">
+                    <p>一刻钟的麻烦带来永远的快乐。</p>
+                  </div>
+                  <div class="member">杨正堰</div>
+                </div>
+                <div class="ren-picture">
+                  <div class="front" style="background: url(img/about-us/image24.png);"></div>
+                  <div class="back">
+                    <p style="margin-top:108px;font-size:20px;">共享考试资源胜造七级浮屠。</p>
+                  </div>
+                  <div class="member">王晨</div>
+                </div>
+              </div>
+           </div>
+           <div class="programmer">
+             <p class="a-programmer">攻城师们</p>
+             <div class="a-column1">
+                <div class="ren-picture">
+                  <div class="front" style="background: url(img/about-us/image19.png);"></div>
+                  <div class="back">
+                    <p style="font-size:21px; margin-top:102px">飞奔在携程旅游网的前端攻城师。</p>
+                  </div>
+                  <div class="member">张轶凡</div>
+                </div>
+                <div class="ren-picture">
+                  <div class="front" style="background: url(img/about-us/image20.png);"></div>
+                  <div class="back">
+                    <p style="font-size:20px; margin-top:100px">Sun will shine on the horizon.</p>
+                  </div>
+                  <div class="member">Phoenix Nemo</div>
+                </div>
+                <div class="ren-picture">
+                  <div class="front" style="background: url(img/about-us/image21.png);"></div>
+                  <div class="back">
+                    <p style="font-size:21px; margin-top:102px">一个从事网页设计的手艺人。</p>
+                  </div>
+                  <div class="member">卢小健</div>
+                </div>
+              </div>
+           </div>
+  </div>
+  <footer class = "footer">
+    <div class="footer_inner">
+    <div class="col-xs-4">
+      <ul class="abdh">
+        <li>关于多火</li>
+        <li><a href="#" target="_blank">关于iDocument</a></li>
+        <li><a href="http://www.duohuo.org/welcome/index.html" target="_blank">加入我们</a></li>
+        <li><a href="#" target="_blank">广告联系</a></li>
+      </ul>
+    </div>
+    <div class="col-xs-4">
+      <ul class="yqlj">
+        <li>友情链接</li>
+        <li><a href="http://www.duohuo.org" target="_blank">多火工作室</a></li>
+        <li><a href="http://www.xiangyahui.com" target="_blank">象牙绘</a></li>
+        <li><a href="http://youth.nuist.edu.cn/index.do" target="_blank">团委飘扬在线</a></li>
+      </ul>
+    </div>
+    <div class="col-xs-4">
+      <ul class="gzus">
+        <li>关注我们</li>
+        <li class="wb"><a href="http://weibo.com/u/3221722503" target="_blank">微博@多火</a></li>
+        <li class="rr"><a href="http://page.renren.com/601007357" target="_blank">人人关注多火</a></li>
+        <li class="rr"><a href="http://page.renren.com/601541020" target="_blank">南信大校学习部</a></li>
+      </ul>
+    </div>
+  </div>
+  </footer>
+</body>
+</html>
