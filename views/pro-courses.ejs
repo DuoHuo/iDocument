@@ -1,0 +1,51 @@
+<%- include header %>
+    <input type='hidden' id='current_page' />
+    <input type='hidden' id='show_per_page' />
+
+<div class = "main_course">
+    <div style ="font-size: 36px;color:#1c94d7;margin-top:40px;margin-bottom:20px;">
+        <strong><%= college.collegeName %></strong>
+    </div>
+<div  id = "content">
+    <!-- list all professional courses -->
+    <% if(courses[0]) { %>
+    <% courses.forEach(function(course) { %>
+    <div class = "course col-xs-4">
+        <div>
+            <div class = "courseName"><%= course.courseName %></div>
+            <a href="/course/<%= course._id %>">更多&nbsp;&raquo;</a>
+            <div id = "courseImg"><img src="<%= course.coursepic %>" alt=""></div>
+        </div>
+        <div>
+            <ul>
+                <% documents.forEach(function(doc) { %>
+                <% if(doc.course === course._id ) { %>
+                <li>
+                    <span><%= doc.fileType %></span>&nbsp;
+                    <a href="#<%= doc._id %>">
+                        <%= doc.title %>
+                    </a>
+                    <div style="display: none;">
+                        <div id="<%= doc._id %>">
+                            <!-- fancybox content -->
+                            <a href="/download/<%= doc.link %>">下载</a>
+                        </div>
+                    </div>
+                </li>
+                <% } %>
+                <% }) %>
+            </ul>
+        </div>
+    </div>
+    <% }) %>
+    <% } else { %>
+    <div>
+        <p>暂无文档</p>
+    </div>
+    <% } %>
+    </div>
+</div>
+
+
+<div id='page_navigation' class = "col-xs-6"></div>
+<%- include footer %>

@@ -1,0 +1,29 @@
+<%- include header %>
+    <input type='hidden' id='current_page' />
+    <input type='hidden' id='show_per_page' />
+<div class = "course_detail" id = "content">
+    <div class = "course_title">
+        <strong><%= course.courseName %></strong>
+    </div>
+    <!-- list all professional courses -->
+    <% if(docs[0]) { %>
+    <% docs.forEach(function(doc) { %>
+    <div class = "course_content col-xs-6">
+        <div id = "document"></div>
+        <div class="documenttitle">
+        <%= doc.title %>
+        </div>
+        <a href="/download/<%= doc._id %>" target="_blank"></a>
+    </div>
+    <% }) %>
+    <% } else { %>
+    <div>
+        <p>暂无文档</p>
+    </div>
+    <% } %>
+</div>
+
+
+<div id='page_navigation' class = "col-xs-6"></div>
+
+<%- include footer %>

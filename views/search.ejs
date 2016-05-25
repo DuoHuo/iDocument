@@ -1,0 +1,24 @@
+<%- include header %>
+    <input type='hidden' id='current_page' />
+    <input type='hidden' id='show_per_page' />
+<div class = "course_detail" id = "content">
+    <!-- list search result -->
+    <% if (docs[0]) { %>
+    <% docs.forEach(function(doc) { %>
+    <div class = "course_content col-xs-6">
+        <div id = "document"></div>
+        <!-- <span><%= doc.fileType %></span>&nbsp; -->
+        <!-- <a href="#<%= doc._id %>"> -->
+            <div class="documenttitle">
+            <%= doc.title %>
+            </div>
+            <a href="/download/<%= doc._id %>"></a>
+        <!-- </a> -->
+</div>
+    <% }) %>
+    <% } else { %>
+    <p>未找到结果，请使用准确的关键词重试。</p>
+    <% } %>
+
+
+<div id='page_navigation' class = "col-xs-6"></div>

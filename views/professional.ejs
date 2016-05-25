@@ -1,0 +1,21 @@
+<%- include header %>
+<div class = "professional">
+<!-- list all colleges -->
+<% if(colleges[0]) { %>
+        <% colleges.forEach(function(college) { %>
+        <a href="/professional/<%= college._id %>">
+        <div id="college<%= college._id %>" class = "boxgrid captionfull">
+            <!-- display college images and other text -->
+            <div class="cover boxcaption">
+            	<%= college.collegeName %>
+            </div>		
+        </div>
+        </a>
+        <% }) %>
+<% } else { %>
+    <div>
+        <p>暂无学院</p>
+    </div>
+<% } %>
+</div>
+<%- include footer %>

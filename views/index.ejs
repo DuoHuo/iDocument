@@ -1,0 +1,128 @@
+<%- include header %>
+<!-- slider -->
+   <div id="container">
+      <div id="banner-slide">
+        <ul class="bjqs">
+          <li><a href="http://www.duohuo.org/"><img src="img/23.png"></a></li>
+          <li><img src="img/dh.png" </li>
+          <li><img src="img/xx.png" </li>
+        </ul>
+      </div>
+      <script class="secret-source">
+        jQuery(document).ready(function($) {
+          
+          $('#banner-slide').bjqs({
+            animtype      : 'slide',
+            height        : 380,
+            width         : 1138,
+            responsive    : true,
+            randomstart   : true
+          });
+          
+        });
+      </script>
+    </div>
+
+    <div class = "main">
+        <!-- docs -->
+        <div class = "main_left col-xs-7">
+            <div class ="main_title">
+            <img src="/img/main_title_icon.png" alt="">
+                <span>热门文档</span>
+            </div>
+            <div>
+                <table class = "main_left_content">
+                    <thead>
+                    <tr>
+                        <th>文档名称</th>
+                        <th>上传时间</th>
+                        <th>下载次数</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <% if (docsdata[0][0]) { %>
+                    <% docsdata[0].forEach(function(hotdoc) { %>
+                    <tr>
+                        <td><a class="fancybox" href="#hot<%= hotdoc._id %>"><%= hotdoc.title %></a></td>
+                        <td>
+                        <% 
+                        var date = new Date(hotdoc.updateTime * 1000);
+                        var 
+                        y = date.getFullYear(),
+                        m = date.getMonth() + 1,
+                        s = date.getDate();
+                         %>
+                        <%= y + '-' + m + '-' + s %>
+                        </td>
+                        <td><%= hotdoc.downloads %></td>
+                        <div style="">
+                            <div id="hot<%= hotdoc._id %>" style="display:none;">
+                                <!-- fancybox content -->
+                                <!-- <%= hotdoc.fileType %> -->
+                                <img id="docimg" src="/img/doc.png" alt="">
+                                <img src="" alt="">
+                                <a class = "download" href="/download/<%= hotdoc._id %>"></a>
+                            </div>
+                        </div>
+                    </tr>
+                    <% }) %>
+                    <% } else { %>
+                    <tr>
+                        <td colspan="3">
+                            暂无文档
+                        </td>
+                    </tr>
+                    <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class = "main_right col-xs-5">
+            <div class ="main_title">
+            <img src="/img/main_title_icon.png" alt="">
+                <span>最新上传</span>
+            </div>
+            <div>
+                <table class = "main_right_content">
+                    <thead>
+                    <tr>
+                        <th>文档名称</th>
+                        <th>上传时间</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <% if (docsdata[1][0]) { %>
+                    <% docsdata[1].forEach(function(newdoc) { %>
+                    <tr>
+                        <td><a class="fancybox" href="#<%= newdoc._id %>"><%= newdoc.title %></a></td>
+                        <td>
+                        <% 
+                        var date = new Date(newdoc.updateTime * 1000);
+                        var 
+                        y = date.getFullYear(),
+                        m = date.getMonth() + 1,
+                        s = date.getDate();
+                         %>
+                        <%= y + '-' + m + '-' + s %></td>
+                        <div id="hot<%= newdoc._id %>" style="display:none;">
+                            <div id="<%= newdoc._id %>">
+                                <img id="docimg" src="/img/doc.png" alt="">
+                                <!-- fancybox content -->
+                                <a class = "download" href="/download/<%= newdoc._id %>"></a>
+                            </div>
+                        </div>
+                    </tr>
+                    <% }) %>
+                    <% } else { %>
+                    <tr>
+                        <td colspan="3">
+                            暂无文档
+                        </td>
+                    </tr>
+                    <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+<%- include footer %>
