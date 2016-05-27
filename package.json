@@ -6,7 +6,6 @@
     "start": "node dhdocs.js"
   },
   "dependencies": {
-    "async": "*",
     "body-parser": "~1.13.1",
     "compression": "^1.6.0",
     "connect-mongo": "^0.8.2",
@@ -15,8 +14,10 @@
     "ejs": "*",
     "express": "^4.13.4",
     "express-session": "^1.11.3",
-    "mongodb": "*",
+    "mongodb": "^2.1.20",
+    "mongoose": "4.1.10",
     "morgan": "~1.6.1",
+    "promise": "^7.1.1",
     "serve-favicon": "~2.3.0",
     "validator": "*"
   }

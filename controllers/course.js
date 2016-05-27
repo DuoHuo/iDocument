@@ -1,12 +1,31 @@
-var service = require('../service');
+var Course = require('../services/course');
+var Doc = require('../services/document');
+
+function isArray(arr) {
+	return Object.prototype.toString.call(arr) === '[object Array]';
+}
 
 exports.getGeneralCourses = function() {
 	var result = {};
 
-	return service.getGeneralCourses()
+	return Course.getGeneral()
 	.then(function(courses) {
 		result.courses = courses;
-		return service.getGeneralDocuments();
+		var promises = courses.map(function(course) {
+			return Doc.getDocsByCourseId(course._id);
+		});
+
+		return Promise.all(promises).then(function(results){
+			var docs = [];
+			results.forEach(function(item) {
+				if(isArray(item)) {
+					item.forEach(function(d) {
+						docs.push(d)
+					});
+				}
+			});
+			return docs;
+		})
 	})
 	.then(function(docs) {
 		result.docs = docs;
@@ -16,11 +35,10 @@ exports.getGeneralCourses = function() {
 
 exports.getCourseDocuments = function(courseid) {
 	var result = {};
-
-	return service.getCourse(courseid)
+	return Course.get(courseid)
 	.then(function(course) {
 		result.course = course;
-		return service.getCourseDocuments(courseid);
+		return Doc.getDocsByCourseId(courseid);
 	})
 	.then(function(docs) {
 		result.docs = docs;

@@ -23,14 +23,14 @@ MongoClient.connect(config.mongodb, { db: { native_parser: true, w : 1 } }, func
     var collection = db.collection('colleges');
 
     exports.getColleges = function(callback) {
-        collection.find()
-            .sort({ updateTime: 1 })
-            .toArray(function(err, colleges) {
-                if (err) {
-                    return callback(err, null);
-                }
-                callback(null, colleges);
-            });
+      collection.find()
+      .sort({ updateTime: 1 })
+      .toArray(function(err, colleges) {
+          if (err) {
+              return callback(err, null);
+          }
+          callback(null, colleges);
+      });
     }
 
     exports.getCollege = function(collegeid, callback) {

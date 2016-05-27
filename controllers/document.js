@@ -1,24 +1,25 @@
-var service = require('../service');
+var Doc = require('../services/document');
+var Course = require('../services/course');
 
 exports.getHotDocs = function() {
-	return service.getHotDocs();
+	return Doc.getHotDocs();
 };
 
 exports.getNewDocs = function() {
-	return service.getNewDocs();
+	return Doc.getNewDocs();
 };
 
 exports.downloadDoc = function(docId) {
-	return service.updateDownloadCount(docId)
+	return Doc.updateDownloadCount(docId)
 	.then(function() {
-		return service.getDoc(docId);
+		return Doc.get(docId);
 	})
 	.then(function(doc){
-		return service.updateCourseCount(doc.course)
+		return Course.updateCourseCount(doc.course)
 		.then(function(){ return doc; })
 	});
 };
 
 exports.searchDocs = function(name) {
-	return service.searchDocs(name);
-}
+	return Doc.search(name.toLowerCase().split(""));
+};

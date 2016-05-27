@@ -13,7 +13,7 @@ var bodyParser = require('body-parser');
 var compression = require('compression');
 var config = require('./config.js');
 var app = express();
-var port = process.env.PORT || 3000;
+var port = config.bindPort || 3000;
 
 // all environments
 app.set('views', path.join(__dirname, 'views'));
@@ -26,9 +26,24 @@ app.use(csurf({ cookie: true }))
 app.use(compression());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//连接mongoDb数据库
+var MongoStore = require('connect-mongo')(session);
 
+//把session存到mongodb数据库中去
+app.use(session({
+  secret: config.cookieSecret,
+  cookie: {maxAge: 1000 * 60 * 60 * 24 * 30},
+  store: new MongoStore({
+    url: config.mongodb,
+    collection: 'sessions',
+    auto_reconnect: true
+  })
+}));
+
+//routes
 app.use('/', require('./routes/index'));
 app.use('/api/v1', require('./routes/api'));
+app.use('/fix', require('./routes/fix'));
 
 // handle 404
 app.use(function(req, res) {

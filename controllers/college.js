@@ -1,19 +1,21 @@
-var service = require('../service');
+var College = require('../services/college');
+var Course = require('../services/course');
+var Doc = require('../services/document');
 
 exports.getColleges = function(req, res) {
-	return service.getColleges();
+	return College.fetch();
 };
 
 exports.getCollegeInfo = function(collegeid) {
 	var result = {};
-	return service.getCollege(collegeid)
+	return College.get(collegeid)
 	.then(function(college) {
 		result.college = college;
-		return service.getCollegeProfessionalCourses(collegeid);
+		return Course.getCoursesByCollegeId(collegeid);
 	})
 	.then(function(courses) {
 		result.courses = courses;
-		return service.getCollegeProfessionalDocuments(collegeid);
+		return Doc.getDocsByCollegeId(collegeid);
 	})
 	.then(function(docs){
 		result.docs = docs;

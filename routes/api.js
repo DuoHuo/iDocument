@@ -36,14 +36,14 @@ router.get('/colleges', function(req, res){
 		res.send(400, err);
 	});
 });
-router.get('/colleges/:id', validateId,function(req, res){
+router.get('/colleges/:id', validateId, function(req, res){
 	var collegeid = req.params.id;
 	collegeController.getCollegeInfo(collegeid)
 	.then(function(result){
 		res.send(200, result);
 	})
 	.catch(function(err) {
-		res.send(400, err);
+		res.send(400, err.msg);
 	});
 });
 router.get('/course/general', function(req, res){
@@ -57,9 +57,6 @@ router.get('/course/general', function(req, res){
 });
 router.get('/courses/:id', validateId, function(req, res){
 	var courseid = req.params.id;
-	if (courseid.length !== 24) {
-	  return res.send(400, {msg: 'id is less then 24'});
-	}
 	courseController.getCourseDocuments(courseid)
 	.then(function(result){
 		res.send(200, result);
