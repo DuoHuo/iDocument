@@ -20,9 +20,6 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(bodyParser());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(csurf({ cookie: true }))
 app.use(compression());
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -41,9 +38,13 @@ app.use(session({
 }));
 
 //routes
-app.use('/', require('./routes/index'));
 app.use('/api/v1', require('./routes/api'));
 app.use('/fix', require('./routes/fix'));
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(csurf({ cookie: true }))
+app.use('/', require('./routes/index'));
 
 // handle 404
 app.use(function(req, res) {

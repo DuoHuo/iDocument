@@ -11,7 +11,6 @@ exports.validateId = function(req, res, next){
 
 // CSRF Protect
 exports.csrf = function(req, res, next) {
-  console.log(req.csrfToken());
   res.locals.token = req.csrfToken();
   next();
 }

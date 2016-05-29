@@ -14,6 +14,10 @@ exports.get = function(id) {
 	return Document.findById(id);
 };
 
+exports.add = function(doc){
+	return new Document(doc).save();
+};
+
 exports.fetch = function() {
 	return Document.find({}).populate('belongs').populate('courses');
 };
@@ -36,6 +40,10 @@ exports.getDocsByCourseId = function(courseId) {
 
 exports.getDocsByCollegeId = function(collegeId) {
 	return Document.find({belongs: collegeId}).select('title link');
+};
+
+exports.update = function(docId, doc){
+	return Document.findByIdAndUpdate(docId, doc);
 };
 
 exports.changeId = function() {

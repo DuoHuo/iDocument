@@ -11,10 +11,12 @@ var User = require('../models/user');
 var express = require('express');
 var router = express.Router();
 
+var Util = require('../utils');
 var middles = require('../middles');
 var docController = require('../controllers/document');
 var collegeController = require('../controllers/college');
 var courseController = require('../controllers/course');
+var userController = require('../controllers/course');
 
 var validateId = middles.validateId;
 var csrf = middles.csrf;
@@ -122,220 +124,137 @@ router.post('/search', csrf,function(req, res) {
 });
 
 // Admin controllers
-
-router.get('/admin', middles.checkLogin, function(req, res) {
-    Document.getAll(function(err, docs) {
-        if (err) {
-            console.log(err);
-            return res.send(500);
-        }
-        Course.getAll(function(err, courses) {
-            if (err) {
-                console.log(err);
-                return res.send(500);
-            }
-            College.getAll(function(err, colleges) {
-                if (err) {
-                    console.log(err);
-                    return res.send(500);
-                }
-                res.render('admin', {
-                    siteName: config.siteName,
-                    docs: docs,
-                    courses: courses,
-                    colleges: colleges
-                });
-            });
-        });
+router.get('/admin', function(req, res) {
+  collegeController.fetchAll()
+  .then(function(result){
+    res.render('admin', {
+      siteName: config.siteName,
+      docs: result.docs,
+      courses: result.courses,
+      colleges: result.colleges
     });
+  })
+  .catch(function(err) {
+    res.send(400, err);
+  });
 });
 
-router.post('/admin/addnewdoc', middles.checkLogin, function(req, res) {
-    var newdoc = {
-        title: req.body.title,
-        updateTime: Math.round((new Date()).getTime() / 1000),
-        fileType: req.body.fileType,
-        belongs: req.body.belongs,
-        course: req.body.courseId,
-        type: req.body.type,
-        link: req.body.link,
-        downloads: 0,
-        searchIndex: req.body.title.toLowerCase().split("")
-    };
+router.post('/admin/docs', function(req, res) {
+  var data = req.body;
+  if(Util.isEmptyObject(data)) {
+    res.send(400, {msg: 'request body is empty!'});
+  }
 
-    Document.addnew(newdoc, function(err, doc) {
-        if (err) {
-            console.log(err);
-            return res.send(500);
-        }
-        res.redirect('/admin');
+  if(!data.title || !data.link) {
+    res.send(400, {
+      msg: 'need document title and download link!'
     });
+  }
+
+  docController.addDoc(data)
+  .then(function(){
+    res.redirect('/admin');
+  })
+  .catch(function(err) {
+    res.send(400, err);
+  });
 });
 
-router.post('/admin/addnewcourse', middles.checkLogin, function(req, res) {
-    var newcourse = {
-        courseName: req.body.courseName,
-        courseType: req.body.courseType,
-        courseBelongs: req.body.courseBelongs,
-        coursepic: req.body.coursepic
-    }
+router.post('/admin/docs/:id', function(req, res) {
+  var docId = req.params.id;
+  var data = req.body;
+  if(Util.isEmptyObject(data)) {
+    res.send(400, {msg: 'request body is empty!'});
+  }
 
-    Course.addnew(newcourse, function(err, doc) {
-        if (err) {
-            console.log(err);
-            return res.send(500);
-        }
-        res.redirect('/admin');
-    });
+  docController.editDoc(docId, data)
+  .then(function(){
+    res.redirect('/admin');
+  })
+  .catch(function(err){
+    res.send(400, err);
+  });
 });
 
-router.post('/admin/addnewcollege', middles.checkLogin, function(req, res) {
-    var newcollege = {
-        collegeName: req.body.collegeName,
-        collegepic: req.body.collegepic,
-        updateTime: Math.round((new Date()).getTime() / 1000)
-    }
-
-    College.addnew(newcollege, function(err, doc) {
-        if (err) {
-            console.log(err);
-            return res.send(500);
-        }
-        res.redirect('/admin');
-    });
+router.delete('/admin/docs/:id', function(req, res) {
+  docController.delDoc(req.params.id)
+  .then(function(){
+    res.redirect('/admin');
+  })
+  .catch(function(err){
+    res.send(400, err);
+  });
 });
 
-router.post('/admin/edit-doc', middles.checkLogin, function(req, res) {
-    var docdata = {
-        _id: req.body.docid,
-        title: req.body.doctitle,
-        updateTime: req.body.docupdateTime,
-        fileType: req.body.docfileType,
-        belongs: req.body.docbelongs,
-        course: req.body.doccourse,
-        type: req.body.doctype,
-        link: req.body.doclink,
-        downloads: req.body.docdownloads,
-        searchIndex: req.body.doctitle.toLowerCase().split("")
-    }
 
-    Document.edit(docdata, function(err) {
-        if (err) {
-            return res.send(500);
-        }
-        res.redirect('/admin');
+router.post('/admin/courses', function(req, res) {
+  var data = req.body;
+  if(Util.isEmptyObject(data)) {
+    res.send(400, {msg: 'request body is empty!'});
+  }
+
+  if(!data.courseName || !data.courseType || !data.courseBelongs ||!data.coursepic) {
+    res.send(400, {
+      msg: 'need course name && type && belong colllege && picture'
     });
+  }
 
+  courseController.addnew(data)
+  .then(function(){
+    res.redirect('/admin');
+  })
+  .catch(function(err){
+    res.send(400, err);
+  })
 });
 
-router.post('/admin/delete-doc', middles.checkLogin, function(req, res) {
-    Document.remove(req.body.docid, function(err) {
-        if (err) {
-            console.log(err);
-            return res.send(500);
-        }
-        res.redirect('/admin');
-    });
+router.delete('/admin/courses/:id', function(req, res) {
+  docController.delCourse(req.params.id)
+  .then(function(){
+    res.redirect('/admin');
+  })
+  .catch(function(err){
+    res.send(400, err);
+  });
 });
 
-router.post('/admin/delete-course', middles.checkLogin, function(req, res) {
-    Course.remove(req.body.courseid, function(err) {
-        if (err) {
-            console.log(err);
-            return res.send(500);
-        }
-        res.redirect('/admin');
+router.post('/admin/colleges', function(req, res) {
+  var data = req.body;
+  if(Util.isEmptyObject(data)) {
+    res.send(400, {msg: 'request body is empty!'});
+  }
+
+  if(!data.collegeName || !data.collegepic) {
+    res.send(400, {
+      msg: 'need college name && picture!'
     });
+  }
+
+  collegeController.addnew(data)
+  .then(function(){
+    res.redirect('/admin');
+  })
+  .catch(function(err){
+    res.send(400, err);
+  });
 });
 
-router.post('/admin/delete-college', middles.checkLogin, function(req, res) {
-    College.remove(req.body.collegeid, function(err) {
-        if (err) {
-            console.log(err);
-            return res.send(500);
-        }
-        res.redirect('/admin');
-    });
+router.delete('/admin/colleges/:id', function(req, res) {
+  collegeController.delCollege(req.params.id)
+  .then(function(){
+    res.redirect('/admin');
+  })
+  .catch(function(err){
+    res.send(400, err);
+  });
 });
 
-router.get('/login', middles.checkNotLogin, function(req, res) {
-    res.render('login', {
-        siteName: config.siteName
-    });
-});
+// router.get('/login', middles.checkNotLogin, function(req, res) {
+//   res.render('login', {
+//       siteName: config.siteName
+//   });
+// });
 
-router.post('/login', middles.checkNotLogin, function(req, res) {
-    if (!validator.isEmail(req.body.email) || !req.body.email) {
-        res.status(400);
-        return res.redirect('/login');
-    }
-    User.get(req.body.email, function(err, user) {
-        if (err) {
-            console.log(err);
-            return res.send(500);
-        }
-        var hash = crypto.createHash('sha256'),
-            password = hash.update(req.body.password).digest('hex');
-        if (user.password !== password) {
-            return res.send(401);
-        } else {
-            req.session.user = user;
-            res.redirect('/admin');
-        }
-    });
-});
-
-router.get('/reg', middles.checkNotLogin, function(req, res) {
-    User.count(function(err, count) {
-        if (err) {
-            console.log(err);
-            return res.send(500);
-        }
-        if (count !== 0) {
-            return res.send(403);
-        } else {
-            res.render('reg', {
-                siteName: config.siteName
-            });
-        }
-    });
-});
-
-router.post('/reg', middles.checkNotLogin, function(req, res) {
-    User.count(function(err, count) {
-        if (err) {
-            console.log(err);
-            return res.send(500);
-        }
-        if (count !== 0) {
-            return res.send(403);
-        } else {
-            if (!validator.isAlphanumeric(req.body.username) ||
-                !validator.isLength(req.body.password, 4, 32) ||
-                !validator.equals(req.body.password, req.body.repeatPassword) ||
-                !validator.isEmail(req.body.email)) {
-                res.status(400);
-                return res.redirect('/reg');
-            }
-
-            var hash = crypto.createHash('sha256'),
-                password = hash.update(req.body.password).digest('hex');
-            var newuser = {
-                username: req.body.username,
-                email: req.body.email,
-                password: password
-            }
-
-            User.addnew(newuser, function(err, user) {
-                if (err) {
-                    console.log(err);
-                    return res.send(500);
-                }
-                req.session.user = newuser;
-                res.redirect('/admin');
-            });
-        }
-    });
-});
+// router.post('/login', middles.checkNotLogin, userController.login);
 
 module.exports = router;

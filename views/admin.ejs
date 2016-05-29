@@ -1,10 +1,9 @@
 <%- include header %>
 
-
 <div id="addnewdoc" class="col-xs-6" style="border:1px solid #fff; padding:30px;height:500px;box-shadow: 2px 2px 5px #000;">
     <h3>添加文档</h3>
     <!-- Add new doc form, maybe using modal -->
-    <form action="/admin/addnewdoc" method="post" class="form-horizontal">
+    <form action="/admin/docs" method="post" class="form-horizontal">
         <input type="hidden" name="_csrf" value="<%= locals.token %>"/>
     <div class="form-group">
         <label for="title">文档标题</label>
@@ -54,7 +53,7 @@
 </div>
 <div id="addnewcourse" class="col-xs-3" style="border:1px solid #fff; padding:30px;height:500px;box-shadow: 2px 2px 5px #000;">
     <h3>添加课程</h3>
-    <form action="/admin/addnewcourse" method="post" class="form-horizontal">
+    <form action="/admin/courses" method="post" class="form-horizontal">
         <input type="hidden" name="_csrf" value="<%= locals.token %>"/>
     <div class="form-group">
         <label for="courseName">课程名称</label>
@@ -89,7 +88,7 @@
 
 <div id="addnewcollege" class="col-xs-3" style="border:1px solid #fff; padding:30px;height:500px;box-shadow: 2px 2px 5px #000;">
     <h3>添加学院</h3>
-    <form action="/admin/addnewcollege" method="post" class="form-horizontal">
+    <form action="/admin/colleges" method="post" class="form-horizontal">
         <input type="hidden" name="_csrf" value="<%= locals.token %>"/>
     <div class="form-group">
         <label for="collegeName">学院名称</label>
@@ -129,9 +128,9 @@
             <td><%= doc.title %></td>
             <td><%= doc.fileType %></td>
             <td>
-                <% 
+                <%
                 var date = new Date(doc.updateTime * 1000);
-                var 
+                var
                 y = date.getFullYear(),
                 m = date.getMonth() + 1,
                 s = date.getDate();
@@ -141,9 +140,8 @@
             <td><%= doc.downloads %></td>
             <td><%= doc.link  %></td>
             <td>
-                <form action="/admin/edit-doc" method="post">
+                <form action="/admin/docs/<%= doc._id %>" method="post">
                     <input type="hidden" name="_csrf" value="<%= locals.token %>"/>
-                    <input type="hidden" name="docid" value="<%= doc._id %>"/>
                     <input type="hidden" name="doctitle" value="<%= doc.title %>"/>
                     <input type="hidden" name="docupdateTime" value="<%= doc.updateTime %>"/>
                     <input type="hidden" name="docfileType" value="<%= doc.fileType %>"/>

@@ -6,6 +6,7 @@
     "start": "node dhdocs.js"
   },
   "dependencies": {
+    "bcryptjs": "^2.3.0",
     "body-parser": "~1.13.1",
     "compression": "^1.6.0",
     "connect-mongo": "^0.8.2",

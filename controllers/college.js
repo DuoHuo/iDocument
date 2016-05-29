@@ -22,3 +22,34 @@ exports.getCollegeInfo = function(collegeid) {
 		return result;
 	});
 };
+
+exports.fetchAll = function() {
+	var result = {};
+	return College.fetch()
+	.then(function(colleges){
+		result.colleges = colleges;
+		return Course.fetch();
+	})
+	.then(function(courses){
+		result.courses = courses;
+		return Doc.fetch();
+	})
+	.then(function(docs){
+		result.docs = docs;
+		return result;
+	});
+};
+
+exports.addnew = function(data){
+	var newcollege = {
+    collegeName: data.collegeName,
+    collegepic: data.collegepic,
+    updateTime: Math.round((new Date()).getTime() / 1000)
+  };
+
+	return College.add(newcollege);
+};
+
+exports.delCollege = function(id){
+	return College.remove(id);
+};

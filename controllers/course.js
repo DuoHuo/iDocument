@@ -45,3 +45,19 @@ exports.getCourseDocuments = function(courseid) {
 		return result;
 	});
 };
+
+exports.addnew = function(data) {
+	var course = {
+		courseName: data.courseName,
+		courseType: data.courseType,
+		courseBelongs: data.courseBelongs,
+		coursepic: data.coursepic,
+		courseDownloads: 0
+	};
+
+	return Course.add(course);
+};
+
+exports.delCourse = function(id){
+	return Course.remove(id);
+}
