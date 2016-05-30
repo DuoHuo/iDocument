@@ -15,6 +15,14 @@ exports.csrf = function(req, res, next) {
 }
 
 // Session functions
+exports.needLogin = function(req, res, next) {
+  if(!req.session.user) {
+    res.send(401);
+  }
+  next();
+}
+
+// Session functions
 exports.checkLogin = function(req, res, next) {
   if(!req.session.user) {
     res.status(401);

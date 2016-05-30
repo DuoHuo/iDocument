@@ -9,6 +9,7 @@ var userController = require('../controllers/user');
 var middles = require('../middles');
 
 var validateId = middles.validateId;
+var needLogin = middles.needLogin;
 var DEFAULT_DOC_SORT = 'updateTime';
 
 router.get('/search/docs', function(req, res){
@@ -129,14 +130,14 @@ router.post('/login', function(req, res){
   });
 });
 
-router.get('/logout', function(req, res){
+router.get('/logout', needLogin, function(req, res){
   if(req.session.user) {
     delete req.session.user;
   }
   res.send(204);
 });
 
-router.get('/docs', function(req, res){
+router.get('/docs', needLogin, function(req, res){
 	docController.getDocs()
 	.then(function(result){
 	  res.send(200, result);
@@ -146,7 +147,7 @@ router.get('/docs', function(req, res){
 	});
 });
 
-router.post('/admin/docs', function(req, res) {
+router.post('/admin/docs', needLogin, function(req, res) {
 	var data = req.body;
 	if(Util.isEmptyObject(data)) {
 	  res.send(400, {msg: 'request body is empty!'});
@@ -168,7 +169,7 @@ router.post('/admin/docs', function(req, res) {
 });
 
 
-router.put('/admin/docs/:id', function(req, res) {
+router.put('/admin/docs/:id', needLogin, function(req, res) {
   var docId = req.params.id;
   var data = req.body;
   if(Util.isEmptyObject(data)) {
@@ -184,7 +185,7 @@ router.put('/admin/docs/:id', function(req, res) {
   });
 });
 
-router.delete('/admin/docs/:id', function(req, res) {
+router.delete('/admin/docs/:id', needLogin, function(req, res) {
   docController.delDoc(req.params.id)
   .then(function(){
     res.send(204);
@@ -194,7 +195,7 @@ router.delete('/admin/docs/:id', function(req, res) {
   });
 });
 
-router.get('/admin/courses', function(req, res){
+router.get('/admin/courses', needLogin, function(req, res){
 	courseController.fetchCourses()
 	.then(function(result){
 	  res.send(200, result);
@@ -204,7 +205,7 @@ router.get('/admin/courses', function(req, res){
 	});
 });
 
-router.post('/admin/courses', function(req, res){
+router.post('/admin/courses', needLogin, function(req, res){
 	var data = req.body;
 	if(Util.isEmptyObject(data)) {
 	  res.send(400, {msg: 'request body is empty!'});
@@ -225,7 +226,7 @@ router.post('/admin/courses', function(req, res){
 	});
 });
 
-router.delete('/admin/courses/:id', middles.checkLogin, function(req, res) {
+router.delete('/admin/courses/:id', needLogin, function(req, res) {
   docController.delCourse(req.params.id)
   .then(function(){
     res.redirect('/admin');
@@ -235,7 +236,7 @@ router.delete('/admin/courses/:id', middles.checkLogin, function(req, res) {
   });
 });
 
-router.get('/admin/colleges', function(req, res){
+router.get('/admin/colleges', needLogin, function(req, res){
 	collegeController.getColleges()
 	.then(function(result){
 	  res.send(200, result);
@@ -245,7 +246,7 @@ router.get('/admin/colleges', function(req, res){
 	});
 });
 
-router.post('/admin/colleges', function(req, res) {
+router.post('/admin/colleges', needLogin, function(req, res) {
   var data = req.body;
   if(Util.isEmptyObject(data)) {
     res.send(400, {msg: 'request body is empty!'});
@@ -266,7 +267,7 @@ router.post('/admin/colleges', function(req, res) {
   })
 });
 
-router.delete('/admin/colleges/:id', function(req, res) {
+router.delete('/admin/colleges/:id', needLogin, function(req, res) {
   collegeController.delCollege(req.params.id)
   .then(function(){
     res.send(204);

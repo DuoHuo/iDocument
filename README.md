@@ -14,4 +14,9 @@ $ npm install  # install dependencies
 $ npm run dev    # start Node Server at port 3000
 ```
 
+### API
+
+[client api](/docs/client.md)
+[admin api](/docs/admin.md)
+
 
