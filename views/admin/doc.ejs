@@ -1,0 +1,120 @@
+<%- include('header'); %>
+
+<section class="container">
+	<div class="row">
+		<div id="addnewdoc" class="col-md-12" style="border:1px solid #fff; padding:30px;height:500px;box-shadow: 2px 2px 5px #000;">
+		    <h3>添加文档</h3>
+		    <!-- Add new doc form, maybe using modal -->
+		    <form action="/admin/docs" method="post" class="form-horizontal">
+		        <input type="hidden" name="_csrf" value="<%= locals.token %>"/>
+		    <div class="form-group">
+		        <label for="title">文档标题</label>
+		        <input type="text" id="title" class="form-control" name="title" required="required" />
+		    </div>
+		    <div class="form-group">
+		        <label for="fileType">文件类型</label>
+		        <input type="text" id="fileType" class="form-control" name="fileType" required="required"/>
+		    </div>
+		    <div class="form-group">
+		        <label for="courseId">课程名称</label>
+		        <select id="courseId" class="form-control" name="courseId" required="required">
+		            <% if(courses[0]) { %>
+		            <% courses.forEach(function(course) { %>
+		            <option value="<%= course._id %>"><%= course.courseName %></option>
+		            <% }) %>
+		            <% } else { %>
+		            <option value="" disabled="disabled">没有有效课程，请先添加课程</option>
+		            <% } %>
+		        </select>
+		    </div>
+		    <div class="form-group">
+		        <label for="type">课程类型</label>
+		        <select id="type" class="form-control" name="type" required="required">
+		            <option value="general">通修课</option>
+		            <option value="professional">专业课</option>
+		        </select>
+		    </div>
+		    <div class="form-group">
+		        <label for="belongs">所属学院</label>
+		        <select id="belongs" class="form-control" name="belongs" required="required">
+		            <% if(colleges[0]) { %>
+		            <% colleges.forEach(function(college) { %>
+		            <option value="<%= college._id %>"><%= college.collegeName %></option>
+		            <% }) %>
+		            <% } else { %>
+		            <option value="" disabled="disabled">没有有效学院，请先添加学院</option>
+		            <% } %>
+		        </select>
+		    </div>
+		    <div class="form-group">
+		        <label for="link">下载地址</label>
+		        <input type="text" id="link" name="link" required="required"/>
+		        <button type="submit" class="btn btn-default">提交</button>
+		    </div>
+		    </form>
+		</div>
+		<div class="col-md-12" style="margin-top: 24px;">
+		    <!-- <div> -->
+		        <!-- button group -->
+		        <!-- <a href="#addnewdoc">添加新文档</a> -->
+		    <!-- </div> -->
+		    <!-- docs table -->
+		    <table class= "table table-bordered table-hover">
+		        <thead>
+		        <tr>
+		            <th>文档标题</th>
+		            <th>文件类型</th>
+		            <th>上传时间</th>
+		            <th>下载次数</th>
+		            <th>下载链接</th>
+		            <th>操作</th>
+		        </tr>
+		        </thead>
+		        <tbody>
+		        <% if(docs[0]) { %>
+		        <% docs.forEach(function(doc) { %>
+		        <tr>
+		            <td><%= doc.title %></td>
+		            <td><%= doc.fileType %></td>
+		            <td>
+		                <%
+		                var date = new Date(doc.updateTime * 1000);
+		                var
+		                y = date.getFullYear(),
+		                m = date.getMonth() + 1,
+		                s = date.getDate();
+		                %>
+		                <%= y + '-' + m + '-' + s %>
+		            </td>
+		            <td><%= doc.downloads %></td>
+		            <td><%= doc.link  %></td>
+		            <td>
+		                <form action="/admin/docs/<%= doc._id %>" method="post">
+		                    <input type="hidden" name="_csrf" value="<%= locals.token %>"/>
+		                    <input type="hidden" name="doctitle" value="<%= doc.title %>"/>
+		                    <input type="hidden" name="docupdateTime" value="<%= doc.updateTime %>"/>
+		                    <input type="hidden" name="docfileType" value="<%= doc.fileType %>"/>
+		                    <input type="hidden" name="doccourse" value="<%= doc.course %>"/>
+		                    <input type="hidden" name="doctype" value="<%= doc.type %>"/>
+		                    <input type="hidden" name="doclink" value="<%= doc.link %>"/>
+		                    <input type="hidden" name="docdownloads" value="<%= doc.downloads %>"/>
+		                    <button type="submit" class="btn btn-info">编辑</button>
+		                </form>
+		                <form action="/admin/delete-doc" method="post">
+		                    <input type="hidden" name="_csrf" value="<%= locals.token %>"/>
+		                    <input type="hidden" name="docid" value="<%= doc._id %>"/>
+		                    <button type="submit" class="btn btn-danger">删除</button>
+		                </form>
+		            </td>
+		        </tr>
+		        <% }) %>
+		        <% } else { %>
+		        <tr>
+		            <td colspan="5">暂无文档</td>
+		        </tr>
+		        <% } %>
+		        </tbody>
+		    </table>
+		</div>
+	</div>
+</section>

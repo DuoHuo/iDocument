@@ -11,14 +11,12 @@
 'use strict';
 
 var Schema = require('mongoose').Schema;
-var Mixed = Schema.Types.Mixed;
 
 var bcrypt = require('bcryptjs');
 
 var SALT_WORK_FACTORY = 10;
 
 var UserSchema = new Schema({
- username: String,
  password: String,
  email: String,
  meta: {

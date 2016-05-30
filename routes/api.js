@@ -5,28 +5,44 @@ var Util = require('../utils');
 var docController = require('../controllers/document');
 var collegeController = require('../controllers/college');
 var courseController = require('../controllers/course');
+var userController = require('../controllers/user');
 var middles = require('../middles');
 
 var validateId = middles.validateId;
+var DEFAULT_DOC_SORT = 'updateTime';
 
-router.get('/hotdocs', function(req, res){
-	docController.getHotDocs()
-	.then(function(docs){
-		res.send(200, docs);
-	})
-	.catch(function(err){
-		res.send(400, err);
-	});
-});
+router.get('/search/docs', function(req, res){
+	var sort = req.query.sort;
+	var q = req.query.q;
+	var option = {
+		queryName: true
+	};
 
-router.get('/newdocs', function(req, res){
-	docController.getHotDocs()
-	.then(function(docs){
-		res.send(200, docs);
-	})
-	.catch(function(err){
-		res.send(400, err);
+	var isExist = ['downloads', 'updateTime'].some(function(s){
+		return s === sort;
 	});
+	if(sort === '' || !sort) sort = DEFAULT_DOC_SORT;
+	if(isExist) {
+		if(!q) {
+			option.queryName = false;
+		} else {
+			option.q = q.toLowerCase().split("");
+		}
+
+		option.sort = sort;
+		docController.searchDocs(option)
+		.then(function(docs){
+			return res.send(200, {
+				total: docs.length,
+				docs: docs
+			})
+		})
+		.catch(function(err){
+			res.send(400, err);
+		});
+	} else {
+		res.send(400, {msg: 'sort must be downloads or updateTime'});
+	}
 });
 
 router.get('/colleges', function(req, res){
@@ -38,9 +54,9 @@ router.get('/colleges', function(req, res){
 		res.send(400, err);
 	});
 });
-router.get('/colleges/:id', validateId, function(req, res){
-	var collegeid = req.params.id;
-	collegeController.getCollegeInfo(collegeid)
+
+router.get('/colleges/:id/courses/docs', validateId, function(req, res){
+	collegeController.getCollegeInfo(req.params.id)
 	.then(function(result){
 		res.send(200, result);
 	})
@@ -48,16 +64,29 @@ router.get('/colleges/:id', validateId, function(req, res){
 		res.send(400, err.msg);
 	});
 });
-router.get('/course/general', function(req, res){
-	courseController.getGeneralCourses()
-	.then(function(result){
-		res.send(200, result);
-	})
-	.catch(function(err) {
-		res.send(400, err);
+
+router.get('/search/courses', function(req, res){
+	var type = req.query.type;
+	var isExist = ['general', 'professional'].some(function(t){
+		return t === type;
 	});
+	if(isExist){
+		courseController.getCourses(type)
+		.then(function(courses){
+			res.send(200, {
+				total: courses.length,
+				courses: courses
+			});
+		})
+		.catch(function(err) {
+			res.send(400, err);
+		});
+	} else {
+		res.send(400, {msg: 'type must be general or professional'});
+	}
 });
-router.get('/courses/:id', validateId, function(req, res){
+
+router.get('/courses/:id/docs', validateId, function(req, res){
 	var courseid = req.params.id;
 	courseController.getCourseDocuments(courseid)
 	.then(function(result){
@@ -78,27 +107,44 @@ router.get('/download/:id', validateId, function(req, res){
 	});
 });
 
-router.get('/search', function(req, res) {
-	docController.searchDocs(req.query.q)
-	.then(function(docs) {
-		res.send(200, docs);
-	})
-	.catch(function(err) {
-	  res.send(400, err);
-	});
-});
-
 
 //admin api
-router.get('/admin', function(req, res){
-	collegeController.fetchAll()
+router.post('/login', function(req, res){
+	var user = req.body;
+  if(!user.email || !user.password){
+    res.send(400, {msg: 'user email && password is need!'});
+  }
+
+  userController.loginWithEmail(user)
+  .then(function(result){
+    if (result.isMatch) {
+      req.session.user = result.user;
+      res.send(204);
+    } else {
+      res.send(400, {msg: 'user password is not corret!'})
+    }
+  })
+  .catch(function(err){
+    res.send(400, err);
+  });
+});
+
+router.get('/logout', function(req, res){
+  if(req.session.user) {
+    delete req.session.user;
+  }
+  res.send(204);
+});
+
+router.get('/docs', function(req, res){
+	docController.getDocs()
 	.then(function(result){
 	  res.send(200, result);
 	})
 	.catch(function(err) {
 	  res.send(400, err);
 	});
-})
+});
 
 router.post('/admin/docs', function(req, res) {
 	var data = req.body;
@@ -148,6 +194,16 @@ router.delete('/admin/docs/:id', function(req, res) {
   });
 });
 
+router.get('/admin/courses', function(req, res){
+	courseController.fetchCourses()
+	.then(function(result){
+	  res.send(200, result);
+	})
+	.catch(function(err) {
+	  res.send(400, err);
+	});
+});
+
 router.post('/admin/courses', function(req, res){
 	var data = req.body;
 	if(Util.isEmptyObject(data)) {
@@ -177,6 +233,16 @@ router.delete('/admin/courses/:id', middles.checkLogin, function(req, res) {
   .catch(function(err){
     res.send(400, err);
   });
+});
+
+router.get('/admin/colleges', function(req, res){
+	collegeController.getColleges()
+	.then(function(result){
+	  res.send(200, result);
+	})
+	.catch(function(err) {
+	  res.send(400, err);
+	});
 });
 
 router.post('/admin/colleges', function(req, res) {

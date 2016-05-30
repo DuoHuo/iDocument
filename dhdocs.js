@@ -44,13 +44,17 @@ app.use('/fix', require('./routes/fix'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(csurf({ cookie: true }))
+
+//render page
 app.use('/', require('./routes/index'));
+app.use('/admin', require('./routes/admin'));
 
 // handle 404
 app.use(function(req, res) {
   res.status(404);
   res.render('404');
 });
+
 //监听端口
 app.listen(port);
 console.log('idoc start at: ' + port);

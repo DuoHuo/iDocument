@@ -1,0 +1,53 @@
+<%- include('header'); %>
+
+<section class="container">
+  <div class="row">
+    <div id="addnewcollege" class="col-md-12">
+        <h3>添加学院</h3>
+        <form action="/admin/colleges" method="post" class="form-horizontal">
+            <input type="hidden" name="_csrf" value="<%= locals.token %>"/>
+        <div class="form-group">
+            <label for="collegeName">学院名称</label>
+            <input type="text" id="collegeName" class="form-control" name="collegeName" required="required"/>
+        </div>
+        <div class="form-group">
+            <label for="collegepic">学院图像</label>
+            <input type="text" id="collegepic" class="form-control" name="collegepic" required="required"/>
+            <button type="submit" class="btn btn-default">提交</button>
+        </div>
+        </form>
+    </div>
+    <div class="col-md-12">
+        <table class ="table table-bordered table-hover">
+            <thead>
+            <tr>
+                <th>学院名称</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% if(colleges[0]) { %>
+            <% colleges.forEach(function(college) { %>
+            <tr>
+                <td><%= college.collegeName %></td>
+                <td>
+                    <form action="/admin/delete-college" method="post">
+                        <input type="hidden" name="_csrf" value="<%= locals.token %>"/>
+                        <input type="hidden" name="collegeid" value="<%= college._id %>"/>
+                        <button type="submit" class = "btn btn-danger">
+                            删除
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            <% }) %>
+            <% } else { %>
+            <tr>
+                <td colspan="3">暂无学院</td>
+            </tr>
+            <% } %>
+            </tbody>
+        </table>
+    </div>
+  </div>
+</section>

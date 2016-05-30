@@ -30,7 +30,6 @@ a { text-decoration:none !important; }
 }
 .header {
 	width:1138px;
-	height:200px;
 	margin:0 auto;
 	overflow:hidden;
 }
@@ -650,7 +649,7 @@ p.a-souji{
 .a-column1{
 	width: 990px;
 	margin: 0 auto;
-	
+
 }
 .ren-picture{
 	width: 253px;
@@ -693,7 +692,7 @@ p.a-souji{
 	z-index: 5;
 	width: 253px;
 	height: 253px;
-    
+
 }
 .back{
 	width: 253px;

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>idoc后端管理界面</title>
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+<body>
+	<nav class="navbar navbar-default">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="/admin">idoc后台管理界面</a>
+			</div>
+			<ul class="navbar-nav nav">
+				<li><a href="/admin/docs">文档管理</a></li>
+				<li><a href="/admin/courses">课程管理</a></li>
+				<li><a href="/admin">学院管理</a></li>
+			</ul>
+			<% if(user) {%>
+				<ul class="nav navbar-nav navbar-right">
+					<li><span class="navbar-text"><%= user.email%></span></li>
+					<li><a href="/admin/logout">登出</a></li>
+				</ul>
+			<% } %>
+		</div>
+	</nav>
+</body>
+</html>

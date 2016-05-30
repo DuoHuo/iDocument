@@ -1,36 +1,13 @@
 var Course = require('../services/course');
 var Doc = require('../services/document');
 
-function isArray(arr) {
-	return Object.prototype.toString.call(arr) === '[object Array]';
-}
-
-exports.getGeneralCourses = function() {
+exports.getCourses = function(type) {
 	var result = {};
-
-	return Course.getGeneral()
-	.then(function(courses) {
-		result.courses = courses;
-		var promises = courses.map(function(course) {
-			return Doc.getDocsByCourseId(course._id);
-		});
-
-		return Promise.all(promises).then(function(results){
-			var docs = [];
-			results.forEach(function(item) {
-				if(isArray(item)) {
-					item.forEach(function(d) {
-						docs.push(d)
-					});
-				}
-			});
-			return docs;
-		})
-	})
-	.then(function(docs) {
-		result.docs = docs;
-		return result;
-	});
+	if(type === 'general') {
+		return Course.getGeneral();
+	} else {
+		return Course.getProfessional();
+	}
 };
 
 exports.getCourseDocuments = function(courseid) {
@@ -61,3 +38,7 @@ exports.addnew = function(data) {
 exports.delCourse = function(id){
 	return Course.remove(id);
 }
+
+exports.fetchCourses = function(){
+	return Course.fetch();
+};

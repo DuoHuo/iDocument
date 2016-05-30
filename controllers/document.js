@@ -1,12 +1,12 @@
 var Doc = require('../services/document');
 var Course = require('../services/course');
 
-exports.getHotDocs = function() {
-	return Doc.getHotDocs();
+exports.getDocsByCourseId = function(courseid) {
+	return Doc.getDocsByCourseId(courseid);
 };
 
-exports.getNewDocs = function() {
-	return Doc.getNewDocs();
+exports.getDocs = function(){
+	return Doc.fetch();
 };
 
 exports.downloadDoc = function(docId) {
@@ -20,8 +20,12 @@ exports.downloadDoc = function(docId) {
 	});
 };
 
-exports.searchDocs = function(name) {
-	return Doc.search(name.toLowerCase().split(""));
+exports.searchDocs = function(option) {
+	if(option.queryName){
+		return Doc.queryByName(option.q, option.sort);
+	} else {
+		return Doc.sortDocs(option.sort);
+	}
 };
 
 exports.addDoc = function(data) {
@@ -42,19 +46,19 @@ exports.addDoc = function(data) {
 
 exports.editDoc = function(docId, data){
 	var doc = {
-    title: data.doctitle,
-    updateTime: data.docupdateTime,
-    fileType: data.docfileType,
-    belongs: data.docbelongs,
-    course: data.doccourse,
-    type: data.doctype,
-    link: data.doclink,
-    downloads: data.docdownloads,
-    searchIndex: data.doctitle.toLowerCase().split("")
+    title: data.title,
+    updateTime: data.updateTime,
+    fileType: data.fileType,
+    belongs: data.belongs,
+    course: data.course,
+    type: data.type,
+    link: data.link,
+    searchIndex: data.title.toLowerCase().split("")
 	};
 
 	return Doc.update(docId, doc);
 };
+
 
 exports.delDoc = function(id){
 	return Doc.remove(id);

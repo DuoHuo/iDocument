@@ -2,12 +2,12 @@ var Document = require('../model').Document;
 var mongoose = require('mongoose');
 var ObjectId = mongoose.Types.ObjectId;
 
-exports.getHotDocs = function() {
-	return Document.find().sort({ downloads: -1 }).limit(6).select('title downloads updateTime link');
-};
-
-exports.getNewDocs = function() {
-	return Document.find().sort({ updateTime: -1 }).limit(6).select('title downloads updateTime link');
+exports.sortDocs = function(sort) {
+	if(sort === 'downloads') {
+		return Document.find().sort({ downloads: -1 }).limit(6).select('title downloads updateTime link');
+	} else {
+		return Document.find().sort({ updateTime: -1 }).limit(6).select('title downloads updateTime link');
+	}
 };
 
 exports.get = function(id) {
@@ -30,8 +30,12 @@ exports.updateDownloadCount = function(id) {
 	return Document.findByIdAndUpdate(id, {$inc: { downloads: 1 }});
 };
 
-exports.search = function(querytext) {
-	return Document.find({searchIndex: {$all: querytext}}).sort({ downloads: -1 });
+exports.queryByName = function(name, sort) {
+	if(sort === 'downloads') {
+		return Document.find({searchIndex: {$all: name}}).sort({ downloads: -1 });
+	} else {
+		return Document.find({searchIndex: {$all: name}}).sort({ updateTime: -1 });
+	}
 };
 
 exports.getDocsByCourseId = function(courseId) {
