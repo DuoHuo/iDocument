@@ -6,3 +6,8 @@ dev: install
 
 clean:
 	@rm -rf node_modules
+
+deploy: install
+	@git pull origin master
+	@pm2 restart idoc
+
