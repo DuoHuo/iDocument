@@ -19,10 +19,11 @@ router.get('/search/docs', function(req, res){
 		queryName: true
 	};
 
+	if(sort === '' || !sort) sort = DEFAULT_DOC_SORT;
 	var isExist = ['downloads', 'updateTime'].some(function(s){
 		return s === sort;
 	});
-	if(sort === '' || !sort) sort = DEFAULT_DOC_SORT;
+
 	if(isExist) {
 		if(!q) {
 			option.queryName = false;
@@ -153,9 +154,9 @@ router.post('/admin/docs', needLogin, function(req, res) {
 	  res.send(400, {msg: 'request body is empty!'});
 	}
 
-	if(!data.title || !data.link) {
+	if(!data.title || !data.link || !data.courseId || !data.belongs || !data.type) {
 		res.send(400, {
-			msg: 'need document title and download link!'
+			msg: 'need document title,download link,courseId, belongs, type!'
 		});
 	}
 

@@ -40,7 +40,6 @@ exports.addDoc = function(data) {
 	  downloads: 0,
 	  searchIndex: data.title.toLowerCase().split("")
 	};
-
 	return Doc.add(doc);
 };
 

@@ -1,22 +1,22 @@
 iDocument - 南信大考试资料分享平台
 ==============================
 
-## Dependencies
+## 1. Dependencies
 + [npm](http://npmjs.com/)
 + [webpack](http://webpack.github.io/)
 + [expressjs](http://expressjs.com/)
 + [mongodb](https://www.mongodb.com/)
 
 
-### How to run
+### 2. How to run
 ```bash
 $ npm install  # install dependencies
 $ npm run dev    # start Node Server at port 3000
 ```
 
-### API
+### 3. API
 
-[client api](/docs/client.md)
-[admin api](/docs/admin.md)
+* [client api](/docs/client.md)
+* [admin api](/docs/admin.md)
 
 

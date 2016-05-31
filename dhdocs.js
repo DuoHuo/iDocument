@@ -55,6 +55,10 @@ app.use(function(req, res) {
   res.render('404');
 });
 
+//error handle
+app.use(function(err, req, res, next){
+	res.send(err.status || 500, err.message);
+})
 //监听端口
 app.listen(port);
 console.log('idoc start at: ' + port);

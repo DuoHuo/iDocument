@@ -170,7 +170,8 @@ router.post('/login', middles.checkNotLogin, function(req, res){
 router.get('/logout', function(req, res){
   if(req.session.user) {
     delete req.session.user;
-  }
+  };
+
   res.redirect('/');
 });
 
