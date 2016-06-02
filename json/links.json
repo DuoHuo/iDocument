@@ -1,0 +1,42 @@
+[
+	{
+		"title": "关于iDocument",
+		"category": "duohuo",
+		"link": "/about-us.html"
+	},
+	{
+		"title": "加入我们",
+		"category": "duohuo",
+		"link": "/welcome/index.html#/bore"
+	},
+	{
+		"title": "广告联系",
+		"category": "duohuo",
+		"link": "/"
+	},
+	{
+		"title": "多火工作室",
+		"category": "friendship",
+		"link": "http://www.duohuo.org/"
+	},
+	{
+		"title": "团委飘扬在线",
+		"category": "friendship",
+		"link": "https://youth.nuist.edu.cn/index.do"
+	},
+	{
+		"title": "微博@duohuo",
+		"category": "about",
+		"link": "http://weibo.com/duohuostudio"
+	},
+	{
+		"title": "人人关注duohuo",
+		"category": "about",
+		"link": "http://page.renren.com/601007357?checked=true"
+	},
+	{
+		"title": "南信大校学习部",
+		"category": "about",
+		"link": "http://page.renren.com/601541020?checked=true"
+	}
+]

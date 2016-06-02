@@ -14,6 +14,7 @@ var compression = require('compression');
 var config = require('./config.js');
 var app = express();
 var port = config.bindPort || 3000;
+var linkController = require('./controllers/link');
 
 // all environments
 app.set('views', path.join(__dirname, 'views'));
@@ -37,6 +38,15 @@ app.use(session({
   })
 }));
 
+app.use(function(req, res, next){
+  linkController.fetchLinks()
+  .then(function(links){
+    res.locals.duohuoLinks = links.filter(function(link){ return link.category === 'duohuo'});
+    res.locals.friendshipLinks = links.filter(function(link){ return link.category === 'friendship'});
+    res.locals.aboutLinks = links.filter(function(link){ return link.category === 'about'});
+    next();
+  })
+});
 //routes
 app.use('/api/v1', require('./routes/api'));
 app.use('/fix', require('./routes/fix'));

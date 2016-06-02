@@ -11,6 +11,7 @@ var docController = require('../controllers/document');
 var collegeController = require('../controllers/college');
 var courseController = require('../controllers/course');
 var userController = require('../controllers/user');
+var bannerController = require('../controllers/banner');
 
 router.get('/', csrf, checkLogin,function(req, res) {
   collegeController.getColleges()
@@ -57,6 +58,19 @@ router.get('/courses', csrf, checkLogin, function(req, res){
     });
   })
   .catch(function(err) {
+    res.send(400, err);
+  });
+});
+
+router.get('/banners', csrf, checkLogin, function(req, res){
+  bannerController.fetchBanners()
+  .then(function(banners){
+    res.render('admin/banner', {
+      user: req.session.user,
+      banners: banners
+    });
+  })
+  .catch(function(err){
     res.send(400, err);
   });
 });
@@ -169,5 +183,6 @@ router.post('/delete-college', checkLogin, function(req, res) {
     res.send(400, err);
   });
 });
+
 
 module.exports = router;

@@ -10,6 +10,7 @@ var docController = require('../controllers/document');
 var collegeController = require('../controllers/college');
 var courseController = require('../controllers/course');
 var userController = require('../controllers/user');
+var bannerController = require('../controllers/banner');
 
 var middles = require('../middles');
 var validateId = middles.validateId;
@@ -24,9 +25,13 @@ router.get('/', csrf, function(req, res) {
   })
   .then(function(newdocs){
     docsdata[1] = newdocs;
+    return bannerController.fetchBanners();
+  })
+  .then(function(banners){
     res.render('index', {
         siteName: config.siteName,
-        docsdata: docsdata
+        docsdata: docsdata,
+        banners: banners
     });
   })
   .catch(function(err) {

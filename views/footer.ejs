@@ -1,27 +1,27 @@
-	<footer class = "footer">
+<footer class = "footer">
 	<div class="footer_inner">
 		<div class="col-xs-4">
 			<ul class="abdh">
 				<li>关于多火</li>
-				<li><a href="/about-us.html" target="_blank">关于iDocument</a></li>
-				<li><a href="http://www.duohuo.org/welcome/index.html" target="_blank">加入我们</a></li>
-				<li><a href="#" target="_blank">广告联系</a></li>
+				<% locals.duohuoLinks.forEach(function(link) {%>
+					<li><a href="<%= link.link %>" target="_blank"><%= link.title%></a></li>
+				<% })%>
 			</ul>
 		</div>
 		<div class="col-xs-4">
 			<ul class="yqlj">
 				<li>友情链接</li>
-				<li><a href="http://www.duohuo.org" target="_blank">多火工作室</a></li>
-				<li><a href="http://www.xiangyahui.com" target="_blank">象牙绘</a></li>
-				<li><a href="http://youth.nuist.edu.cn/index.do" target="_blank">团委飘扬在线</a></li>
+				<% locals.friendshipLinks.forEach(function(link) {%>
+					<li><a href="<%= link.link %>" target="_blank"><%= link.title%></a></li>
+				<% })%>
 			</ul>
 		</div>
 		<div class="col-xs-4">
 			<ul class="gzus">
 				<li>关注我们</li>
-				<li class="wb"><a href="http://weibo.com/u/3221722503" target="_blank">微博@多火</a></li>
-				<li class="rr"><a href="http://page.renren.com/601007357" target="_blank">人人关注多火</a></li>
-				<li class="rr"><a href="http://page.renren.com/601541020" target="_blank">南信大校学习部</a></li>
+				<% locals.aboutLinks.forEach(function(link) {%>
+					<li><a href="<%= link.link %>" target="_blank"><%= link.title%></a></li>
+				<% })%>
 			</ul>
 		</div>
 		<div class="clear"></div>

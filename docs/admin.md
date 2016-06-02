@@ -14,6 +14,12 @@
 10. [获取学院资源](#doc-10)
 11. [增加学院](#doc-11)
 12. [删除学院](#doc-12)
+13. [获取轮播图资源](#doc-13)
+14. [增加轮播图](#doc-14)
+15. [删除轮播图](#doc-15)
+16. [获取链接资源](#doc-16)
+17. [增加链接](#doc-17)
+18. [删除链接](#doc-18)
 
 
 <h2>1.登录和登出</h2>
@@ -287,4 +293,118 @@ code 204
 
 code 204
 
+<h2>5.轮播图资源</h2>
 
+<h3 id="doc-10">获取所有轮播图</h3>
+
+#### 请求
+
+`GET /api/v1/banners`
+
+#### 响应
+
+```json
+[
+	{
+    "_id": "574fb1485647aaf122d811e5",
+    "bannerName": "校学习部介绍",
+    "bannerIndex": 3,
+    "bannerPic": "img/xx.png",
+    "bannerLink": "",
+    "__v": 0
+  }
+]
+```
+
+<h3 id="doc-11">增加一条轮播图记录</h3>
+
+#### 请求
+
+`POST /api/v1/admin/banners`
+
+###### 参数描述
+| 名字 | 类型 | 详细描述 |
+| ----- | ----- | -------- |
+| bannerName | string | banner名称 |
+| bannerPic | string | banner图链接 |
+| bannerLink | string | banner链接 |
+| bannerIndex | string | banner索引 |
+
+###### 参数示例
+
+```js
+bannerName:测试banner
+bannerPic:/img/dh.png
+bannerLink:www.baidu.com
+bannerIndex:12
+```
+
+#### 响应
+
+code 204
+
+<h3 id="doc-12">删除一条轮播图记录</h3>
+
+#### 请求
+
+`DELETE /api/v1/admin/banners/:id`
+
+#### 响应
+
+code 204
+
+<h2>6.链接资源</h2>
+
+<h3 id="doc-10">获取链接资源</h3>
+
+#### 请求
+
+`GET /api/v1/links`
+
+#### 响应
+
+```json
+[
+	{
+    "_id": "574fcbd0bf205ab02c88ce54",
+    "title": "关于iDocument",
+    "link": "/about-us.html",
+    "category": "duohuo",
+    "__v": 0
+  }
+]
+```
+
+<h3 id="doc-11">增加一条链接记录</h3>
+
+#### 请求
+
+`POST /api/v1/admin/links`
+
+###### 参数描述
+| 名字 | 类型 | 详细描述 |
+| title | string | 名称 |
+| category | string | duohuo/friendship/about |
+| link | string | 链接地址 |
+
+###### 参数示例
+
+```js
+title:计算机与软件学院
+category:friendship
+link:http://www.baidu.com
+```
+
+#### 响应
+
+code 204
+
+<h3 id="doc-12">删除一条链接记录</h3>
+
+#### 请求
+
+`DELETE /api/v1/admin/links/:id`
+
+#### 响应
+
+code 204

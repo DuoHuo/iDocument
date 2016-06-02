@@ -6,6 +6,8 @@ var docController = require('../controllers/document');
 var collegeController = require('../controllers/college');
 var courseController = require('../controllers/course');
 var userController = require('../controllers/user');
+var bannerController = require('../controllers/banner');
+var linkController = require('../controllers/link');
 var middles = require('../middles');
 
 var validateId = middles.validateId;
@@ -276,6 +278,118 @@ router.delete('/admin/colleges/:id', needLogin, function(req, res) {
   .catch(function(err){
     res.send(400, err);
   });
+});
+
+router.get('/banners', function(req, res) {
+	bannerController.fetchBanners()
+	.then(function(banners){
+		res.send(200, banners);
+	})
+	.catch(function(err){
+    res.send(400, err);
+  });
+});
+
+router.post('/admin/banners', needLogin, function(req, res) {
+  var data = req.body;
+  if(Util.isEmptyObject(data)) {
+    res.send(400, {msg: 'request body is empty!'});
+  }
+
+  if(!data.bannerName || !data.bannerPic || !data.bannerLink || !data.bannerIndex) {
+    res.send(400, {
+      msg: 'need banner name && picture && index && link!'
+    });
+  }
+
+  bannerController.addnew(data)
+  .then(function(){
+    res.send(204);
+  })
+  .catch(function(err){
+    res.send(400, err);
+  })
+});
+
+router.get('/admin/banners/original', needLogin, function(req, res){
+	var banners = require('../json/banners.json');
+	var promises = banners.map(function(banner){
+		return bannerController.addnew(banner);
+	});
+
+	Promise.all(promises)
+	.then(function(){
+    res.send(200, {msg: '添加成功！'});
+  })
+  .catch(function(err){
+    res.send(400, err);
+  })
+});
+
+router.delete('/admin/banners/:id', needLogin, function(req, res) {
+  bannerController.delBanner(req.params.id)
+  .then(function(){
+    res.send(204);
+  })
+  .catch(function(err){
+    res.send(400, err);
+  });
+});
+
+router.get('/links', function(req, res) {
+	linkController.fetchLinks()
+	.then(function(links){
+		res.send(200, links);
+	})
+	.catch(function(err){
+    res.send(400, err);
+  });
+});
+
+router.post('/admin/links', needLogin, function(req, res) {
+  var data = req.body;
+  if(Util.isEmptyObject(data)) {
+    res.send(400, {msg: 'request body is empty!'});
+  }
+
+  if(!data.title || !data.category || !data.link) {
+    res.send(400, {
+      msg: 'link banner title && category && link!'
+    });
+  }
+
+  linkController.addnew(data)
+  .then(function(){
+    res.send(204);
+  })
+  .catch(function(err){
+    res.send(400, err);
+  })
+});
+
+router.delete('/admin/links/:id', needLogin, function(req, res) {
+ 	linkController.delLink(req.params.id)
+  .then(function(){
+    res.send(204);
+  })
+  .catch(function(err){
+    res.send(400, err);
+  });
+});
+
+router.get('/admin/links/original', needLogin, function(req, res){
+	var links = require('../json/links.json');
+	var promises = links.map(function(link){
+		return linkController.addnew(link);
+	});
+
+	Promise.all(promises)
+	.then(function(){
+    res.send(200, {msg: '添加成功！'});
+  })
+  .catch(function(err){
+    res.send(400, err);
+  })
 });
 
 module.exports = router;

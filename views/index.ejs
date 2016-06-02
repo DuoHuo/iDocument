@@ -2,15 +2,23 @@
 <!-- slider -->
    <div id="container">
       <div id="banner-slide">
-        <ul class="bjqs">
-          <li><a href="http://www.duohuo.org/"><img src="img/23.png"></a></li>
-          <li><img src="img/dh.png" </li>
-          <li><img src="img/xx.png" </li>
-        </ul>
+        <% if(banners.length > 0) {%>
+          <ul class="bjqs">
+            <% banners.forEach(function(banner) {%>
+              <li>
+                <% if(banner.bannerLink) { %>
+                  <a href="<%= banner.bannerLink%>"><img src="<%= banner.bannerPic %>"></a>
+                <% } else { %>
+                  <img src="<%= banner.bannerPic %>">
+                <% } %>
+              </li>
+            <% }) %>
+          </ul>
+        <% } %>
       </div>
       <script class="secret-source">
         jQuery(document).ready(function($) {
-          
+
           $('#banner-slide').bjqs({
             animtype      : 'slide',
             height        : 380,
@@ -18,7 +26,7 @@
             responsive    : true,
             randomstart   : true
           });
-          
+
         });
       </script>
     </div>
@@ -45,9 +53,9 @@
                     <tr>
                         <td><a class="fancybox" href="#hot<%= hotdoc._id %>"><%= hotdoc.title %></a></td>
                         <td>
-                        <% 
+                        <%
                         var date = new Date(hotdoc.updateTime * 1000);
-                        var 
+                        var
                         y = date.getFullYear(),
                         m = date.getMonth() + 1,
                         s = date.getDate();
@@ -96,9 +104,9 @@
                     <tr>
                         <td><a class="fancybox" href="#<%= newdoc._id %>"><%= newdoc.title %></a></td>
                         <td>
-                        <% 
+                        <%
                         var date = new Date(newdoc.updateTime * 1000);
-                        var 
+                        var
                         y = date.getFullYear(),
                         m = date.getMonth() + 1,
                         s = date.getDate();

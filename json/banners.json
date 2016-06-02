@@ -1,0 +1,20 @@
+[
+	{
+		"bannerName": "校学习部介绍",
+		"bannerIndex": 3,
+		"bannerPic": "img/xx.png",
+		"bannerLink": ""
+	},
+	{
+		"bannerName": "iDocument介绍",
+		"bannerIndex": 1,
+		"bannerPic": "img/23.png",
+		"bannerLink": ""
+	},
+	{
+		"bannerName": "多火介绍",
+		"bannerIndex": 2,
+		"bannerPic": "img/dh.png",
+		"bannerLink": "http://www.duohuo.org"
+	}
+]
