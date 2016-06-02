@@ -1,4 +1,3 @@
-
 //修复数据库数据
 var express = require('express');
 var router = express.Router();
@@ -37,7 +36,7 @@ router.get('/changeDocId', function(req, res) {
 	})
 })
 
-router.get('/banners', function(req, res){
+router.get('/banner', function(req, res){
 	var banners = require('../json/banners.json');
 	var promises = banners.map(function(banner){
 		return bannerController.addnew(banner);
@@ -52,7 +51,7 @@ router.get('/banners', function(req, res){
   })
 });
 
-router.get('/links', function(req, res){
+router.get('/friendship', function(req, res){
 	var links = require('../json/links.json');
 	var promises = links.map(function(link){
 		return linkController.addnew(link);

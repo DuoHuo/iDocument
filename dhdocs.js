@@ -38,15 +38,6 @@ app.use(session({
   })
 }));
 
-app.use(function(req, res, next){
-  linkController.fetchLinks()
-  .then(function(links){
-    res.locals.duohuoLinks = links.filter(function(link){ return link.category === 'duohuo'});
-    res.locals.friendshipLinks = links.filter(function(link){ return link.category === 'friendship'});
-    res.locals.aboutLinks = links.filter(function(link){ return link.category === 'about'});
-    next();
-  })
-});
 //routes
 app.use('/api/v1', require('./routes/api'));
 app.use('/fix', require('./routes/fix'));
@@ -56,6 +47,15 @@ app.use(cookieParser());
 app.use(csurf({ cookie: true }))
 
 //render page
+app.use(function(req, res, next){
+  linkController.fetchLinks()
+  .then(function(links){
+    res.locals.duohuoLinks = links.filter(function(link){ return link.category === 'duohuo'});
+    res.locals.friendshipLinks = links.filter(function(link){ return link.category === 'friendship'});
+    res.locals.aboutLinks = links.filter(function(link){ return link.category === 'about'});
+    next();
+  })
+});
 app.use('/', require('./routes/index'));
 app.use('/admin', require('./routes/admin'));
 
