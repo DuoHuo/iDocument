@@ -1,0 +1,1 @@
+{ "options" : { "create" : "documents" }, "indexes" : [ { "v" : 1, "key" : { "_id" : 1 }, "ns" : "dhdocs.documents", "name" : "_id_" }, { "v" : 1, "key" : { "searchIndex" : 1 }, "ns" : "dhdocs.documents", "name" : "searchIndex_1" } ] }

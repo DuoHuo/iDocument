@@ -151,7 +151,7 @@ code 204
 | link | string | 文件的下载地址 |
 | fileType | string | 文件的类型 |
 | courseId | string | 文件所属学科的Id |
-| collegeId | string | 文件所属学院的Id |
+| belongs | string | 文件所属学院的Id |
 | type | string | 文件是属于通修课还是专业课（general/professional） |
 
 ###### 参数示例
@@ -383,6 +383,7 @@ code 204
 
 ###### 参数描述
 | 名字 | 类型 | 详细描述 |
+| ----- | ----- | -------- |
 | title | string | 名称 |
 | category | string | duohuo/friendship/about |
 | link | string | 链接地址 |
