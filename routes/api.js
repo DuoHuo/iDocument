@@ -140,6 +140,12 @@ router.get('/logout', needLogin, function(req, res){
   res.send(204);
 });
 
+router.get('/user', needLogin, function(req, res){
+  res.send(200, {
+  	email: req.session.user.email
+  });
+});
+
 router.get('/admin/docs', needLogin, function(req, res){
 	var limit = req.query.limit || 10;
 	var offset = req.query.offset || 0;
