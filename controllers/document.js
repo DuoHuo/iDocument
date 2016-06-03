@@ -5,8 +5,8 @@ exports.getDocsByCourseId = function(courseid) {
 	return Doc.getDocsByCourseId(courseid);
 };
 
-exports.getDocs = function(){
-	return Doc.fetch();
+exports.getDocs = function(limit, offset){
+	return Doc.fetch(limit, offset);
 };
 
 exports.downloadDoc = function(docId) {

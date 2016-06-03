@@ -39,6 +39,6 @@ exports.delCourse = function(id){
 	return Course.remove(id);
 }
 
-exports.fetchCourses = function(){
-	return Course.fetch();
+exports.fetchCourses = function(limit, offset){
+	return Course.fetch(limit, offset);
 };

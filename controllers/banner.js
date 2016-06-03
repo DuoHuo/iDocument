@@ -15,6 +15,6 @@ exports.delBanner = function(id){
 	return Banner.remove(id);
 }
 
-exports.fetchBanners = function(){
-	return Banner.fetch();
+exports.fetchBanners = function(limit, offset){
+	return Banner.fetch(limit, offset);
 };

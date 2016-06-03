@@ -2,8 +2,8 @@ var Course = require('../model').Course;
 var mongoose = require('mongoose');
 var ObjectId = mongoose.Types.ObjectId;
 
-exports.fetch = function() {
-	return Course.find();
+exports.fetch = function(limit, offset) {
+	return Course.find({}).limit(limit).skip(offset);
 };
 
 exports.getGeneral = function() {

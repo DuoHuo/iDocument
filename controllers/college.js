@@ -2,8 +2,8 @@ var College = require('../services/college');
 var Course = require('../services/course');
 var Doc = require('../services/document');
 
-exports.getColleges = function(req, res) {
-	return College.fetch();
+exports.getColleges = function(limit, offset) {
+	return College.fetch(limit, offset);
 };
 
 exports.getCollegeInfo = function(collegeid) {

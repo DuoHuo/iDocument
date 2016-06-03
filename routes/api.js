@@ -140,10 +140,16 @@ router.get('/logout', needLogin, function(req, res){
   res.send(204);
 });
 
-router.get('/docs', needLogin, function(req, res){
-	docController.getDocs()
+router.get('/admin/docs', needLogin, function(req, res){
+	var limit = req.query.limit || 10;
+	var offset = req.query.offset || 0;
+
+	docController.getDocs(limit, offset)
 	.then(function(result){
-	  res.send(200, result);
+	  res.send(200, {
+	  	total: result.length,
+	  	docs: result
+	  });
 	})
 	.catch(function(err) {
 	  res.send(400, err);
@@ -170,7 +176,6 @@ router.post('/admin/docs', needLogin, function(req, res) {
     res.send(400, err);
   });
 });
-
 
 router.put('/admin/docs/:id', needLogin, function(req, res) {
   var docId = req.params.id;
@@ -199,9 +204,15 @@ router.delete('/admin/docs/:id', needLogin, function(req, res) {
 });
 
 router.get('/admin/courses', needLogin, function(req, res){
-	courseController.fetchCourses()
+	var limit = req.query.limit || 10;
+	var offset = req.query.offset || 0;
+
+	courseController.fetchCourses(limit, offset)
 	.then(function(result){
-	  res.send(200, result);
+	  res.send(200, {
+	  	total: result.length,
+	  	courses: result
+	  });
 	})
 	.catch(function(err) {
 	  res.send(400, err);
@@ -240,9 +251,15 @@ router.delete('/admin/courses/:id', needLogin, function(req, res) {
 });
 
 router.get('/admin/colleges', needLogin, function(req, res){
-	collegeController.getColleges()
+	var limit = req.query.limit || 10;
+	var offset = req.query.offset || 0;
+
+	collegeController.getColleges(limit, offset)
 	.then(function(result){
-	  res.send(200, result);
+	  res.send(200, {
+	  	total: result.length,
+	  	colleges: result
+	  });
 	})
 	.catch(function(err) {
 	  res.send(400, err);
@@ -280,10 +297,16 @@ router.delete('/admin/colleges/:id', needLogin, function(req, res) {
   });
 });
 
-router.get('/banners', function(req, res) {
-	bannerController.fetchBanners()
+router.get('/admin/banners', function(req, res) {
+	var limit = req.query.limit || 10;
+	var offset = req.query.offset || 0;
+
+	bannerController.fetchBanners(limit, offset)
 	.then(function(banners){
-		res.send(200, banners);
+		res.send(200, {
+	  	total: banners.length,
+	  	banners: banners
+	  });
 	})
 	.catch(function(err){
     res.send(400, err);
@@ -321,10 +344,16 @@ router.delete('/admin/banners/:id', needLogin, function(req, res) {
   });
 });
 
-router.get('/links', function(req, res) {
-	linkController.fetchLinks()
+router.get('/admin/links', function(req, res) {
+	var limit = req.query.limit || 10;
+	var offset = req.query.offset || 0;
+
+	linkController.fetchLinks(limit, offset)
 	.then(function(links){
-		res.send(200, links);
+		res.send(200, {
+			total: links.length,
+			links: links
+		});
 	})
 	.catch(function(err){
     res.send(400, err);

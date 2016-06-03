@@ -1,7 +1,7 @@
 var Link = require('../model').Link;
 
-exports.fetch = function() {
-	return Link.find();
+exports.fetch = function(limit, offset) {
+	return Link.find({}).limit(limit).skip(offset);
 };
 
 exports.get = function(id) {

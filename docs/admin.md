@@ -58,53 +58,61 @@ code 204
 
 #### 请求
 
-`GET /api/v1/docs`
+`GET /api/v1/admin/docs`
+
+###### 参数描述
+| 名字 | 类型 | 详细描述 |
+| ----- | ----- | -------- |
+| limit | number | 一页显示数据的条数 |
+| offset | number | 当前页数和每页显示数据条数的乘积 |
 
 #### 响应
-
 ```json
-[
-	{
-	    "_id": "53113d6e1eb6e2b9546b5a91",
-	    "title": "高等数学1（理）09-10期末考试A卷及答案",
-	    "fileType": "pdf",
-	    "belongs": {
-	      "_id": "530fe1a120be5f5d51a7f658",
-	      "collegeName": "数学与统计学院",
-	      "collegepic": "/img/professional/sxytj.png",
-	      "updateTime": 1393549730
-	    },
-	    "course": "53113c9b1eb6e2b9546b5a90",
-	    "type": "general",
-	    "link": "http://pan.baidu.com/s/1pJyMqG7",
-	    "downloads": 209,
-	    "searchIndex": [
-	      "高",
-	      "等",
-	      "数",
-	      "学",
-	      "1",
-	      "（",
-	      "理",
-	      "）",
-	      "0",
-	      "9",
-	      "-",
-	      "1",
-	      "0",
-	      "期",
-	      "末",
-	      "考",
-	      "试",
-	      "a",
-	      "卷",
-	      "及",
-	      "答",
-	      "案"
-	    ],
-	    "updateTime": "1970-01-17T03:07:18.767Z"
-	  }
-]
+{
+	"total": 10,
+  "docs": [
+		{
+      "_id": "53113d6e1eb6e2b9546b5a91",
+      "title": "高等数学1（理）09-10期末考试A卷及答案",
+      "fileType": "pdf",
+      "belongs": {
+        "_id": "530fe1a120be5f5d51a7f658",
+        "collegeName": "数学与统计学院",
+        "collegepic": "/img/professional/sxytj.png",
+        "updateTime": 1393549730
+      },
+      "course": "53113c9b1eb6e2b9546b5a90",
+      "type": "general",
+      "link": "http://pan.baidu.com/s/1pJyMqG7",
+      "downloads": 208,
+      "searchIndex": [
+        "高",
+        "等",
+        "数",
+        "学",
+        "1",
+        "（",
+        "理",
+        "）",
+        "0",
+        "9",
+        "-",
+        "1",
+        "0",
+        "期",
+        "末",
+        "考",
+        "试",
+        "a",
+        "卷",
+        "及",
+        "答",
+        "案"
+      ],
+      "updateTime": "1970-01-17T03:07:18.767Z"
+    }
+  ]
+}
 ```
 
 <h3 id="doc-4">增加文档</h3>
@@ -185,21 +193,30 @@ code 204
 
 #### 请求
 
-`GET /api/v1/courses`
+`GET /api/v1/admin/courses`
+
+###### 参数描述
+| 名字 | 类型 | 详细描述 |
+| ----- | ----- | -------- |
+| limit | number | 一页显示数据的条数 |
+| offset | number | 当前页数和每页显示数据条数的乘积 |
 
 #### 响应
 
 ```json
-[
-	{
-    "_id": "53113c9b1eb6e2b9546b5a90",
-    "courseBelongs": "530fe1a120be5f5d51a7f658",
-    "courseDownloads": 7155,
-    "courseName": "高等数学",
-    "courseType": "general",
-    "coursepic": "/img/course.jpg"
-  },
-]
+{
+  "total": 10,
+  "courses": [
+    {
+      "_id": "53113c9b1eb6e2b9546b5a90",
+      "courseBelongs": "530fe1a120be5f5d51a7f658",
+      "courseDownloads": 7154,
+      "courseName": "高等数学",
+      "courseType": "general",
+      "coursepic": "/img/course.jpg"
+    },
+  ]
+}
 ```
 
 <h3 id="doc-8">增加一条学科记录</h3>
@@ -245,19 +262,28 @@ code 204
 
 #### 请求
 
-`GET /api/v1/colleges`
+`GET /api/v1/admin/colleges`
+
+###### 参数描述
+| 名字 | 类型 | 详细描述 |
+| ----- | ----- | -------- |
+| limit | number | 一页显示数据的条数 |
+| offset | number | 当前页数和每页显示数据条数的乘积 |
 
 #### 响应
 
 ```json
-[
-	{
-    "_id": "530fdc631e13cbe450225d9b",
-    "collegeName": "大气科学学院",
-    "collegepic": "/img/professional/dqkx.png",
-    "updateTime": 1393548388
-  },
-]
+{
+  "total": 10,
+  "colleges": [
+    {
+      "_id": "530fdc631e13cbe450225d9b",
+      "collegeName": "大气科学学院",
+      "collegepic": "/img/professional/dqkx.png",
+      "updateTime": 1393548388
+    },
+  ]
+}
 ```
 
 <h3 id="doc-11">增加一条学院记录</h3>
@@ -295,28 +321,37 @@ code 204
 
 <h2>5.轮播图资源</h2>
 
-<h3 id="doc-10">获取所有轮播图</h3>
+<h3 id="doc-13">获取所有轮播图</h3>
 
 #### 请求
 
-`GET /api/v1/banners`
+`GET /api/v1/admin/banners`
+
+###### 参数描述
+| 名字 | 类型 | 详细描述 |
+| ----- | ----- | -------- |
+| limit | number | 一页显示数据的条数 |
+| offset | number | 当前页数和每页显示数据条数的乘积 |
 
 #### 响应
 
 ```json
-[
-	{
-    "_id": "574fb1485647aaf122d811e5",
-    "bannerName": "校学习部介绍",
-    "bannerIndex": 3,
-    "bannerPic": "img/xx.png",
-    "bannerLink": "",
-    "__v": 0
-  }
-]
+{
+  "total": 3,
+  "banners": [
+    {
+      "_id": "57505cc5079a345540d4aac9",
+      "bannerName": "校学习部介绍",
+      "bannerIndex": 3,
+      "bannerPic": "img/xx.png",
+      "bannerLink": "",
+      "__v": 0
+    },
+  ]
+}
 ```
 
-<h3 id="doc-11">增加一条轮播图记录</h3>
+<h3 id="doc-14">增加一条轮播图记录</h3>
 
 #### 请求
 
@@ -343,7 +378,7 @@ bannerIndex:12
 
 code 204
 
-<h3 id="doc-12">删除一条轮播图记录</h3>
+<h3 id="doc-15">删除一条轮播图记录</h3>
 
 #### 请求
 
@@ -355,27 +390,36 @@ code 204
 
 <h2>6.链接资源</h2>
 
-<h3 id="doc-10">获取链接资源</h3>
+<h3 id="doc-16">获取链接资源</h3>
 
 #### 请求
 
-`GET /api/v1/links`
+`GET /api/v1/admin/links`
+
+###### 参数描述
+| 名字 | 类型 | 详细描述 |
+| ----- | ----- | -------- |
+| limit | number | 一页显示数据的条数 |
+| offset | number | 当前页数和每页显示数据条数的乘积 |
 
 #### 响应
 
 ```json
-[
-	{
-    "_id": "574fcbd0bf205ab02c88ce54",
-    "title": "关于iDocument",
-    "link": "/about-us.html",
-    "category": "duohuo",
-    "__v": 0
-  }
-]
+{
+  "total": 8,
+  "links": [
+    {
+      "_id": "57505cdc079a345540d4aacc",
+      "title": "关于iDocument",
+      "link": "/about-us.html",
+      "category": "duohuo",
+      "__v": 0
+    },
+  ]
+}
 ```
 
-<h3 id="doc-11">增加一条链接记录</h3>
+<h3 id="doc-17">增加一条链接记录</h3>
 
 #### 请求
 
@@ -400,7 +444,7 @@ link:http://www.baidu.com
 
 code 204
 
-<h3 id="doc-12">删除一条链接记录</h3>
+<h3 id="doc-18">删除一条链接记录</h3>
 
 #### 请求
 

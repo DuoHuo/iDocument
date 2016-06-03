@@ -14,6 +14,6 @@ exports.delLink = function(id){
 	return Link.remove(id);
 }
 
-exports.fetchLinks = function(){
-	return Link.fetch();
+exports.fetchLinks = function(limit, offset){
+	return Link.fetch(limit, offset);
 };

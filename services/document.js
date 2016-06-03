@@ -18,8 +18,8 @@ exports.add = function(doc){
 	return new Document(doc).save();
 };
 
-exports.fetch = function() {
-	return Document.find({}).populate('belongs').populate('courses');
+exports.fetch = function(limit, offset) {
+	return Document.find({}).populate('belongs').populate('courses').limit(limit).skip(offset);
 };
 
 exports.remove = function(id) {

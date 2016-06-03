@@ -1,7 +1,7 @@
 var College = require('../model').College;
 
-exports.fetch = function() {
-	return College.find();
+exports.fetch = function(limit, offset) {
+	return College.find({}).limit(limit).skip(offset);
 };
 
 exports.get = function(id) {

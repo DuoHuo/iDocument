@@ -1,7 +1,7 @@
 var Banner = require('../model').Banner;
 
-exports.fetch = function() {
-	return Banner.find();
+exports.fetch = function(limit, offset) {
+	return Banner.find({}).limit(limit).skip(offset);
 };
 
 exports.get = function(id) {
