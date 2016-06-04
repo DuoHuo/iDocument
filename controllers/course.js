@@ -2,12 +2,13 @@ var Course = require('../services/course');
 var Doc = require('../services/document');
 
 exports.getCourses = function(type) {
-	var result = {};
 	if(type === 'general') {
 		return Course.getGeneral();
-	} else {
+	} else if (type === 'professional') {
 		return Course.getProfessional();
-	}
+	} else {
+		return Course.fetchAll();
+	};
 };
 
 exports.getCourseDocuments = function(courseid) {

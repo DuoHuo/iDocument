@@ -8,6 +8,8 @@
 4. [搜索学科](#doc-4)
 5. [获取某个学科下所有的文档](#doc-5)
 6. [下载文档](#doc-6)
+7. [获取轮播图资源](#doc-7)
+8. [获取友情链接资源](#doc-8)
 
 
 <h2>1.文档</h2>
@@ -24,7 +26,8 @@
 | q | string | 输入文档名查询 |
 | sort | string | 排序条件，可以是'downloads', 'updateTime'(默认) |
 
-####示例：
+#### 示例
+
 ##### 获取最新文档（按时间排序）
 /api/v1/search/docs 默认按时间先后排序
 
@@ -101,7 +104,8 @@
 | total | number | 学科数目 |
 | courses | list | 学科列表 |
 
-##### 示例：
+##### 示例
+/api/v1/search/courses 返回所有学科
 /api/v1/search/courses?type=general 返回所有公共课
 /api/v1/search/courses?type=professional 返回所有专业课
 
@@ -154,3 +158,54 @@
 返回文件下载链接
 
 http://pan.baidu.com/s/1pJyMqG7
+
+<h3 id="doc-7">获取轮播图资源</h3>
+
+#### 请求
+
+`GET /api/v1/banners`
+
+#### 响应
+
+返回所有轮播图资源
+```json
+{
+  "total": 3,
+  "banners": [
+    {
+      "_id": "57505cc5079a345540d4aac9",
+      "bannerName": "校学习部介绍",
+      "bannerIndex": 3,
+      "bannerPic": "img/xx.png",
+      "bannerLink": "",
+      "__v": 0
+    },
+    ...
+  ]
+}
+```
+<h3 id="doc-8">获取友情链接资源</h3>
+
+#### 请求
+
+`GET /api/v1/links`
+
+#### 响应
+
+返回所有友情链接资源
+```json
+{
+  {
+    "total": 8,
+    "links": [
+      {
+        "_id": "57505cdc079a345540d4aacc",
+        "title": "关于iDocument",
+        "link": "/about-us.html",
+        "category": "duohuo",
+        "__v": 0
+      }
+    ]
+  }
+}
+```

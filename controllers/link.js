@@ -17,3 +17,7 @@ exports.delLink = function(id){
 exports.fetchLinks = function(limit, offset){
 	return Link.fetch(limit, offset);
 };
+
+exports.fetchAll = function(){
+	return Link.fetchAll();
+};

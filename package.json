@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "dev": "node index.js"
+    "dev": "node dhdocs.js"
   },
   "dependencies": {
     "bcryptjs": "^2.3.0",

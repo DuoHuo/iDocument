@@ -18,3 +18,7 @@ exports.delBanner = function(id){
 exports.fetchBanners = function(limit, offset){
 	return Banner.fetch(limit, offset);
 };
+
+exports.fetchAll = function(){
+	return Banner.fetchAll();
+};

@@ -4,6 +4,10 @@ exports.fetch = function(limit, offset) {
 	return Banner.find({}).limit(limit).skip(offset);
 };
 
+exports.fetchAll = function() {
+	return Banner.find({});
+};
+
 exports.get = function(id) {
 	return Banner.findById(id);
 };

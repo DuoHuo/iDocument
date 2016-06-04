@@ -6,6 +6,10 @@ exports.fetch = function(limit, offset) {
 	return Course.find({}).limit(limit).skip(offset);
 };
 
+exports.fetchAll = function() {
+	return Course.find({});
+};
+
 exports.getGeneral = function() {
 	return Course.find({courseType: 'general'});
 };
