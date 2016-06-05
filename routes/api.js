@@ -274,9 +274,9 @@ router.post('/admin/courses', needLogin, function(req, res){
 });
 
 router.delete('/admin/courses/:id', needLogin, function(req, res) {
-  docController.delCourse(req.params.id)
+  courseController.delCourse(req.params.id)
   .then(function(){
-    res.redirect('/admin');
+    res.send(204);
   })
   .catch(function(err){
     res.send(400, err);
