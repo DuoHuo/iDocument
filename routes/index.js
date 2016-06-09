@@ -127,10 +127,10 @@ router.get('/course/:id', csrf, validateId, function(req, res) {
   });
 });
 
-router.post('/search/docs', csrf,function(req, res) {
+router.post('/search', csrf,function(req, res) {
   var option = {
     queryName: true,
-    q: req.body.criteria,
+    q: req.body.criteria.toLowerCase().split(""),
     sort: 'downloads'
   };
 

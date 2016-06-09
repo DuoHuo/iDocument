@@ -8,7 +8,9 @@ var ObjectId = Schema.Types.ObjectId;
  *   courseName: 'Computer Science',
  *   courseType: 'general/professional',
  *   courseBelongs: 'college _id',
- *   coursepic: '/path/to/pic'
+ *   coursepic: '/path/to/pic',
+ *   localPath: 'www.baidu.com',
+ *   qiniuPath: 'www.baidu.com',
  *   courseDownloads: 100
  * }
  * */
@@ -17,6 +19,8 @@ module.exports = new Schema({
   courseName: String,
   courseType: String,
   coursepic: String,
+  localPath: String,
+  qiniuPath: String,
   courseBelongs: {
     type: ObjectId,
     ref: 'college'

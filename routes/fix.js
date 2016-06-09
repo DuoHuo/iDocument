@@ -5,6 +5,7 @@ var Doc = require('../services/document');
 var Course = require('../services/course');
 var bannerController = require('../controllers/banner');
 var linkController = require('../controllers/link');
+var courseController = require('../controllers/course');
 
 router.get('/changePic', function(req, res) {
 	Course.changePic()
@@ -65,5 +66,29 @@ router.get('/friendship', function(req, res){
     res.send(400, err);
   })
 });
+
+router.get('/coursepic', function(req, res){
+	courseController.getCourses()
+	.then(function(courses) {
+		return courseController.fetchImage(courses);
+	})
+	.then(function(){
+    res.send(204);
+  })
+  .catch(function(err){
+    res.send(400, err);
+  })
+});
+
+router.get('/batch', function(req, res){
+	courseController.batchUpload()
+	.then(function(){
+    res.send(204);
+  })
+  .catch(function(err){
+    res.send(400, err);
+  })
+});
+
 
 module.exports = router;

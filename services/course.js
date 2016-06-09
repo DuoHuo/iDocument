@@ -1,6 +1,9 @@
 var Course = require('../model').Course;
 var mongoose = require('mongoose');
 var ObjectId = mongoose.Types.ObjectId;
+var request = require('superagent');
+var fs = require('fs');
+var qiniuConfig = require('../config').qiniu;
 
 exports.fetch = function(limit, offset) {
 	return Course.find({}).limit(limit).skip(offset);
@@ -38,6 +41,14 @@ exports.getCoursesByCollegeId = function(collegeId){
 	return Course.find({courseBelongs: collegeId});
 };
 
+exports.updateLocalPath = function(id, path) {
+	return Course.findByIdAndUpdate(id, {$set: { 'localPath': path} });
+};
+
+exports.updateQiniuPath = function(name, path) {
+	return Course.update({ courseName: name }, {$set: { qiniuPath: qiniuConfig.hostname + path } });
+};
+
 exports.changeId = function() {
 	return Course.find()
 	.then(function(courses){
@@ -62,4 +73,28 @@ exports.changePic = function() {
 
 		return Promise.all(promises);
 	})
+};
+
+exports.getAndSaveImage = function(course) {
+	var DEFAULT_SITE = 'http://idoc.duohuo.org';
+	var DEAULT_IMADE = '/img/course.jpg';
+	var FLODER_PATH = __dirname + '/../public/media/';
+
+	return new Promise(function(resolve, reject){
+		if(course.coursepic === ' ') {
+			course.coursepic = DEFAULT_SITE + DEAULT_IMADE;
+		}
+
+		if(!/[http/https]:\/\//.test(course.coursepic)) {
+			course.coursepic = DEFAULT_SITE + course.coursepic;
+		}
+
+		request.get(course.coursepic)
+		.pipe(fs.createWriteStream(FLODER_PATH + course.courseName + '.jpg'))
+		.on('error', function() {
+			reject(new Error('出错了'));
+		});
+
+		resolve(DEFAULT_SITE + '/media/' + course.courseName + '.jpg');
+	});
 };

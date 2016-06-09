@@ -6,5 +6,11 @@ module.exports = {
     bindPort: 3000,
 
     // site settings
-    siteName: 'iDocument'
+    siteName: 'iDocument',
+    qiniu: {
+    	bucket: 'idoc',
+        hostname: 'http://7xv7vu.com1.z0.glb.clouddn.com/',
+    	access_key: 'srpwkjJuIfB-_GYv5yryMccW46MmmyhTugNhLPQK',
+    	secret_key: 'FvY-zarqGAL6fy95kNn4xUGpmxELQdCotNpMkzIg'
+    }
 }
