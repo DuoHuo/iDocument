@@ -9,6 +9,7 @@ var Course = connection.model('course', require('./schemas/course'));
 var Document = connection.model('document', require('./schemas/document'));
 var Banner = connection.model('banner', require('./schemas/banner'));
 var Link = connection.model('link', require('./schemas/link'));
+var Media = connection.model('media', require('./schemas/media'));
 
 module.exports = {
   User,
@@ -16,5 +17,6 @@ module.exports = {
   Course,
   Document,
   Banner,
-  Link
+  Link,
+  Media
 };

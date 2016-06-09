@@ -8,11 +8,16 @@ var courseController = require('../controllers/course');
 var userController = require('../controllers/user');
 var bannerController = require('../controllers/banner');
 var linkController = require('../controllers/link');
+var mediaController = require('../controllers/media');
+
 var middles = require('../middles');
 
 var validateId = middles.validateId;
 var needLogin = middles.needLogin;
 var DEFAULT_DOC_SORT = 'updateTime';
+
+var multer = require('multer');
+var upload = multer({dest: 'public/upload'});
 
 router.get('/search/docs', function(req, res){
 	var sort = req.query.sort;
@@ -423,5 +428,10 @@ router.delete('/admin/links/:id', needLogin, function(req, res) {
     res.send(400, err);
   });
 });
+
+router.post('/admin/media', upload.single('file'), mediaController.upload);
+router.get('/admin/medias', mediaController.getAll);
+router.post('/admin/medias', upload.array('file', 12), mediaController.batchUpload);
+router.delete('/admin/medias/:mediaId', mediaController.delete);
 
 module.exports = router;

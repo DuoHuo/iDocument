@@ -56,6 +56,7 @@ app.use(function(req, res, next){
     next();
   })
 });
+
 app.use('/', require('./routes/index'));
 app.use('/admin', require('./routes/admin'));
 
