@@ -7,7 +7,10 @@ dev: install
 clean:
 	@rm -rf node_modules
 
-deploy: install
+pull:
 	@git pull origin master
+
+deploy: pull
+	@make install
 	@pm2 restart idoc
 
