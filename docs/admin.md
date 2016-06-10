@@ -20,7 +20,8 @@
 16. [获取链接资源](#doc-16)
 17. [增加链接](#doc-17)
 18. [删除链接](#doc-18)
-
+19. [上传文档](#doc-19)
+20. [批量上传图片](#doc-20)
 
 <h2>1.登录和登出</h2>
 
@@ -453,3 +454,75 @@ code 204
 #### 响应
 
 code 204
+
+<h2>7.上传文档</h2>
+
+<h3 id="doc-19">上传单个文件</h3>
+
+#### 请求
+
+`POST /api/v1/admin/doc` form-data
+
+###### 参数描述
+| 名字 | 类型 | 详细描述 |
+| ----- | ----- | -------- |
+| doc | file | 需要上传的文档 |
+
+#### 响应
+
+###### 参数描述
+| 名字 | 类型 | 详细描述 |
+| ----- | ----- | -------- |
+| name | string | 文档名称 |
+| local_url | string | 服务器上文件路径 |
+| qiniu_url| string | 七牛云上文件路径 |
+
+```json
+{
+  "name": "本学期毕设相关事务.docx",
+  "qiniu_url": "http://7xv7vu.com1.z0.glb.clouddn.com/本学期毕设相关事务.docx",
+  "local_url": "127.0.0.1:3000/upload/本学期毕设相关事务.docx"
+}
+```
+
+<h2>8.上传图片</h2>
+
+<h3 id="doc-20">批量上传图片</h3>
+
+#### 请求
+
+`POST /api/v1/admin/medias` form-data
+
+###### 参数描述
+| 名字 | 类型 | 详细描述 |
+| ----- | ----- | -------- |
+| images | file | 多张图片(最多12张) |
+
+#### 响应
+
+###### 图片对象参数描述
+| 名字 | 类型 | 详细描述 |
+| ----- | ----- | -------- |
+| name | string | 图片名称 |
+| local_url | string | 服务器上图片路径 |
+| qiniu_url| string | 七牛云上图片路径 |
+
+```json
+[
+  {
+    "name": "操作系统.jpg",
+    "qiniu_url": "http://7xv7vu.com1.z0.glb.clouddn.com/操作系统.jpg",
+    "local_url": "127.0.0.1:3000/upload/操作系统.jpg"
+  },
+  {
+    "name": "插画.jpg",
+    "qiniu_url": "http://7xv7vu.com1.z0.glb.clouddn.com/插画.jpg",
+    "local_url": "127.0.0.1:3000/upload/插画.jpg"
+  },
+  {
+    "name": "常微分方程.jpg",
+    "qiniu_url": "http://7xv7vu.com1.z0.glb.clouddn.com/常微分方程.jpg",
+    "local_url": "127.0.0.1:3000/upload/常微分方程.jpg"
+  }
+]
+```

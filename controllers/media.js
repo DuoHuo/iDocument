@@ -41,12 +41,17 @@ exports.upload = function(req, res) {
       var media = {
         key: req.file.originalname,
         local_url: config.host + URL_PATH,
+        type: 'doc',
         qiniu_url: qiniuConfig.hostname + '/' + reply.key,
         hash: reply.hash
       };
 
       MediaService.create(media).then(function(media) {
-        res.json(media);
+        res.json({
+          name: media.key,
+          qiniu_url: media.qiniu_url,
+          local_url: media.local_url
+        });
       })
     }).catch(function(err) {
       res.send(400, err);
@@ -69,12 +74,17 @@ exports.batchUpload = function(req, res) {
       var media = {
         key: file.originalname,
         local_url: config.host + URL_PATH,
+        type: 'image',
         qiniu_url: qiniuConfig.hostname +  '/' + reply.key,
         hash: reply.hash
       };
       return MediaService.create(media)
       .then(function(media) {
-        return media;
+        return {
+          name: media.key,
+          qiniu_url: media.qiniu_url,
+          local_url: media.local_url
+        };
       })
     })
   }

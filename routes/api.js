@@ -194,6 +194,8 @@ router.get('/admin/docs', needLogin, function(req, res){
 	});
 });
 
+router.post('/admin/doc', upload.single('doc'), mediaController.upload);
+
 router.post('/admin/docs', needLogin, function(req, res) {
 	var data = req.body;
 	if(Util.isEmptyObject(data)) {
@@ -429,9 +431,8 @@ router.delete('/admin/links/:id', needLogin, function(req, res) {
   });
 });
 
-router.post('/admin/media', upload.single('file'), mediaController.upload);
 router.get('/admin/medias', mediaController.getAll);
-router.post('/admin/medias', upload.array('file', 12), mediaController.batchUpload);
+router.post('/admin/medias', upload.array('images', 12), mediaController.batchUpload);
 router.delete('/admin/medias/:mediaId', mediaController.delete);
 
 module.exports = router;

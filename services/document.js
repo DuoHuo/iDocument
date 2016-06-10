@@ -22,6 +22,10 @@ exports.fetch = function(limit, offset) {
 	return Document.find({}).populate('belongs').populate('courses').limit(limit).skip(offset);
 };
 
+exports.getAll = function() {
+	return Document.find({});
+};
+
 exports.remove = function(id) {
 	return Document.findByIdAndRemove(id);
 };

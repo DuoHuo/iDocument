@@ -6,6 +6,7 @@ module.exports = new Schema({
     type: String,
     required: true
   },
+  type: String,
   qiniu_url: String,
   local_url: String,
   hash: String,
