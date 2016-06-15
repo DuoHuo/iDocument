@@ -3,7 +3,8 @@ var mongoose = require('mongoose');
 var ObjectId = mongoose.Types.ObjectId;
 var request = require('superagent');
 var fs = require('fs');
-var qiniuConfig = require('../config').qiniu;
+var config = require('../config');
+var qiniuConfig = config.qiniu;
 
 exports.fetch = function(limit, offset) {
 	return Course.find({}).limit(limit).skip(offset);
@@ -76,7 +77,7 @@ exports.changePic = function() {
 };
 
 exports.getAndSaveImage = function(course) {
-	var DEFAULT_SITE = 'http://idoc.duohuo.org';
+	var DEFAULT_SITE = config.host;
 	var DEAULT_IMADE = '/img/course.jpg';
 	var FLODER_PATH = __dirname + '/../public/media/';
 

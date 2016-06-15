@@ -31,3 +31,12 @@ exports.uploadFile = function(key, file) {
   var Bucket = qiniuSDK.bucket(qinniuConfig.bucket);
   return Bucket.putFile(key, file)
 };
+
+exports.formate = function(docs) {
+  var promises = docs.map(doc => {
+    doc.updateTime= new Date(doc.updateTime).getTime();
+    return doc;
+  })
+
+  return Promise.all(promises);
+}

@@ -41,9 +41,12 @@ router.get('/search/docs', function(req, res){
 		option.sort = sort;
 		docController.searchDocs(option)
 		.then(function(docs){
-			return res.send(200, {
-				total: docs.length,
-				docs: docs
+			Util.formate(docs)
+			.then(function(results) {
+				return res.send(200, {
+					total: results.length,
+					docs: results
+				})
 			})
 		})
 		.catch(function(err){
