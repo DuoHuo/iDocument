@@ -2,6 +2,6 @@
 .DS_Store
 config.js
 node_modules
-config.js
-public/media/*
-public/upload/*
+./config.js
+./public/media/*
+./public/upload/*
