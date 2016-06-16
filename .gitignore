@@ -2,5 +2,4 @@
 .DS_Store
 config.js
 node_modules
-public/media/*
 public/upload/*

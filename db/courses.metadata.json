@@ -1,1 +1,1 @@
-{ "options" : { "create" : "courses" }, "indexes" : [ { "v" : 1, "key" : { "_id" : 1 }, "ns" : "dhdocs.courses", "name" : "_id_" } ] }
+{"options":{},"indexes":[{"v":1,"key":{"_id":1},"name":"_id_","ns":"dhdocs.courses"}]}

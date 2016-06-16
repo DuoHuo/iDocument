@@ -47,7 +47,7 @@ exports.updateLocalPath = function(id, path) {
 };
 
 exports.updateQiniuPath = function(name, path) {
-	return Course.update({ courseName: name }, {$set: { qiniuPath: qiniuConfig.hostname + path } });
+	return Course.update({ courseName: name }, {$set: { qiniuPath: qiniuConfig.hostname + '/' + path } });
 };
 
 exports.changeId = function() {

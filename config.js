@@ -1,6 +1,6 @@
 module.exports = {
     // server settings
-    host: '127.0.0.1:3000',
+    host: 'http://127.0.0.1:3000',
     cookieSecret: 'naev5aeSthooceN6Ahhu1een',
     mongodb: 'mongodb://127.0.0.1:27017/dhdocs',
     bindAddress: '127.0.0.1',

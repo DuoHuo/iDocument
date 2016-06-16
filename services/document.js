@@ -43,11 +43,11 @@ exports.queryByName = function(name, sort) {
 };
 
 exports.getDocsByCourseId = function(courseId) {
-	return Document.find({course: courseId}).select('title link');
+	return Document.find({course: courseId}).select('title link').exec();
 };
 
 exports.getDocsByCollegeId = function(collegeId) {
-	return Document.find({belongs: collegeId}).select('title link');
+	return Document.find({belongs: collegeId}).select('title link').exec();
 };
 
 exports.update = function(docId, doc){
