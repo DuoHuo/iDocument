@@ -6,7 +6,7 @@ exports.sortDocs = function(sort) {
 	if(sort === 'downloads') {
 		return Document.find({}).sort({ downloads: -1 }).limit(6).select('title downloads updateTime link');
 	} else {
-		return Document.find({}).sort({ updateTime: -1 }).select('title downloads updateTime link');
+		return Document.find({}).sort({ updateTime: -1 }).limit(6).select('title downloads updateTime link');
 	}
 };
 
