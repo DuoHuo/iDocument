@@ -42,7 +42,17 @@ exports.delCourse = function(id){
 }
 
 exports.fetchCourses = function(limit, offset){
-	return Course.fetch(limit, offset);
+	var result = {};
+	return Course.fetch(limit, offset)
+		.then(function (courses) {
+			result.total = courses.length;
+			result.courses = courses;
+			return Course.fetch();
+		})
+		.then(function (allcourses) {
+			result.sum = allcourses.length;
+			return result;
+		})
 };
 
 exports.fetchImage = function(courses) {

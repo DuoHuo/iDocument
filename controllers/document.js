@@ -6,7 +6,17 @@ exports.getDocsByCourseId = function(courseid) {
 };
 
 exports.getDocs = function(limit, offset){
-	return Doc.fetch(limit, offset);
+	var result = {};
+	return Doc.fetch(limit, offset)
+		.then(function (docs) {
+			result.total = docs.length;
+			result.docs = docs;
+			return Doc.fetch();
+		})
+		.then(function (alldocs) {
+			result.sum = alldocs.length;
+			return result;
+		})
 };
 
 exports.downloadDoc = function(docId) {
