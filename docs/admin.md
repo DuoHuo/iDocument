@@ -70,6 +70,7 @@ code 204
 #### 响应
 ```json
 {
+	"sum":321,
 	"total": 10,
   "docs": [
 		{
@@ -206,6 +207,7 @@ code 204
 
 ```json
 {
+  "sum":165,
   "total": 10,
   "courses": [
     {
@@ -275,6 +277,7 @@ code 204
 
 ```json
 {
+  "sum":18,
   "total": 10,
   "colleges": [
     {

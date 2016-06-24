@@ -188,8 +188,9 @@ router.get('/admin/docs', needLogin, function(req, res){
 	docController.getDocs(limit, offset)
 	.then(function(result){
 	  res.send(200, {
-	  	total: result.length,
-	  	docs: result
+		  sum : result.sum,
+	  	total: result.total,
+	  	docs: result.docs
 	  });
 	})
 	.catch(function(err) {
@@ -253,8 +254,9 @@ router.get('/admin/courses', needLogin, function(req, res){
 	courseController.fetchCourses(limit, offset)
 	.then(function(result){
 	  res.send(200, {
-	  	total: result.length,
-	  	courses: result
+		  sum : result.sum,
+	  	total: result.total,
+	  	courses: result.courses
 	  });
 	})
 	.catch(function(err) {
@@ -300,8 +302,9 @@ router.get('/admin/colleges', needLogin, function(req, res){
 	collegeController.getColleges(limit, offset)
 	.then(function(result){
 	  res.send(200, {
-	  	total: result.length,
-	  	colleges: result
+		  sum : result.sum,
+	  	total: result.total,
+	  	colleges: result.colleges
 	  });
 	})
 	.catch(function(err) {

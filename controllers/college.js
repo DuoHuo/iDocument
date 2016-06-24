@@ -3,7 +3,17 @@ var Course = require('../services/course');
 var Doc = require('../services/document');
 
 exports.getColleges = function(limit, offset) {
-	return College.fetch(limit, offset);
+	var result = {};
+	return College.fetch(limit, offset)
+		.then(function (colleges) {
+			result.total = colleges.length;
+			result.colleges = colleges;
+			return College.fetch();
+		})
+		.then(function (allcolleges) {
+			result.sum = allcolleges.length;
+			return result;
+		})
 };
 
 exports.getCollegeInfo = function(collegeid) {
