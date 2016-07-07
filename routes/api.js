@@ -438,6 +438,7 @@ router.delete('/admin/links/:id', needLogin, function(req, res) {
 });
 
 router.get('/admin/medias', needLogin, mediaController.getAll);
+router.get('/admin/medias/search', needLogin, mediaController.findDocByName);
 router.post('/admin/medias', needLogin, upload.array('images', 12), mediaController.batchUpload);
 router.delete('/admin/medias/:mediaId', needLogin, mediaController.delete);
 

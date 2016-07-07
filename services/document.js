@@ -19,11 +19,11 @@ exports.add = function(doc){
 };
 
 exports.fetch = function(limit, offset) {
-	return Document.find({}).populate('belongs').populate('courses').limit(limit).skip(offset);
+	return Document.find({}).sort({ updateTime: -1 }).populate('belongs').populate('courses').limit(limit).skip(offset);
 };
 
 exports.getAll = function() {
-	return Document.find({});
+	return Document.find({}).sort({ updateTime: -1 });
 };
 
 exports.remove = function(id) {
