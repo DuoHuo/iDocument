@@ -1,8 +1,22 @@
 var Doc = require('../services/document');
 var Course = require('../services/course');
+var College = require('../services/college');
 
 exports.getDocsByCourseId = function(courseid) {
 	return Doc.getDocsByCourseId(courseid);
+};
+
+exports.fuzzyMatch = function(qs) {
+	var result = {};
+	return Course.match(qs)
+		.then(function (courses) {
+			result.course = courses;
+			return College.match(qs);
+		})
+		.then(function (colleges) {
+			result.college = colleges;
+			return result;
+		})
 };
 
 exports.getDocs = function(limit, offset){

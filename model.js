@@ -11,6 +11,7 @@ var Banner = connection.model('banner', require('./schemas/banner'));
 var Link = connection.model('link', require('./schemas/link'));
 var Media = connection.model('media', require('./schemas/media'));
 
+//noinspection JSAnnotator
 module.exports = {
   User,
   College,
