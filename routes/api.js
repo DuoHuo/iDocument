@@ -247,7 +247,7 @@ router.delete('/admin/docs/:id', needLogin, function(req, res) {
   });
 });
 
-router.get('/admin/search/doc', function(req, res) {
+router.get('/admin/matched/doc', function(req, res) {
 	var _q = req.query.q;
 	var qs = [];
 	_q = _q.replace(/学/g, "");
