@@ -247,6 +247,27 @@ router.delete('/admin/docs/:id', needLogin, function(req, res) {
   });
 });
 
+router.get('/admin/matched/doc', function(req, res) {
+	var _q = req.query.q;
+	var qs = [];
+	_q = _q.replace(/学/g, "");
+	_q = _q.replace(/院/g, "");
+	var  q = _q.toLowerCase().split("");
+	for(var i=0;i<q.length;i++) {
+		qs.push(new RegExp(q[i]));
+	}
+	docController.fuzzyMatch(qs)
+		.then(function(result){
+			res.send(200, {
+				courses : result.course,
+				colleges: result.college
+			});
+		})
+		.catch(function(err) {
+			res.send(400, err);
+		});
+});
+
 router.get('/admin/courses', needLogin, function(req, res){
 	var limit = req.query.limit || 10;
 	var offset = req.query.offset || 0;

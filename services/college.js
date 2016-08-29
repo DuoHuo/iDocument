@@ -15,3 +15,7 @@ exports.add = function(newcollege) {
 exports.remove = function(id) {
 	return College.findByIdAndRemove(id);
 };
+
+exports.match = function (qs) {
+	return College.find({collegeName:{$in: qs}}).limit("1")
+};
