@@ -2,19 +2,19 @@
 	{
 		"bannerName": "校学习部介绍",
 		"bannerIndex": 3,
-		"bannerPic": "http://idoc.duohuo.org/img/xx.png",
+		"bannerPic": "http://idoc-api.duohuo.org/img/xx.png",
 		"bannerLink": ""
 	},
 	{
 		"bannerName": "iDocument介绍",
 		"bannerIndex": 1,
-		"bannerPic": "http://idoc.duohuo.org/img/23.png",
+		"bannerPic": "http://idoc-api.duohuo.org/img/23.png",
 		"bannerLink": ""
 	},
 	{
 		"bannerName": "多火介绍",
 		"bannerIndex": 2,
-		"bannerPic": "http://idoc.duohuo.org/img/dh.png",
+		"bannerPic": "http://idoc-api.duohuo.org/img/dh.png",
 		"bannerLink": "http://www.duohuo.org"
 	}
 ]
