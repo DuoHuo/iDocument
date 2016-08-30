@@ -17,5 +17,9 @@ exports.remove = function(id) {
 };
 
 exports.match = function (qs) {
-	return College.find({collegeName:{$in: qs}}).limit("1")
+	return College.findOne({collegeName:{$in: qs}})
+};
+
+exports.fetchAll = function() {
+	return College.find({});
 };

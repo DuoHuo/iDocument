@@ -9,12 +9,28 @@ exports.getDocsByCourseId = function(courseid) {
 exports.fuzzyMatch = function(qs) {
 	var result = {};
 	return Course.match(qs)
-		.then(function (courses) {
-			result.course = courses;
+		.then(function (course) {
+			result.course = course;
 			return College.match(qs);
 		})
+		.then(function (college) {
+			result.college = college;
+			return Course.fetchAll()
+		})
+		.then(function (courses) {
+			var coursesArray = [];
+			courses.forEach(function(e) {
+				coursesArray.push(e.courseName)
+			});
+			result.courseIndex = coursesArray.indexOf(result.course.courseName);
+			return College.fetchAll()
+		})
 		.then(function (colleges) {
-			result.college = colleges;
+			var collegesArray = [];
+			colleges.forEach(function (e) {
+				collegesArray.push(e.collegeName)
+			})
+			result.collegeIndex = collegesArray.indexOf(result.college.collegeName);
 			return result;
 		})
 };

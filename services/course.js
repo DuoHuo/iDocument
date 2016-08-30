@@ -10,7 +10,7 @@ exports.fetch = function(limit, offset) {
 	return Course.find({}).limit(limit).skip(offset);
 };
 exports.match = function(qs) {
-	return Course.find({courseName:{$in: qs}}).limit("1")
+	return Course.findOne({courseName:{$in: qs}})
 }
 
 exports.fetchAll = function() {

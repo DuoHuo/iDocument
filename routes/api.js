@@ -259,12 +259,13 @@ router.get('/admin/matched/doc', function(req, res) {
 	docController.fuzzyMatch(qs)
 		.then(function(result){
 			res.send(200, {
-				courses : result.course,
-				colleges: result.college
+				courseIndex : result.courseIndex,
+				collegeIndex: result.collegeIndex
 			});
 		})
 		.catch(function(err) {
 			res.send(400, err);
+			console.log(err)
 		});
 });
 

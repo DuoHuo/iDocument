@@ -545,25 +545,7 @@ code 204
 
 ```json
 {
-  "courses": [
-    {
-      "_id": "53113c9b1eb6e2b9546b5a90",
-      "courseBelongs": "530fe1a120be5f5d51a7f658",
-      "courseDownloads": 7401,
-      "courseName": "高等数学",
-      "courseType": "general",
-      "coursepic": "/img/course.jpg",
-      "localPath": "http://127.0.0.1:3000/media/高等数学.jpg",
-      "qiniuPath": "http://7xv7vu.com1.z0.glb.clouddn.com/高等数学.jpg"
-    }
-  ],
-  "colleges": [
-    {
-      "_id": "530fe1a120be5f5d51a7f658",
-      "collegeName": "数学与统计学院",
-      "collegepic": "/img/professional/sxytj.png",
-      "updateTime": 1393549730
-    }
-  ]
+  "courseIndex": 0,
+  "collegeIndex": 9
 }
 ```
